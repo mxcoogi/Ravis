@@ -1,0 +1,34 @@
+name: ravis
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_native_splash: ^2.4.2
+  flutter_svg: ^2.0.9
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+
+
+
+flutter_native_splash:
+  color: "#42a5f5"
+
+  android_12:
+    color: "#42a5f5"

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ravis/widget/widget_logo.dart';
-import 'package:ravis/screen/screen_home.dart';
+import 'package:ravis/screen/screen_main.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   // 로그인 성공 시 HomeScreen으로 이동
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    MaterialPageRoute(builder: (context) => MainScreen()),
                   );
                 });
               } else {

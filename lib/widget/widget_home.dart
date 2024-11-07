@@ -37,6 +37,12 @@ class _TravelTicketState extends State<TravelTicket> {
   }
 }
 
+
+
+
+
+
+
 // 2번째 홈메뉴위젯
 class HomeMenu extends StatefulWidget {
   const HomeMenu({super.key});

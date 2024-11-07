@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 30.0, left: 10.0, right: 5.0), // 위쪽, 좌측, 우측에 패딩을 추가
+        padding: EdgeInsets.only(top: 30.0, left: 12.0, right: 5.0), // 위쪽, 좌측, 우측에 패딩을 추가
         child: SingleChildScrollView( // 전체 화면을 스크롤 가능하게 만듬
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center, // 위젯들이 화면 중앙에 정렬되도록 설정

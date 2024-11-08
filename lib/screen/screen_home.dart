@@ -53,22 +53,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     // 첫 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3),
+                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3, path: 'assets/reviewimage.png',),
                     ),
                     // 두 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3),
+                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3, path: 'assets/reviewimage2.png'),
                     ),
                     // 세 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3),
-                    ),
-                    // 네 번째 Review 위젯
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3),
+                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3, path: 'assets/reviewimage.png'),
                     ),
                   ],
                 ),

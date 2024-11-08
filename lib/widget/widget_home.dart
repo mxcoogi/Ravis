@@ -301,8 +301,8 @@ class TextMenu extends StatelessWidget {
               print('이용후기 클릭됨');
             },
             child: Text(
-              '1212123123개 이용후기',
-              style: TextStyle(fontSize: 18, color: Colors.blue),
+              '121개 이용후기',
+              style: TextStyle(fontSize: 18, color: Colors.black54),
             ),
           ),
 
@@ -313,7 +313,7 @@ class TextMenu extends StatelessWidget {
             },
             child: Text(
               '전체보기',
-              style: TextStyle(fontSize: 15, color: Colors.blue),
+              style: TextStyle(fontSize: 15, color: Colors.black45),
             ),
           ),
         ],
@@ -326,11 +326,13 @@ class TextMenu extends StatelessWidget {
 class Review extends StatefulWidget {
   final double width; // 너비
   final double height; // 높이
+  final String path;
 
   const Review({
     super.key,
     required this.width,
     required this.height,
+    required this.path
   });
 
   @override
@@ -341,16 +343,42 @@ class _ReviewState extends State<Review> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width, // 너비
-      height: widget.height, // 높이
-      decoration: BoxDecoration(
-        color: Colors.black, // 배경색
-        borderRadius: BorderRadius.circular(20), // 모서리를 둥글게
-      ),
-      child: Center(
-        child: Text(
-          "이용 후기 위젯",
-          style: TextStyle(color: Colors.white),
+      width: widget.width,  // 너비
+      height: widget.height,  // 높이
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),  // 외부 둥근 모서리 적용
+        child: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(widget.path),  // 배경 이미지 경로
+                    fit: BoxFit.cover,  // 이미지를 꽉 채우도록 설정
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    'Top Section', 
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: Colors.blue,  // 두 번째 컨테이너 색상
+                child: Center(
+                  child: Text(
+                    'Bottom Section', 
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

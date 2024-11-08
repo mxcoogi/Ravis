@@ -21,7 +21,7 @@ class CustomBottomNavBar extends StatelessWidget {
               'assets/homeIcon.svg',
               width: 30,
               height: 30,
-              color: Color(0xFF666E79),
+              color: selectedIndex == 0 ? Color(0xFF1F64C3) : Color(0xFFB0B0B0), // 선택된 경우 색상 변경
             ),
             label: '홈',
           ),
@@ -30,7 +30,7 @@ class CustomBottomNavBar extends StatelessWidget {
               'assets/dangerIcon.svg',
               width: 30,
               height: 30,
-              color: Color(0xFF666E79),
+              color: selectedIndex == 1 ? Color(0xFF1F64C3) : Color(0xFFB0B0B0), // 선택된 경우 색상 변경
             ),
             label: '위험지역',
           ),
@@ -39,7 +39,7 @@ class CustomBottomNavBar extends StatelessWidget {
               'assets/copeIcon.svg',
               width: 30,
               height: 30,
-              color: Color(0xFF666E79),
+              color: selectedIndex == 2 ? Color(0xFF1F64C3) : Color(0xFFB0B0B0), // 선택된 경우 색상 변경
             ),
             label: '대처방법',
           ),
@@ -48,7 +48,7 @@ class CustomBottomNavBar extends StatelessWidget {
               'assets/contactIcon.svg',
               width: 30,
               height: 30,
-              color: Color(0xFF666E79),
+              color: selectedIndex == 3 ? Color(0xFF1F64C3) : Color(0xFFB0B0B0), // 선택된 경우 색상 변경
             ),
             label: '비상 연락',
           ),
@@ -57,12 +57,12 @@ class CustomBottomNavBar extends StatelessWidget {
               'assets/myinfoIcon.svg',
               width: 30,
               height: 30,
-              color: Color(0xFF666E79),
+              color: selectedIndex == 4 ? Color(0xFF1F64C3) : Color(0xFFB0B0B0), // 선택된 경우 색상 변경
             ),
             label: '마이페이지',
           ),
         ],
-        selectedItemColor: Color(0xFF666E79),
+        selectedItemColor: Color(0xFF1F64C3),
         unselectedItemColor: Color(0xFF666E79),
       ),
     );

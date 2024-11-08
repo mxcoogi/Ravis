@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 //첫번째 티켓위젯
 class TravelTicket extends StatefulWidget {
-  final double width;  // 너비
+  final double width; // 너비
   final double height; // 높이
 
   const TravelTicket({
@@ -22,26 +23,144 @@ class _TravelTicketState extends State<TravelTicket> {
       width: widget.width, // 화면 비율에 맞는 너비
       height: widget.height, // 화면 비율에 맞는 높이
       margin: EdgeInsets.only(top: 10.0), // 마진을 사용하여 아래로 밀기
-      child: Center(
-        child: Text(
-          "여행 티켓 위젯", 
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-      decoration: BoxDecoration(
-        color: Colors.blue, // 배경색
-        borderRadius: BorderRadius.circular(20), // 모서리를 둥글게 하기
-      
+
+      child: Row(
+        children: [
+          // 왼쪽 부분 3분의 1 영역
+          Expanded(
+            flex: 1, // 3분의 1 비율
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color(0xFF1F64C3), // 배경 색상
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15), // 왼쪽 위 모서리 둥글게
+                  bottomLeft: Radius.circular(15), // 왼쪽 아래 모서리 둥글게
+                ),
+                // 왼쪽 경계를 제외한 다른 경계에만 테두리 추가
+              ),
+              child: Stack(
+                children: [
+                  // 디데이
+                  Align(
+                    alignment: Alignment.topLeft, // 왼쪽 상단에 위치
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0), // 왼쪽 위에 여백 추가
+                      child: SvgPicture.asset(
+                        'assets/kakaoIcon.svg', // 왼쪽 위 아이콘 경로
+                        width: 30.0, // 아이콘의 너비
+                        height: 30.0, // 아이콘의 높이
+                      ),
+                    ),
+                  ),
+
+                  // 큐알
+                  Align(
+                    alignment: Alignment.bottomLeft, // 왼쪽 하단에 위치
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0), // 왼쪽 아래에 여백 추가
+                      child: SvgPicture.asset(
+                        'assets/kakaoIcon.svg', // 왼쪽 아래 아이콘 경로
+                        width: 30.0, // 아이콘의 너비
+                        height: 30.0, // 아이콘의 높이
+                      ),
+                    ),
+                  ),
+
+                  // 오른쪽 끝에 아이콘
+                  Align(
+                    alignment: Alignment.centerRight, // 아이콘을 오른쪽 끝에 정렬
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 2.0), // 오른쪽에 여백 추가
+                      child: SvgPicture.asset(
+                        'assets/ticket_logo.svg', // 실제 아이콘 파일 경로
+                        width: 50.0, // 아이콘의 너비
+                        height: 220.0, // 아이콘의 높이
+                        color: Colors.black, // 아이콘 색상
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          // 오른쪽 부분 3분의 2 영역
+          Expanded(
+            flex: 2, // 3분의 2 비율
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 242, 236, 236), // 배경 색상
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(15), // 오른쪽 위 모서리 둥글게
+                  bottomRight: Radius.circular(15), // 오른쪽 아래 모서리 둥글게
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment:
+                    MainAxisAlignment.spaceBetween, // 상단, 중간, 하단 여백을 균등하게 분배
+                children: [
+                  // 맨 위 텍스트 (더 위로)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0), // 맨 위로 간격 추가
+                    child: Align(
+                      alignment: Alignment.topCenter, // 세로 맨 위, 가로 중앙
+                      child: Text(
+                        "첫 번째 텍스트", // 텍스트 내용
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // 두 번째 텍스트와 세 번째 텍스트 (가로로 가운데)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center, // 가로로 중앙 정렬
+                    children: [
+                      Text(
+                        "두 번째 텍스트", // 두 번째 텍스트
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                      SizedBox(width: 10.0), // 두 텍스트 간 간격
+                      Text(
+                        "세 번째 텍스트", // 세 번째 텍스트
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  // 네 번째 텍스트 (화면 맨 아래)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20.0), // 맨 아래로 간격 추가
+                    child: Align(
+                      alignment: Alignment.bottomCenter, // 세로 맨 아래, 가로 중앙
+                      child: Text(
+                        "네 번째 텍스트", // 네 번째 텍스트
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-
-
-
-
-
-
 
 // 2번째 홈메뉴위젯
 class HomeMenu extends StatefulWidget {
@@ -52,41 +171,111 @@ class HomeMenu extends StatefulWidget {
 }
 
 class _HomeMenuState extends State<HomeMenu> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(3), // 패딩 추가
+      padding: EdgeInsets.all(1), // 패딩 추가
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 아이콘 사이에 동일한 간격을 설정
+        mainAxisAlignment: MainAxisAlignment.spaceAround, // 아이콘 사이에 동일한 간격을 설정
         children: [
-          // 첫 번째 아이콘
-          IconButton(
-            icon: Icon(Icons.home, size: 40, color: Colors.blue),
-            onPressed: () {
-              print('Home icon clicked');
-            },
+          // 첫 번째 아이콘과 라벨
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  print("홈 아이콘 클릭");
+                },
+                child: SvgPicture.asset(
+                  'assets/homemenu1.svg',
+                  width: 45.0,
+                  height: 45.0,
+                ),
+              ),
+              SizedBox(height: 8.0), // 아이콘과 텍스트 사이의 간격
+              Text(
+                "대여 예약",
+                style: TextStyle(
+                  fontSize: 13.0,
+                  color: Colors.black,
+                ),
+              ),
+            ],
           ),
-          // 두 번째 아이콘
-          IconButton(
-            icon: Icon(Icons.search, size: 40, color: Colors.blue),
-            onPressed: () {
-              print('Search icon clicked');
-            },
+
+          // 두 번째 아이콘과 라벨
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  print("설정 아이콘 클릭");
+                },
+                child: SvgPicture.asset(
+                  'assets/homemenu2.svg',
+                  width: 45.0,
+                  height: 45.0,
+                ),
+              ),
+              SizedBox(height: 8.0),
+              Text(
+                "상품 사용법",
+                style: TextStyle(
+                  fontSize: 13.0,
+                  color: Colors.black,
+                ),
+              ),
+            ],
           ),
-          // 세 번째 아이콘
-          IconButton(
-            icon: Icon(Icons.notifications, size: 40, color: Colors.blue),
-            onPressed: () {
-              print('Notifications icon clicked');
-            },
+
+          // 세 번째 아이콘과 라벨
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  print("알림 아이콘 클릭");
+                },
+                child: SvgPicture.asset(
+                  'assets/homemenu3.svg',
+                  width: 45.0,
+                  height: 45.0,
+                ),
+              ),
+              SizedBox(height: 8.0),
+              Text(
+                "일정 등록",
+                style: TextStyle(
+                  fontSize: 13.0,
+                  color: Colors.black,
+                ),
+              ),
+            ],
           ),
-          // 네 번째 아이콘
-          IconButton(
-            icon: Icon(Icons.account_circle, size: 40, color: Colors.blue),
-            onPressed: () {
-              print('Profile icon clicked');
-            },
+
+          // 네 번째 아이콘과 라벨
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  print("프로필 아이콘 클릭");
+                },
+                child: SvgPicture.asset(
+                  'assets/homemenu4.svg',
+                  width: 45.0,
+                  height: 45.0,
+                ),
+              ),
+              SizedBox(height: 8.0),
+              Text(
+                "공관 찾기",
+                style: TextStyle(
+                  fontSize: 13.0,
+                  color: Colors.black,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -116,11 +305,10 @@ class TextMenu extends StatelessWidget {
               style: TextStyle(fontSize: 18, color: Colors.blue),
             ),
           ),
-          
+
           // 전체보기 텍스트 버튼
           TextButton(
             onPressed: () {
-              
               print('전체보기 클릭됨');
             },
             child: Text(
@@ -134,9 +322,9 @@ class TextMenu extends StatelessWidget {
   }
 }
 
-// 4번째 리뷰위젯 
+// 4번째 리뷰위젯
 class Review extends StatefulWidget {
-  final double width;  // 너비
+  final double width; // 너비
   final double height; // 높이
 
   const Review({
@@ -150,26 +338,24 @@ class Review extends StatefulWidget {
 }
 
 class _ReviewState extends State<Review> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,  // 너비
-      height: widget.height,  // 높이
+      width: widget.width, // 너비
+      height: widget.height, // 높이
       decoration: BoxDecoration(
         color: Colors.black, // 배경색
         borderRadius: BorderRadius.circular(20), // 모서리를 둥글게
       ),
       child: Center(
         child: Text(
-          "이용 후기 위젯", 
+          "이용 후기 위젯",
           style: TextStyle(color: Colors.white),
         ),
       ),
     );
   }
 }
-
 
 //5번째 뉴스 텍스트
 class NewsMenu extends StatelessWidget {
@@ -193,11 +379,10 @@ class NewsMenu extends StatelessWidget {
               style: TextStyle(fontSize: 18, color: Colors.blue),
             ),
           ),
-          
+
           // 전체보기 텍스트 버튼
           TextButton(
             onPressed: () {
-              
               print('전체보기 클릭됨');
             },
             child: Text(
@@ -213,8 +398,7 @@ class NewsMenu extends StatelessWidget {
 
 //6번째 위젯 뉴스
 class News extends StatefulWidget {
-
-  final double width;  // 너비
+  final double width; // 너비
   final double height; // 높이
 
   const News({
@@ -231,20 +415,18 @@ class _NewsState extends State<News> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,  // 너비
-      height: widget.height,  // 높이
+      width: widget.width, // 너비
+      height: widget.height, // 높이
       decoration: BoxDecoration(
         color: Colors.red, // 배경색
         borderRadius: BorderRadius.circular(20), // 모서리를 둥글게
       ),
       child: Center(
         child: Text(
-          "뉴스 위젯", 
+          "뉴스 위젯",
           style: TextStyle(color: Colors.white),
         ),
       ),
     );
   }
 }
-
-

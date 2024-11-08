@@ -39,9 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               // 추가적인 위젯들
-              SizedBox(height: 10),
+              SizedBox(height: 33),
               HomeMenu(),
-              SizedBox(height: 5),
+              SizedBox(height: 23),
               TextMenu(),
               SizedBox(height: 5),
               // 가로 스크롤 가능한 Row

@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 30.0, left: 12.0, right: 5.0), // 위쪽, 좌측, 우측에 패딩을 추가
+        padding: EdgeInsets.only(top: 30.0, left: 16.0, right: 12.0), // 위쪽, 좌측, 우측에 패딩을 추가
         child: SingleChildScrollView( // 전체 화면을 스크롤 가능하게 만듬
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center, // 위젯들이 화면 중앙에 정렬되도록 설정
@@ -53,22 +53,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     // 첫 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.2),
+                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3),
                     ),
                     // 두 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.2),
+                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3),
                     ),
                     // 세 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.2),
+                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3),
                     ),
                     // 네 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.2),
+                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3),
                     ),
                   ],
                 ),
@@ -76,11 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 5),
               NewsMenu(),
               SizedBox(height: 10),
-              News(width: screenWidth * 0.9, height: screenHeight * 0.15),
+              News(width: screenWidth * 0.9, height: screenHeight * 0.13),
               SizedBox(height: 10),
-              News(width: screenWidth * 0.9, height: screenHeight * 0.15),
+              News(width: screenWidth * 0.9, height: screenHeight * 0.13),
               SizedBox(height: 10),
-              News(width: screenWidth * 0.9, height: screenHeight * 0.15),
+              News(width: screenWidth * 0.9, height: screenHeight * 0.13),
             ],
           ),
         ),

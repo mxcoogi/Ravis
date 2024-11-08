@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ravis/widget/widget_logo.dart';
 import 'package:ravis/screen/screen_main.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -24,21 +26,21 @@ class _LoginScreenState extends State<LoginScreen> {
         color: Colors.white,
         child: Stack(
           children: [
-            LogoWidget(top: screenSize.height * 0.3, left: screenSize.width*0.27,
+            LogoWidget(top: screenSize.height * 0.25, left: screenSize.width*0.27,
             width : screenSize.width * 0.2, height: screenSize.height * 0.05),
             Positioned(
-              left: screenSize.width * 0.043,
-              top: screenSize.height * 0.39, // 조정된 위치
+              left: screenSize.width * 0.045,
+              top: screenSize.height * 0.37, // 조정된 위치
               child: _buildInputField(_idController, 'ID를 입력하세요.', icon: Icons.person),
             ),
             Positioned(
-              left: screenSize.width * 0.043,
-              top: screenSize.height * 0.46, // 조정된 위치
+              left: screenSize.width * 0.045,
+              top: screenSize.height * 0.44, // 조정된 위치
               child: _buildInputField(_passwordController, '비밀번호를 입력하세요.', icon: Icons.lock),
             ),
             Positioned(
               left: screenSize.width * 0.03,
-              top: screenSize.height * 0.51, // 조정된 위치
+              top: screenSize.height * 0.49, // 조정된 위치
               child: Row(
                 children: [
                   Checkbox(
@@ -54,23 +56,41 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             Positioned(
-              left: screenSize.width * 0.04,
-              top: screenSize.height * 0.61, // 조정된 위치
+              left: screenSize.width * 0.045,
+              top: screenSize.height * 0.56, // 조정된 위치
               child: _buildLoginButton(),
             ),
             Positioned(
               left: screenSize.width * 0.1,
-              top: screenSize.height * 0.7, // 조정된 위치
+              top: screenSize.height * 0.65, // 조정된 위치
               child: _buildText('아이디 찾기', Color(0xFF50555C)),
             ),
             Positioned(
+              left : screenSize.width * 0.333,
+              top : screenSize.height * 0.65,
+              child: Container(
+                  width: 1,
+                  height: 19,
+                  color: Colors.grey,
+                )
+            ),
+            Positioned(
               left: screenSize.width * 0.37,
-              top: screenSize.height * 0.7, // 조정된 위치
+              top: screenSize.height * 0.65, // 조정된 위치
               child: _buildText('비밀번호 재설정', Color(0xFF50555C)),
             ),
             Positioned(
+              left : screenSize.width * 0.6685,
+              top : screenSize.height * 0.65,
+              child: Container(
+                  width: 1,
+                  height: 19,
+                  color: Colors.grey,
+                )
+            ),
+            Positioned(
               left: screenSize.width * 0.7,
-              top: screenSize.height * 0.7, // 조정된 위치
+              top: screenSize.height * 0.65, // 조정된 위치
               child: _buildText('회원가입', Color(0xFF50555C)),
             ),
             Positioned(
@@ -78,6 +98,84 @@ class _LoginScreenState extends State<LoginScreen> {
               top: 0,
               child: _buildHeader(),
             ),
+            Positioned(
+              left: screenSize.width * 0.04,
+              top: screenSize.height * 0.75,
+              child: Container( 
+              height:1.0,
+              width:100.0,
+              color:Colors.grey
+              ),
+           ),
+           Positioned(
+              left: screenSize.width * 0.335,
+              top: screenSize.height * 0.74,
+              child: Container( 
+              height:20.0,
+              width:130.0,
+              child: Center(
+            child: Text(
+              "SNS 계정으로 로그인",
+              style: TextStyle(fontSize: 13),
+            ),
+          ),
+              color:Colors.white
+              ),
+           ),
+           
+           Positioned(
+              left: screenSize.width * 0.7,
+              top: screenSize.height * 0.75,
+              child: Container( 
+              height:1.0,
+              width:100.0,
+              color:Colors.grey
+              )
+           ),
+            Positioned(
+              left: screenSize.width * 0.17,
+              top: screenSize.height * 0.78,
+              child: Container(
+                height: 50.0, // 아이콘에 맞게 크기 조정
+                width: 50.0,  // 아이콘에 맞게 크기 조정
+                child: SvgPicture.asset(
+                  'assets/naverIcon.svg'
+                ),
+              ),
+            ),
+            Positioned(
+              left: screenSize.width * 0.35,
+              top: screenSize.height * 0.78,
+              child: Container(
+                height: 50.0, // 아이콘에 맞게 크기 조정
+                width: 50.0,  // 아이콘에 맞게 크기 조정
+                child: SvgPicture.asset(
+                  'assets/kakaoIcon.svg'
+                ),
+              ),
+            ),
+            Positioned(
+              left: screenSize.width * 0.55,
+              top: screenSize.height * 0.78,
+              child: Container(
+                height: 50.0, // 아이콘에 맞게 크기 조정
+                width: 50.0,  // 아이콘에 맞게 크기 조정
+                child: SvgPicture.asset(
+                  'assets/googleIcon.svg'
+                ),
+              ),
+            ),
+            Positioned(
+              left: screenSize.width * 0.73,
+              top: screenSize.height * 0.78,
+              child: Container(
+                height: 50.0, // 아이콘에 맞게 크기 조정
+                width: 50.0,  // 아이콘에 맞게 크기 조정
+                child: SvgPicture.asset(
+                  'assets/appleIcon.svg'
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -145,7 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
         width: MediaQuery.of(context).size.width * 0.9,
         height: 48,
         decoration: BoxDecoration(
-          color: Color(0xFFA1A1A1),
+          color: Color(0xFF001A51),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(

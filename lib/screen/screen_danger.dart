@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ravis/widget/widget_map.dart';
 class DangerScreen extends StatefulWidget {
 
   @override
@@ -8,9 +9,6 @@ class DangerScreen extends StatefulWidget {
 class _DangerScreenState extends State<DangerScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-      ),
-    );
+    return MapSample();
   }
 }

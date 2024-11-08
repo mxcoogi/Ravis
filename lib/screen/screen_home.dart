@@ -76,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
               News(width: screenWidth * 0.9, height: screenHeight * 0.13, path: 'assets/news2.png'),
               SizedBox(height: 10),
               News(width: screenWidth * 0.9, height: screenHeight * 0.13, path: 'assets/news3.png'),
+              SizedBox(height: 10)
             ],
           ),
         ),

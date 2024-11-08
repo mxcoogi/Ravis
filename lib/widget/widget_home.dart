@@ -179,103 +179,103 @@ class _HomeMenuState extends State<HomeMenu> {
         mainAxisAlignment: MainAxisAlignment.spaceAround, // 아이콘 사이에 동일한 간격을 설정
         children: [
           // 첫 번째 아이콘과 라벨
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  print("홈 아이콘 클릭");
-                },
-                child: SvgPicture.asset(
+          InkWell(
+            onTap: () {
+              print("홈 아이콘 클릭");
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
                   'assets/homemenu1.svg',
                   width: 45.0,
                   height: 45.0,
                 ),
-              ),
-              SizedBox(height: 8.0), // 아이콘과 텍스트 사이의 간격
-              Text(
-                "대여 예약",
-                style: TextStyle(
-                  fontSize: 13.0,
-                  color: Colors.black,
+                SizedBox(height: 8.0), // 아이콘과 텍스트 사이의 간격
+                Text(
+                  "대여 예약",
+                  style: TextStyle(
+                    fontSize: 13.0,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
 
           // 두 번째 아이콘과 라벨
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  print("설정 아이콘 클릭");
-                },
-                child: SvgPicture.asset(
+          InkWell(
+            onTap: () {
+              print("설정 아이콘 클릭");
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
                   'assets/homemenu2.svg',
                   width: 45.0,
                   height: 45.0,
                 ),
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                "상품 사용법",
-                style: TextStyle(
-                  fontSize: 13.0,
-                  color: Colors.black,
+                SizedBox(height: 8.0),
+                Text(
+                  "상품 사용법",
+                  style: TextStyle(
+                    fontSize: 13.0,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
 
           // 세 번째 아이콘과 라벨
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  print("알림 아이콘 클릭");
-                },
-                child: SvgPicture.asset(
+          InkWell(
+            onTap: () {
+              print("알림 아이콘 클릭");
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
                   'assets/homemenu3.svg',
                   width: 45.0,
                   height: 45.0,
                 ),
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                "일정 등록",
-                style: TextStyle(
-                  fontSize: 13.0,
-                  color: Colors.black,
+                SizedBox(height: 8.0),
+                Text(
+                  "일정 등록",
+                  style: TextStyle(
+                    fontSize: 13.0,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
 
           // 네 번째 아이콘과 라벨
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  print("프로필 아이콘 클릭");
-                },
-                child: SvgPicture.asset(
+          InkWell(
+            onTap: () {
+              print("프로필 아이콘 클릭");
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
                   'assets/homemenu4.svg',
                   width: 45.0,
                   height: 45.0,
                 ),
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                "공관 찾기",
-                style: TextStyle(
-                  fontSize: 13.0,
-                  color: Colors.black,
+                SizedBox(height: 8.0),
+                Text(
+                  "공관 찾기",
+                  style: TextStyle(
+                    fontSize: 13.0,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

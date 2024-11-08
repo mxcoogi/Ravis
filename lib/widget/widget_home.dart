@@ -327,13 +327,18 @@ class Review extends StatefulWidget {
   final double width; // 너비
   final double height; // 높이
   final String path;
+  final String name;
+  final int star;
+  final String date;
 
-  const Review({
-    super.key,
-    required this.width,
-    required this.height,
-    required this.path
-  });
+  const Review(
+      {super.key,
+      required this.width,
+      required this.height,
+      required this.path,
+      required this.name,
+      required this.star,
+      required this.date});
 
   @override
   State<Review> createState() => _ReviewState();
@@ -343,10 +348,10 @@ class _ReviewState extends State<Review> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,  // 너비
-      height: widget.height,  // 높이
+      width: widget.width, // 너비
+      height: widget.height, // 높이
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),  // 외부 둥근 모서리 적용
+        borderRadius: BorderRadius.circular(20), // 외부 둥근 모서리 적용
         child: Column(
           children: [
             Expanded(
@@ -354,26 +359,162 @@ class _ReviewState extends State<Review> {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(widget.path),  // 배경 이미지 경로
-                    fit: BoxFit.cover,  // 이미지를 꽉 채우도록 설정
+                    image: AssetImage(widget.path), // 배경 이미지 경로
+                    fit: BoxFit.cover, // 이미지를 꽉 채우도록 설정
                   ),
                 ),
-                child: Center(
-                  child: Text(
-                    'Top Section', 
-                    style: TextStyle(color: Colors.white),
-                  ),
+                child: Stack(
+                  children: [
+                    // 왼쪽 위에 이름 텍스트
+                    Positioned(
+                      left: 16, // 왼쪽 여백
+                      top: 16, // 위쪽 여백
+                      child: Text(
+                        widget.name, // 이름 텍스트
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+
+                    // 왼쪽 위에 별점 아이콘 (이름 밑에 배치)
+                    Positioned(
+                      left: 16,
+                      top: 48, // 이름 아래에 위치하도록 설정
+                      child: Row(
+                        children: List.generate(5, (index) {
+                          return Icon(
+                            index < widget.star
+                                ? Icons.star
+                                : Icons.star_border, // 4개 별은 채워지고 나머지는 빈 별
+                            color: Color(0xFF94BEF8),
+                            size: 15,
+                          );
+                        }),
+                      ),
+                    ),
+
+                    // 오른쪽 위에 날짜 텍스트
+                    Positioned(
+                      right: 16, // 오른쪽 여백
+                      top: 16, // 위쪽 여백
+                      child: Text(
+                        widget.date, // 날짜 텍스트 (예시 날짜)
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
             Expanded(
               flex: 1,
               child: Container(
-                color: Colors.blue,  // 두 번째 컨테이너 색상
-                child: Center(
-                  child: Text(
-                    'Bottom Section', 
-                    style: TextStyle(color: Colors.white),
+                color: Color.fromARGB(255, 243, 238, 238), // 두 번째 컨테이너 색상
+                child: Padding(
+                  padding: const EdgeInsets.all(
+                      16.0), // 패딩을 추가하여 텍스트가 컨테이너의 가장자리에 붙지 않도록 함
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start, // 텍스트를 왼쪽 정렬
+                    mainAxisAlignment: MainAxisAlignment.start, // 세로 방향으로 위쪽 정렬
+                    children: [
+                      // 첫 번째 텍스트
+                      Text(
+                        'First Text',
+                        style: TextStyle(
+                            color: Color(0xFF666E79),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                          height:
+                              8), // 첫 번째 텍스트와 두 번째 텍스트 사이에 간격을 주기 위해 SizedBox 사용
+
+                      // 두 번째 텍스트
+                      Text(
+                        'Second Text',
+                        style: TextStyle(
+                          color: Color(0xFF666E79),
+                          fontSize: 15,
+                        ),
+                      ),
+                      SizedBox(
+                          height:
+                              16), // 두 번째 텍스트와 Row 사이에 간격을 주기 위해 SizedBox 사용
+
+                      // Row (세 개의 텍스트를 나란히 배치)
+                      Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.center, // Row 내에서 텍스트를 가운데 정렬
+                        children: [
+                          // 첫 번째 텍스트를 Container로 감싸고 배경색을 남색으로 설정
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4,
+                                horizontal: 12), // 크기를 더 작게 만들기 위한 여백 조정
+                            decoration: BoxDecoration(
+                              color: Color(
+                                  0xFF1853A4), // 남색 배경 (color는 decoration 안에 넣음)
+                              borderRadius:
+                                  BorderRadius.circular(8), // 모서리 둥글게 만들기
+                            ),
+                            child: Text(
+                              'Text 1',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12, // 텍스트 크기도 조금 더 작게 설정
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 16), // 텍스트들 간 간격을 위한 SizedBox
+
+                          // 두 번째 텍스트를 Container로 감싸고 배경색을 남색으로 설정
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4,
+                                horizontal: 12), // 크기를 더 작게 만들기 위한 여백 조정
+                            decoration: BoxDecoration(
+                              color: Color(
+                                  0xFF1853A4), // 남색 배경 (color는 decoration 안에 넣음)
+                              borderRadius:
+                                  BorderRadius.circular(8), // 모서리 둥글게 만들기
+                            ),
+                            child: Text(
+                              'Text 2',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12, // 텍스트 크기도 조금 더 작게 설정
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 16), // 텍스트들 간 간격을 위한 SizedBox
+
+                          // 세 번째 텍스트를 Container로 감싸고 배경색을 남색으로 설정
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4,
+                                horizontal: 12), // 크기를 더 작게 만들기 위한 여백 조정
+                            decoration: BoxDecoration(
+                              color: Color(
+                                  0xFF1853A4), // 남색 배경 (color는 decoration 안에 넣음)
+                              borderRadius:
+                                  BorderRadius.circular(8), // 모서리 둥글게 만들기
+                            ),
+                            child: Text(
+                              'Text 3',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12, // 텍스트 크기도 조금 더 작게 설정
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -403,8 +544,8 @@ class NewsMenu extends StatelessWidget {
               print('이용후기 클릭됨');
             },
             child: Text(
-              'Ravis News',
-              style: TextStyle(fontSize: 18, color: Colors.blue),
+              'Ravis 뉴스',
+              style: TextStyle(fontSize: 20, color: Color(0xFF444444)),
             ),
           ),
 
@@ -415,7 +556,7 @@ class NewsMenu extends StatelessWidget {
             },
             child: Text(
               '전체보기',
-              style: TextStyle(fontSize: 15, color: Colors.blue),
+              style: TextStyle(fontSize: 15, color: Color(0xFFAAAAAA)),
             ),
           ),
         ],
@@ -428,12 +569,12 @@ class NewsMenu extends StatelessWidget {
 class News extends StatefulWidget {
   final double width; // 너비
   final double height; // 높이
-
-  const News({
-    super.key,
-    required this.width,
-    required this.height,
-  });
+  final String path;
+  const News(
+      {super.key,
+      required this.width,
+      required this.height,
+      required this.path});
 
   @override
   State<News> createState() => _NewsState();
@@ -445,15 +586,77 @@ class _NewsState extends State<News> {
     return Container(
       width: widget.width, // 너비
       height: widget.height, // 높이
-      decoration: BoxDecoration(
-        color: Colors.red, // 배경색
-        borderRadius: BorderRadius.circular(20), // 모서리를 둥글게
-      ),
-      child: Center(
-        child: Text(
-          "뉴스 위젯",
-          style: TextStyle(color: Colors.white),
-        ),
+      child: Row(
+        children: [
+          // 첫 번째 Container (비율 1)
+          Expanded(
+            flex: 2, // 2의 비율
+            child: Container(
+              width: widget.width, // 너비
+              height: widget.height, // 높이
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(widget.path), // 배경 이미지 경로
+                  fit: BoxFit.cover, // 이미지를 컨테이너 크기에 맞게 채움
+                ),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                ), // 모서리를 둥글게
+              ),
+            ),
+          ),
+
+          // 두 번째 Container (비율 4)
+          Expanded(
+            flex: 4, // 4의 비율
+            child: Container(
+              width: widget.width, // 너비
+              height: widget.height, // 높이
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 243, 238, 238), // 배경색 하얀색
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ), // 모서리를 둥글게
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(16), // 패딩 추가
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start, // 왼쪽 정렬
+                  mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween, // 텍스트 간격을 유지
+                  children: [
+                    // 첫 번째 텍스트: 왼쪽 정렬
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "맨 위 텍스트", // 첫 번째 텍스트
+                        style: TextStyle(
+                          fontSize: 16, // 텍스트 크기
+                          fontWeight: FontWeight.bold, // 텍스트 두껍게
+                          color: Color(0xFF555555), // 텍스트 색상
+                        ),
+                      ),
+                    ),
+
+                    // 두 번째 텍스트: 아래쪽 정렬
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        "아래쪽 텍스트", // 두 번째 텍스트
+                        style: TextStyle(
+                          fontSize: 14, // 텍스트 크기
+                          color: Color(0xFF666E79), // 텍스트 색상
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

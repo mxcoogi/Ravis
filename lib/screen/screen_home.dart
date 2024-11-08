@@ -53,17 +53,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     // 첫 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3, path: 'assets/reviewimage.png',),
+                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3, path: 'assets/reviewimage.png',name: '김 * 희', star: 5, date: '24. 11. 08',),
                     ),
                     // 두 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3, path: 'assets/reviewimage2.png'),
+                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3, path: 'assets/reviewimage2.png', name: '오 * 진',star: 4, date: '24. 11. 11',),
                     ),
                     // 세 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3, path: 'assets/reviewimage.png'),
+                      child: Review(width: screenWidth * 0.8, height: screenHeight * 0.3, path: 'assets/reviewimage.png', name: '최 * 랑',star: 3, date: '24. 11. 14'),
                     ),
                   ],
                 ),
@@ -71,11 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 5),
               NewsMenu(),
               SizedBox(height: 10),
-              News(width: screenWidth * 0.9, height: screenHeight * 0.13),
+              News(width: screenWidth * 0.9, height: screenHeight * 0.13, path: 'assets/news1.png',),
               SizedBox(height: 10),
-              News(width: screenWidth * 0.9, height: screenHeight * 0.13),
+              News(width: screenWidth * 0.9, height: screenHeight * 0.13, path: 'assets/news2.png'),
               SizedBox(height: 10),
-              News(width: screenWidth * 0.9, height: screenHeight * 0.13),
+              News(width: screenWidth * 0.9, height: screenHeight * 0.13, path: 'assets/news3.png'),
             ],
           ),
         ),

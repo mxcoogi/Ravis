@@ -1,20 +1,46 @@
-# ravis
 
-A new Flutter project.
+---
 
-## Getting Started
+# Emergency Kit Rental App
 
-This project is a starting point for a Flutter application.
+**Emergency Kit Rental App**는 응급상황에서 빠르게 구조 요청을 하고, 필요한 응급키트를 대여하며 커스터마이징할 수 있는 모바일 애플리케이션입니다. 외국이나 통신이 어려운 지역에서도 **Iridium** 위성통신 모듈을 통해 사용자의 위치를 전송하고 구조를 요청할 수 있는 기능을 제공합니다.
 
-A few resources to get you started if this is your first Flutter project:
+## 주요 기능
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **응급키트 대여**  
+  사용자는 앱을 통해 위치 기반으로 응급키트를 대여할 수 있습니다. 응급키트는 **Iridium** 위성통신 모듈을 통해 지정된 위치로 빠르게 전송됩니다.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# Ravis
-# Ravis
+- **응급키트 커스터마이징**  
+  다양한 기능을 추가하거나 변경하여 사용자의 필요에 맞는 맞춤형 응급키트를 구성할 수 있습니다.
 
-## RAvis
+- **위성통신을 통한 위치 전송 및 구조 요청**  
+  **Iridium** 위성통신 모듈을 활용하여, 인터넷 연결이 어려운 지역에서도 사용자의 위치 정보를 실시간으로 전송하고 구조를 요청할 수 있습니다.
+
+- **위치 추적 및 구조 요청**  
+  앱 내에서 사용자의 실시간 위치를 추적하고, 긴급 구조 요청을 위성통신으로 전송하여 구조팀의 빠른 대응을 유도합니다.
+
+## 기술 스택
+
+- **모바일 앱**: Flutter
+- **서버**: FastAPI
+- **데이터베이스**: MySQL
+- **지도 서비스**: Google Maps API
+- **위성통신 모듈**: Iridium
+
+## 사용법
+
+1. **앱 설치 후 로그인**  
+   사용자는 앱을 설치하고, 기본 로그인 절차를 통해 시스템에 접속합니다.
+
+2. **응급키트 대여**  
+   "응급키트 대여" 메뉴에서 현재 위치를 기반으로 응급키트를 선택하여 대여 절차를 진행합니다. 이때 **Iridium** 위성통신 모듈을 통해 실시간으로 위치가 전송됩니다.
+
+3. **응급키트 커스터마이징**  
+   사용자는 필요에 따라 응급키트의 구성 요소를 선택하고, 커스터마이징하여 맞춤형 응급키트를 만들 수 있습니다.
+
+4. **구조 요청**  
+   응급키트의 "구조 요청" 버튼을 눌러 사용자의 실시간 위치와 긴급 구조 요청을 **Iridium** 위성통신을 통해 전송합니다. 구조팀은 이를 바탕으로 사용자의 위치를 파악하고 빠르게 구조할 수 있습니다.
+
+## 라이센스
+
+이 프로젝트는 [MIT 라이센스](LICENSE)에 따라 제공됩니다.

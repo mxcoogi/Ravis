@@ -12,7 +12,7 @@ class _MyinfoCardState extends State<MyinfoCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300, // 카드의 고정된 너비
+      width: 370, // 카드의 고정된 너비
       height: 220, // 카드의 고정된 높이
       decoration: BoxDecoration(
         color: Color(0xFF1F64C3), // 배경 색상
@@ -149,49 +149,133 @@ class _MyInfoState extends State<MyInfo> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        width: 370,
+        height: 250,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 10, left: 0), // 패딩값 설정
+              child: Align(
+                alignment: Alignment.centerLeft, // 텍스트를 왼쪽에 정렬
+                child: Column(
+                  crossAxisAlignment:
+                      CrossAxisAlignment.start, // Column 내에서 텍스트들 왼쪽 정렬
+                  children: [
+                    Text('내 정보',
+                        style: TextStyle(
+                            fontSize: 23, fontWeight: FontWeight.w600)),
+                    SizedBox(height: 30),
+                    Text('이름',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500)),
+                    SizedBox(height: 30),
+                    Text('생년월일',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500)),
+                    SizedBox(height: 30),
+                    Text('핸드폰 번호',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w500)),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10, left: 0), // 패딩값 설정
+              child: Align(
+                alignment: Alignment.centerLeft, // 텍스트를 왼쪽에 정렬
+                child: Column(
+                  crossAxisAlignment:
+                      CrossAxisAlignment.end, // Column 내에서 텍스트들 왼쪽 정렬
+                  children: [
+                    Text('수정',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black45)),
+                    SizedBox(height: 45),
+                    Text('김태용',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black45)),
+                    SizedBox(height: 30),
+                    Text('2001. 12. 26',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black45)),
+                    SizedBox(height: 30),
+                    Text('010-0000-0000',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black45)),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ));
+  }
+}
+
+class Details extends StatelessWidget {
+  const Details({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       width: 370,
-      height: 250,
-      child: Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-    Padding(
-      padding: EdgeInsets.only(top: 10, left: 0), // 패딩값 설정
-      child: Align(
-        alignment: Alignment.centerLeft, // 텍스트를 왼쪽에 정렬
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // Column 내에서 텍스트들 왼쪽 정렬
-          children: [
-            Text('내 정보', style: TextStyle(fontSize: 23, fontWeight: FontWeight.w600)),
-            SizedBox(height: 30),
-            Text('이름', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
-            SizedBox(height: 30),
-            Text('생년월일', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
-            SizedBox(height: 30),
-            Text('핸드폰 번호', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
-          ],
-        ),
+      height: 150,
+      child: Column(
+        children: [
+          // 위쪽 Container
+          Expanded(
+            flex: 1, // 비율을 1로 설정
+            child: Container(
+              width: 370,
+              child: Row(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      // 이용후기 페이지로 이동
+                      print('구매내역 클릭됨');
+                    },
+                    child: Text(
+                      '구매내역',
+                      style: TextStyle(fontSize: 20, color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          // 아래쪽 Container
+          Expanded(
+            flex: 1, // 비율을 1로 설정
+            child: Container(
+              width: 370,
+              child: Row(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      // 이용후기 페이지로 이동
+                      print('신고내역 클릭됨');
+                    },
+                    child: Text(
+                      '신고내역',
+                      style: TextStyle(fontSize: 20, color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
-    ),
-    Padding(
-      padding: EdgeInsets.only(top: 10, left: 0), // 패딩값 설정
-      child: Align(
-        alignment: Alignment.centerLeft, // 텍스트를 왼쪽에 정렬
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end, // Column 내에서 텍스트들 왼쪽 정렬
-          children: [
-            Text('수정', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.black45)),
-            SizedBox(height: 45),
-            Text('김태용', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black45)),
-            SizedBox(height: 30),
-            Text('2001. 12. 26', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black45)),
-            SizedBox(height: 30),
-            Text('010-0000-0000', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black45)),
-          ],
-        ),
-      ),
-    ),
-  ],
-)
     );
   }
 }

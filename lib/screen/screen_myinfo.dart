@@ -16,21 +16,34 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
     double sidePadding = screenWidth * 0.05;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned(
-            top: 40,  // MyinfoCard의 상단 여백
-            left: sidePadding,  // 왼쪽 여백
-            right: sidePadding,  // 오른쪽 여백 설정
-            child: MyinfoCard(), 
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: sidePadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // MyinfoCard 위젯
+              Padding(
+                padding: const EdgeInsets.only(top: 40),
+                child: MyinfoCard(),
+              ),
+              
+              // MyInfo 위젯
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: MyInfo(),
+              ),
+              
+              // Details 위젯
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Details(),
+              ),
+              
+              // 더 많은 위젯이 여기에 추가될 수 있습니다.
+            ],
           ),
-          Positioned(
-            top: 300,
-            left: sidePadding,
-            child: MyInfo()
-            )
-
-        ],
+        ),
       ),
     );
   }

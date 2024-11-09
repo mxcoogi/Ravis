@@ -24,6 +24,11 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
             right: sidePadding,  // 오른쪽 여백 설정
             child: MyinfoCard(), 
           ),
+          Positioned(
+            top: 300,
+            left: sidePadding,
+            child: MyInfo()
+            )
 
         ],
       ),

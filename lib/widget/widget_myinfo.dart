@@ -189,11 +189,15 @@ class _MyInfoState extends State<MyInfo> {
                   crossAxisAlignment:
                       CrossAxisAlignment.end, // Column 내에서 텍스트들 왼쪽 정렬
                   children: [
-                    Text('수정',
-                        style: TextStyle(
+                    InkWell(
+                      onTap: (){
+                        print('수정 클릭');
+                      },
+                      child: Text('수정', style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: Colors.black45)),
+                    ),
                     SizedBox(height: 45),
                     Text('김태용',
                         style: TextStyle(
@@ -221,60 +225,28 @@ class _MyInfoState extends State<MyInfo> {
   }
 }
 
-class Details extends StatelessWidget {
-  const Details({super.key});
 
+class Details extends StatelessWidget {
+  final String detail_name;
+  final double width;
+  final double height;
+
+  const Details({super.key, required this.detail_name, required this.width, required this.height});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 370,
-      height: 150,
-      child: Column(
-        children: [
-          // 위쪽 Container
-          Expanded(
-            flex: 1, // 비율을 1로 설정
-            child: Container(
-              width: 370,
-              child: Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      // 이용후기 페이지로 이동
-                      print('구매내역 클릭됨');
-                    },
-                    child: Text(
-                      '구매내역',
-                      style: TextStyle(fontSize: 20, color: Colors.black),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          // 아래쪽 Container
-          Expanded(
-            flex: 1, // 비율을 1로 설정
-            child: Container(
-              width: 370,
-              child: Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      // 이용후기 페이지로 이동
-                      print('신고내역 클릭됨');
-                    },
-                    child: Text(
-                      '신고내역',
-                      style: TextStyle(fontSize: 20, color: Colors.black),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+    return InkWell(
+      onTap: () {
+        // 클릭했을 때 처리할 동작
+        print(detail_name + "클릭댐");
+      },
+      child: Container(
+        width: width ,
+        height: height * 0.08,
+        alignment: Alignment.centerLeft,
+        child: Text(
+          detail_name,  // 전달된 detail_name 값 표시
+          style: TextStyle(fontSize: 20, color: Colors.black),
+        ),
       ),
     );
   }

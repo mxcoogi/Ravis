@@ -6,7 +6,7 @@ import 'package:ravis/screen/screen_contact.dart'; // ContactScreen
 import 'package:ravis/screen/screen_myinfo.dart'; // MyInfoScreen
 import 'package:ravis/widget/wiget_bottombar.dart'; // CustomBottomNavBar
 import 'package:ravis/widget/widget_appbar.dart';
-
+import 'package:ravis/widget/example.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
     HomeScreen(), // 홈 화면
     DangerScreen(), // 위험지역 화면
     CopingScreen(), // 대처 방법 화면
-    ContactScreen(), // 비상 연락 화면
+    HomeScreen2(), // 비상 연락 화면
     MyInfoScreen(), // 마이페이지 화면
   ];
 

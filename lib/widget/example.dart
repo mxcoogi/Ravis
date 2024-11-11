@@ -71,177 +71,149 @@ class TravelTicket extends StatefulWidget {
   State<TravelTicket> createState() => _TravelTicketState();
 }
 
-class _TravelTicketState extends State<TravelTicket> {
-  double leftPosition = 0.0; // Initialize to 0.0 or another default value
-  double rightPosition = 0.0; // 오른쪽 영역의 위치
+class _TravelTicketState extends State<TravelTicket>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController; // 애니메이션 컨트롤러 선언
+  late Animation<double> _leftWidthAnimation; // 왼쪽 영역의 너비 애니메이션
+  late Animation<double> _rightWidthAnimation; // 오른쪽 영역의 너비 애니메이션
+  late Animation<double> _qrSizeAnimation; // QR 크기 애니메이션
+  late Animation<Offset> _qrPositionAnimation; // QR 위치 애니메이션
 
   @override
   void initState() {
     super.initState();
-    leftPosition = widget.width * 0.65;
-    rightPosition = widget.width * 0.35;
+
+    // 애니메이션 컨트롤러 초기화
+    _animationController = AnimationController(
+      vsync: this, // SingleTickerProviderStateMixin에서 제공하는 vsync
+      duration: Duration(milliseconds: 500), // 애니메이션 duration
+    );
+
+    _leftWidthAnimation = Tween<double>(begin: 0.33, end: 0.99).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+
+    _rightWidthAnimation = Tween<double>(begin: 0.67, end: 0.01).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+
+    // 왼쪽 하단 버튼 크기 애니메이션 (QR 크기)
+    _qrSizeAnimation = Tween<double>(begin: 50.0, end: 150.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+
+    // 왼쪽 하단 버튼 위치 애니메이션 (QR 위치)
+    _qrPositionAnimation = Tween<Offset>(
+      begin: Offset(10, 10), // 시작 위치: 왼쪽 하단
+      end: Offset(70, 50), // 끝 위치: 화면 중앙
+    ).animate(
+        CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
   }
 
-  // 슬라이드 토글 함수
+  @override
+  void dispose() {
+    _animationController.dispose(); // 애니메이션 컨트롤러 리소스 해제
+    super.dispose();
+  }
+
+  // 애니메이션 실행 함수
   void _toggleSlide() {
-    setState(() {
-      if (leftPosition == widget.width * 0.01) {
-        leftPosition = widget.width * 0.65;
-        rightPosition = widget.width * 0.35;
-      } else {
-        leftPosition = widget.width * 0.01;
-        rightPosition = widget.width * 0.99;
-      }
-    });
+    if (_animationController.isCompleted) {
+      _animationController.reverse(); // 애니메이션 되돌리기
+    } else {
+      _animationController.forward(); // 애니메이션 진행
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: widget.width, // 화면 비율에 맞는 너비
-      height: widget.height, // 화면 비율에 맞는 높이
-      margin: EdgeInsets.only(top: 10.0), // 마진을 사용하여 아래로 밀기
-      child: Stack(
+      height: widget.height,
+      child: Row(
         children: [
-          // 왼쪽 부분 3분의 1 영역 (Blue background)
-          AnimatedPositioned(
-            left: 0,
-            top: 0,
-            bottom: 0,
-            right: leftPosition, // 왼쪽 영역이 슬라이드할 때 오른쪽 끝 위치
-            duration: Duration(milliseconds: 500), // 슬라이드 애니메이션 속도 설정
-            curve: Curves.easeInOut,
-            child: Container(
-              width: widget.width * 0.35, // 왼쪽 영역 너비
-              decoration: BoxDecoration(
-                color: Color(0xFF1F64C3), // 배경 색상
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15), // 왼쪽 위 모서리 둥글게
-                  bottomLeft: Radius.circular(15), // 왼쪽 아래 모서리 둥글게
-                ),
-              ),
-              child: Stack(
-                children: [
-                  // 디데이 텍스트
-                  Positioned(
-                    left: 15,
-                    top: 15,
-                    child: Text(
-                      'D-4',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                  ),
-
-                  // 큐알 아이콘과 네모 아이콘을 각각 Positioned로 배치
-                  Positioned(
-                    left: 10, // 큐알 아이콘 왼쪽 위치
-                    bottom: 10, // 큐알 아이콘 아래 위치
-                    child: Image.asset(
-                      'assets/qrexample.png', // 큐알 아이콘 경로
-                      width: 60.0, // 아이콘의 너비
-                      height: 60.0, // 아이콘의 높이
-                    ),
-                  ),
-
-                  // 네모 아이콘 (큐알 아이콘 오른쪽에 위치
-                  // 오른쪽 끝에 아이콘
-                  Positioned(
-                    right: 2.0,
-                    top: 0,
-                    bottom: 0,
-                    child: SvgPicture.asset(
-                      'assets/ticket_logo.svg', // 아이콘 경로
-                      width: 50.0, // 아이콘의 너비
-                      height: 220.0, // 아이콘의 높이
-                      color: Colors.black, // 아이콘 색상
-                    ),
-                  ),
-                  Positioned(
-                    left: 80, // 네모 아이콘은 큐알 아이콘 오른쪽에 배치
-                    bottom: 17, // 네모 아이콘의 아래 위치
-                    child: InkWell(
-                      onTap: () {
-                        print("Icon tapped!");
-                        _toggleSlide();
-                      }, // 큐알 아이콘을 클릭 시 슬라이드 트리거
-                      child: SvgPicture.asset(
-                        'assets/ticketbotton.svg', // 네모 아이콘 경로
-                        width: 20.0, // 아이콘의 너비
-                        height: 20.0, // 아이콘의 높이
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          // 오른쪽 부분 3분의 2 영역 (Grey background)
-          AnimatedPositioned(
-            right: 0,
-            top: 0,
-            bottom: 0,
-            left: rightPosition, // 왼쪽 영역이 35% 차지하고, 나머지 65%가 오른쪽 영역
-            duration: Duration(milliseconds: 500), // 오른쪽 영역 애니메이션 속도
-            curve: Curves.easeInOut,
-            child: Container(
-              width: widget.width * 0.65, // 오른쪽 영역 65% 크기
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 242, 236, 236), // 배경 색상
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(15), // 오른쪽 위 모서리 둥글게
-                  bottomRight: Radius.circular(15), // 오른쪽 아래 모서리 둥글게
-                ),
-              ),
-              // 텍스트 영역을 스크롤할 수 있게 하기 위해 SingleChildScrollView 사용
-              child: SingleChildScrollView(
-                padding: EdgeInsets.all(16.0), // 스크롤 내용에 패딩 추가
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          // 왼쪽 영역 (1대2 비율의 1)
+          AnimatedBuilder(
+            animation: _animationController,
+            builder: (context, child) {
+              return Container(
+                width: widget.width * _leftWidthAnimation.value, // 왼쪽 영역의 너비
+                height: widget.height,
+                color: Colors.green, // 왼쪽 영역의 배경색
+                child: Stack(
                   children: [
-                    // 첫 번째 텍스트
-                    Text(
-                      "첫 번째 텍스트",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
+                    Positioned(
+                      left: 10,
+                      top: 10,
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        color: Colors.white,
+                        child: Center(
+                          child: Text('Top Left',
+                              style: TextStyle(color: Colors.black)),
+                        ),
                       ),
                     ),
-                    SizedBox(height: 16), // 텍스트 사이에 간격
-
-                    // 두 번째 텍스트
-                    Text(
-                      "두 번째 텍스트",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.0,
+                    // 왼쪽 하단 위젯
+                    Positioned(
+                      left: _qrPositionAnimation.value.dx,
+                      bottom: _qrPositionAnimation.value.dy,
+                      child: GestureDetector(
+                        // 클릭 이벤트를 감지하는 GestureDetector 사용
+                        onTap: () {
+                          // 클릭 시 애니메이션을 토글하는 함수 호출
+                          if (_animationController.isCompleted) {
+                            _animationController.reverse(); // 애니메이션 되돌리기
+                          } else {
+                            _animationController.forward(); // 애니메이션 진행
+                          }
+                        },
+                        child: AnimatedBuilder(
+                          animation: _animationController,
+                          builder: (context, child) {
+                            return Container(
+                              width: _qrSizeAnimation.value,
+                              height: _qrSizeAnimation.value,
+                              color: Colors.white,
+                              child: Center(
+                                child: Icon(Icons.star,
+                                    color: Colors.black, size: 30),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
-                    SizedBox(height: 16), // 텍스트 사이에 간격
-
-                    // 세 번째 텍스트
-                    Text(
-                      "세 번째 텍스트",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.0,
+                    // 오른쪽 중간 위젯
+                    Positioned(
+                      right: 10,
+                      top: widget.height / 2 - 25, // 중간에 배치
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        color: Colors.white,
+                        child: Center(
+                          child: Text('Middle Right',
+                              style: TextStyle(color: Colors.black)),
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 16), // 텍스트 사이에 간격
-
-                    // 네 번째 텍스트
-                    Text(
-                      "네 번째 텍스트",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.0,
-                      ),
-                    ),
+                    )
                   ],
                 ),
-              ),
-            ),
+              );
+            },
+          ),
+          // 오른쪽 영역 (1대2 비율의 2)
+          AnimatedBuilder(
+            animation: _animationController,
+            builder: (context, child) {
+              return Container(
+                width: widget.width * _rightWidthAnimation.value, // 오른쪽 영역의 너비
+                height: widget.height,
+                color: Colors.red, // 오른쪽 영역의 배경색
+              );
+            },
           ),
         ],
       ),

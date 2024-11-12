@@ -34,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: MainAppBar(),
       body: _pages[_selectedIndex], // 선택된 페이지를 표시
       bottomNavigationBar: CustomBottomNavBar(
         selectedIndex: _selectedIndex,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ravis/screen/screen_booking.dart';
 
 //첫번째 티켓위젯
 class TravelTicket extends StatefulWidget {
@@ -307,6 +308,8 @@ class _HomeMenuState extends State<HomeMenu> {
           InkWell(
             onTap: () {
               print("홈 아이콘 클릭");
+              Navigator.push(context,
+              MaterialPageRoute(builder: (context) => BookingScreen()));
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

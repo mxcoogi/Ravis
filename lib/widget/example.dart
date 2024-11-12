@@ -105,7 +105,7 @@ class _TravelTicketState extends State<TravelTicket>
     // 왼쪽 하단 버튼 위치 애니메이션 (QR 위치)
     _qrPositionAnimation = Tween<Offset>(
       begin: Offset(10, 10), // 시작 위치: 왼쪽 하단
-      end: Offset(70, 50), // 끝 위치: 화면 중앙
+      end: Offset(100, 35), // 끝 위치: 화면 중앙
     ).animate(
         CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
   }
@@ -139,7 +139,13 @@ class _TravelTicketState extends State<TravelTicket>
               return Container(
                 width: widget.width * _leftWidthAnimation.value, // 왼쪽 영역의 너비
                 height: widget.height,
-                color: Colors.green, // 왼쪽 영역의 배경색
+                decoration: BoxDecoration(
+                  color: Color(0xFF1F64C3), // 배경 색상
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15), // 왼쪽 위 모서리 둥글게
+                    bottomLeft: Radius.circular(15), // 왼쪽 아래 모서리 둥글게
+                  ),
+                ),
                 child: Stack(
                   children: [
                     Positioned(
@@ -148,10 +154,10 @@ class _TravelTicketState extends State<TravelTicket>
                       child: Container(
                         width: 50,
                         height: 50,
-                        color: Colors.white,
                         child: Center(
-                          child: Text('Top Left',
-                              style: TextStyle(color: Colors.black)),
+                          child: Text('D-4',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16)),
                         ),
                       ),
                     ),
@@ -177,9 +183,7 @@ class _TravelTicketState extends State<TravelTicket>
                               height: _qrSizeAnimation.value,
                               color: Colors.white,
                               child: Center(
-                                child: Icon(Icons.star,
-                                    color: Colors.black, size: 30),
-                              ),
+                                  child: Image.asset('assets/qrcode2.png')),
                             );
                           },
                         ),
@@ -187,16 +191,13 @@ class _TravelTicketState extends State<TravelTicket>
                     ),
                     // 오른쪽 중간 위젯
                     Positioned(
-                      right: 10,
-                      top: widget.height / 2 - 25, // 중간에 배치
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        color: Colors.white,
-                        child: Center(
-                          child: Text('Middle Right',
-                              style: TextStyle(color: Colors.black)),
-                        ),
+                      right: 2,
+                      top: widget.height / 2 - 110, // 중간에 배치
+                      child: SvgPicture.asset(
+                        'assets/ticket_logo.svg', // 아이콘 경로
+                        width: 50.0, // 아이콘의 너비
+                        height: 220.0, // 아이콘의 높이
+                        color: Colors.black, // 아이콘 색상
                       ),
                     )
                   ],
@@ -209,9 +210,16 @@ class _TravelTicketState extends State<TravelTicket>
             animation: _animationController,
             builder: (context, child) {
               return Container(
+                
                 width: widget.width * _rightWidthAnimation.value, // 오른쪽 영역의 너비
                 height: widget.height,
-                color: Colors.red, // 오른쪽 영역의 배경색
+                decoration: BoxDecoration(
+                color: Color.fromARGB(255, 242, 236, 236), // 배경 색상
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(15), // 왼쪽 위 모서리 둥글게
+                  bottomRight: Radius.circular(15), // 왼쪽 아래 모서리 둥글게
+                ),
+              ),
               );
             },
           ),

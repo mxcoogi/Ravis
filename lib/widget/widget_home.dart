@@ -16,152 +16,277 @@ class TravelTicket extends StatefulWidget {
   State<TravelTicket> createState() => _TravelTicketState();
 }
 
-class _TravelTicketState extends State<TravelTicket> {
+class _TravelTicketState extends State<TravelTicket>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController; // 애니메이션 컨트롤러 선언
+  late Animation<double> _leftWidthAnimation; // 왼쪽 영역의 너비 애니메이션
+  late Animation<double> _rightWidthAnimation; // 오른쪽 영역의 너비 애니메이션
+  late Animation<double> _qrSizeAnimation; // QR 크기 애니메이션
+  late Animation<Offset> _qrPositionAnimation; // QR 위치 애니메이션
+  late Animation<Offset> _ddayAnimation; //디데이 위치 애니메이션
+  late Animation<double> _opacityAnimation; // 텍스트의 투명도 애니메이션
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 애니메이션 컨트롤러 초기화
+    _animationController = AnimationController(
+      vsync: this, // SingleTickerProviderStateMixin에서 제공하는 vsync
+      duration: Duration(milliseconds: 500), // 애니메이션 duration
+    );
+
+    _leftWidthAnimation = Tween<double>(begin: 0.33, end: 0.99).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+
+    _rightWidthAnimation = Tween<double>(begin: 0.67, end: 0.01).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+
+    // 왼쪽 하단 버튼 크기 애니메이션 (QR 크기)
+    _qrSizeAnimation = Tween<double>(begin: 50.0, end: 150.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
+
+    // 왼쪽 하단 버튼 위치 애니메이션 (QR 위치)
+    _qrPositionAnimation = Tween<Offset>(
+      begin: Offset(10, 10), // 시작 위치: 왼쪽 하단
+      end: Offset(140, 35), // 끝 위치: 화면 중앙
+    ).animate(
+        CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
+
+    _ddayAnimation = Tween<Offset>(
+      begin: Offset(10, 10),
+      end: Offset(30, 80),
+    ).animate(
+        CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
+
+    _opacityAnimation = Tween<double>(
+      begin: 0.0, 
+      end: 1.0
+    ).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose(); // 애니메이션 컨트롤러 리소스 해제
+    super.dispose();
+  }
+
+  // 애니메이션 실행 함수
+  void _toggleSlide() {
+    if (_animationController.isCompleted) {
+      _animationController.reverse(); // 애니메이션 되돌리기
+    } else {
+      _animationController.forward(); // 애니메이션 진행
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: widget.width, // 화면 비율에 맞는 너비
-      height: widget.height, // 화면 비율에 맞는 높이
-      margin: EdgeInsets.only(top: 10.0), // 마진을 사용하여 아래로 밀기
-
+      height: widget.height,
       child: Row(
         children: [
-          // 왼쪽 부분 3분의 1 영역
-          Expanded(
-            flex: 1, // 3분의 1 비율
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xFF1F64C3), // 배경 색상
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15), // 왼쪽 위 모서리 둥글게
-                  bottomLeft: Radius.circular(15), // 왼쪽 아래 모서리 둥글게
+          // 왼쪽 영역 (1대2 비율의 1)
+          AnimatedBuilder(
+            animation: _animationController,
+            builder: (context, child) {
+              return Container(
+                width: widget.width * _leftWidthAnimation.value, // 왼쪽 영역의 너비
+                height: widget.height,
+                decoration: BoxDecoration(
+                  color: Color(0xFF1F64C3), // 배경 색상
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15), // 왼쪽 위 모서리 둥글게
+                    bottomLeft: Radius.circular(15), // 왼쪽 아래 모서리 둥글게
+                  ),
                 ),
-                // 왼쪽 경계를 제외한 다른 경계에만 테두리 추가
-              ),
-              child: Stack(
-                children: [
-                  // 디데이
-                  Align(
-                    alignment: Alignment.topLeft, // 왼쪽 상단에 위치
-                    child: Padding(
-                      padding: EdgeInsets.all(10.0), // 왼쪽 위에 여백 추가
-                      child: SvgPicture.asset(
-                        'assets/kakaoIcon.svg', // 왼쪽 위 아이콘 경로
-                        width: 30.0, // 아이콘의 너비
-                        height: 30.0, // 아이콘의 높이
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: _ddayAnimation.value.dx,
+                      top: _ddayAnimation.value.dy,
+                      child: Container(
+                          child: AnimatedBuilder(
+                              animation: _animationController,
+                              builder: (context, child) {
+                                return Container(
+                                  child: Center(
+                                    child: Text('D-4',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 16)),
+                                  ),
+                                );
+                              })),
+                    ),
+                    Positioned(
+                      left: 30,
+                      top: 110,
+                      child: Container(
+                          child: AnimatedBuilder(
+                              animation: _animationController,
+                              builder: (context, child) {
+                                return Opacity(
+                                  opacity: _opacityAnimation.value, // 애니메이션 값으로 투명도 설정
+                                  child: Container(
+                                    child: Center(
+                                      child: Text(
+                                        'Reservation\nconfirmation',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 16),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              })),
+                    ),
+
+                    // 왼쪽 하단 위젯
+                    Positioned(
+                      left: _qrPositionAnimation.value.dx,
+                      bottom: _qrPositionAnimation.value.dy,
+                      child: GestureDetector(
+                        // 클릭 이벤트를 감지하는 GestureDetector 사용
+                        onTap: () {
+                          // 클릭 시 애니메이션을 토글하는 함수 호출
+                          if (_animationController.isCompleted) {
+                            _animationController.reverse(); // 애니메이션 되돌리기
+                          } else {
+                            _animationController.forward(); // 애니메이션 진행
+                          }
+                        },
+                        child: AnimatedBuilder(
+                          animation: _animationController,
+                          builder: (context, child) {
+                            return Container(
+                              width: _qrSizeAnimation.value,
+                              height: _qrSizeAnimation.value,
+                              color: Colors.white,
+                              child: Center(
+                                  child: Image.asset('assets/qrcode2.png')),
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
-
-                  // 큐알
-                  Align(
-                    alignment: Alignment.bottomLeft, // 왼쪽 하단에 위치
-                    child: Padding(
-                      padding: EdgeInsets.all(10.0), // 왼쪽 아래에 여백 추가
+                    // 오른쪽 중간 위젯
+                    Positioned(
+                      right: 2,
+                      top: widget.height / 2 - 110, // 중간에 배치
                       child: SvgPicture.asset(
-                        'assets/kakaoIcon.svg', // 왼쪽 아래 아이콘 경로
-                        width: 30.0, // 아이콘의 너비
-                        height: 30.0, // 아이콘의 높이
-                      ),
-                    ),
-                  ),
-
-                  // 오른쪽 끝에 아이콘
-                  Align(
-                    alignment: Alignment.centerRight, // 아이콘을 오른쪽 끝에 정렬
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 2.0), // 오른쪽에 여백 추가
-                      child: SvgPicture.asset(
-                        'assets/ticket_logo.svg', // 실제 아이콘 파일 경로
+                        'assets/ticket_logo.svg', // 아이콘 경로
                         width: 50.0, // 아이콘의 너비
                         height: 220.0, // 아이콘의 높이
                         color: Colors.black, // 아이콘 색상
                       ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          // 오른쪽 부분 3분의 2 영역
-          Expanded(
-            flex: 2, // 3분의 2 비율
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 242, 236, 236), // 배경 색상
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(15), // 오른쪽 위 모서리 둥글게
-                  bottomRight: Radius.circular(15), // 오른쪽 아래 모서리 둥글게
+                    )
+                  ],
                 ),
-              ),
-              child: Column(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween, // 상단, 중간, 하단 여백을 균등하게 분배
-                children: [
-                  // 맨 위 텍스트 (더 위로)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0), // 맨 위로 간격 추가
-                    child: Align(
-                      alignment: Alignment.topCenter, // 세로 맨 위, 가로 중앙
-                      child: Text(
-                        "첫 번째 텍스트", // 텍스트 내용
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+              );
+            },
+          ),
+          // 오른쪽 영역 (1대2 비율의 2)
+          AnimatedBuilder(
+            animation: _animationController,
+            builder: (context, child) {
+              return Container(
+                width: widget.width * _rightWidthAnimation.value, // 오른쪽 영역의 너비
+                height: widget.height,
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 242, 236, 236), // 배경 색상
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(15), // 왼쪽 위 모서리 둥글게
+                    bottomRight: Radius.circular(15), // 왼쪽 아래 모서리 둥글게
+                  ),
+                ),
+                child: Stack(children: [
+                  // 첫 번째 텍스트
+                  Positioned(
+                    left: 12.0, // 왼쪽 패딩과 일치
+                    top: 16.0, // 첫 번째 텍스트의 위쪽 위치
+                    child: Text(
+                      "2024. 01. 01(화) - 2024. 01. 08(화)",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14.0,
                       ),
                     ),
                   ),
 
-                  // 두 번째 텍스트와 세 번째 텍스트 (가로로 가운데)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center, // 가로로 중앙 정렬
-                    children: [
-                      Text(
-                        "두 번째 텍스트", // 두 번째 텍스트
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      SizedBox(width: 10.0), // 두 텍스트 간 간격
-                      Text(
-                        "세 번째 텍스트", // 세 번째 텍스트
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  // 네 번째 텍스트 (화면 맨 아래)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20.0), // 맨 아래로 간격 추가
-                    child: Align(
-                      alignment: Alignment.bottomCenter, // 세로 맨 아래, 가로 중앙
-                      child: Text(
-                        "네 번째 텍스트", // 네 번째 텍스트
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  Positioned(
+                    left: 15.0, // 왼쪽 패딩
+                    top: 80.0, // 두 번째 텍스트의 위쪽 위치 (첫 번째 텍스트 아래)
+                    child: Text(
+                      "ICN",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35.0,
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
+
+                  // 세 번째 텍스트
+                  Positioned(
+                    left: 140.0, // 왼쪽 패딩
+                    top: 80.0, // 세 번째 텍스트의 위쪽 위치 (두 번째 텍스트 아래)
+                    child: Text(
+                      "HKG",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35.0,
+                      ),
+                    ),
+                  ),
+
+                  // 네 번째 텍스트
+                  Positioned(
+                    left: 15.0, // 왼쪽 패딩
+                    top: 130.0, // 네 번째 텍스트의 위쪽 위치 (세 번째 텍스트 아래)
+                    child: Text(
+                      "인천국제공항",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 140.0, // 왼쪽 패딩
+                    top: 130.0, // 네 번째 텍스트의 위쪽 위치 (세 번째 텍스트 아래)
+                    child: Text(
+                      "홍콩국제공항",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 15.0, // 왼쪽 패딩
+                    top: 180.0, // 네 번째 텍스트의 위쪽 위치 (세 번째 텍스트 아래)
+                    child: Text(
+                      "대여 : 인천국제공항 2024. 10. 11 9AM",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 13.0,
+                      ),
+                    ),
+                  ),
+                ]),
+              );
+            },
           ),
         ],
       ),
     );
   }
 }
-
 // 2번째 홈메뉴위젯
 class HomeMenu extends StatefulWidget {
   const HomeMenu({super.key});

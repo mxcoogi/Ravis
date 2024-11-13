@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ravis/widget/widget_appbar.dart';
 import 'package:ravis/widget/widget_calendar.dart';
+import 'package:ravis/widget/widget_dropdown.dart';
+
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
@@ -30,6 +33,9 @@ class _BookingScreenState extends State<BookingScreen> {
   String number1 = '';
   String number2 = '';
   String number3 = '';
+
+  //step5
+  bool _isAuto = false;
 
   // PageController to handle page transitions
   final PageController _controller = PageController();
@@ -679,7 +685,9 @@ class _BookingScreenState extends State<BookingScreen> {
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.all(25),
-        child: Column(
+        child: SingleChildScrollView(
+          child: 
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -755,77 +763,151 @@ class _BookingScreenState extends State<BookingScreen> {
                 SizedBox(height: 20,),
                 Text('결제 수단', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                 SizedBox(height: 15,),
+                PaymentList(),
                 Container(
-                  width: 370,
-                  height: 50,
-                  decoration: BoxDecoration(
-                  color: Color(
-                    0xFFF7F7F7,
+                  child: Row(
+                    children: [
+                      Checkbox(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    value: _isAuto,
+                    
+                    onChanged: (value) {
+                      setState(() {
+                        _isAuto = value!;
+                      });
+                    },
                   ),
-                  border: Border.all(
-                    color: Color(0xFFF7F7F7), // 테두리 색
-                    width: 2.0, // 테두리 두께
-                  
-                    ),
-                    borderRadius: BorderRadius.circular(10)
-                  )
-                ),
-                SizedBox(height: 15,),
-                Container(
-                  width: 370,
-                  height: 50,
-                  decoration: BoxDecoration(
-                  color: Color(
-                    0xFFF7F7F7,
+                  SizedBox(width: 5,),
+                  Text('선택한 결제 수단을 다음에도 사용', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),)
+                    ],
                   ),
-                  border: Border.all(
-                    color: Color(0xFFF7F7F7), // 테두리 색
-                    width: 2.0, // 테두리 두께
-                  
-                    ),
-                    borderRadius: BorderRadius.circular(10)
-                  )
-                ),
-                SizedBox(height: 15,),
-                Container(
-                  width: 370,
-                  height: 50,
-                  decoration: BoxDecoration(
-                  color: Color(
-                    0xFFF7F7F7,
-                  ),
-                  border: Border.all(
-                    color: Color(0xFFF7F7F7), // 테두리 색
-                    width: 2.0, // 테두리 두께
-                  
-                    ),
-                    borderRadius: BorderRadius.circular(10)
-                  )
-                ),
-                SizedBox(height: 15,),
-                Container(
-                  width: 370,
-                  height: 50,
-                  decoration: BoxDecoration(
-                  color: Color(
-                    0xFFF7F7F7,
-                  ),
-                  border: Border.all(
-                    color: Color(0xFFF7F7F7), // 테두리 색
-                    width: 2.0, // 테두리 두께
-                  
-                    ),
-                    borderRadius: BorderRadius.circular(10)
-                  )
                 )
-                
+                ,SizedBox(height: 50,)
+                ,Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                  Text('결제 금액', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  Text('00000원', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)
+                ],),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                  Text('상품 금액', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
+                  Text('00000원', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),)
+                ],),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                  Text('할인 금액', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
+                  Text('00000원', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),)
+                ],),
+                SizedBox(height: 30,),
+                AgreementForm(),
+                SizedBox(height: 20,),
+                Container(
+                    padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
+                    width: double.infinity, // 너비를 화면 전체로 설정
+                    decoration: BoxDecoration(
+                      color: Colors.black, // 배경색을 검정색으로 설정
+                      borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        // 버튼을 눌렀을 때의 동작을 여기에 구현
+                        _controller.nextPage(
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                        print("다음 버튼이 눌렸습니다.");
+                      },
+                      child: Center(
+                        child: Text(
+                          '다음',
+                          style: TextStyle(
+                            color: Colors.white, // 텍스트 색을 흰색으로 설정
+                            fontSize: 18, // 글자 크기
+                            fontWeight: FontWeight.bold, // 글자 두께
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                SizedBox(height: 15,),
+
           ],
         ),
       ),
-    );
+    ));
   }
 
-  //Widget buildStep6(){}
+  Widget buildStep6(){
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Padding(padding: EdgeInsets.all(25),
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+            Text(' RAVIS 예약이\n 완료되었습니다.', style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold, color: Color(0xFF1F64C3)),)
+          ],),
+          SizedBox(height: 20,),
+          Container(
+            child: SvgPicture.asset('assets/character.svg')
+          ),
+          SizedBox(height: 50,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            Text('결제 금액', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
+            Text('00000원', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFF555555)),)
+          ],),
+          SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            Text('결제 수단', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
+            Text('카카오페이', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFF555555)),)
+          ],),
+          SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            Text('처리상태', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
+            Text('결제완료', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFF555555)),)
+          ],),
+          SizedBox(height: 130,),
+          Container(
+                    padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
+                    width: double.infinity, // 너비를 화면 전체로 설정
+                    decoration: BoxDecoration(
+                      color: Colors.black, // 배경색을 검정색으로 설정
+                      borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
+                    ),
+                    child: InkWell(
+                      onTap: () {
+            // 페이지를 이전 페이지로 이동
+            Navigator.pop(context);
+          },
+                      child: Center(
+                        child: Text(
+                          '완료',
+                          style: TextStyle(
+                            color: Colors.white, // 텍스트 색을 흰색으로 설정
+                            fontSize: 18, // 글자 크기
+                            fontWeight: FontWeight.bold, // 글자 두께
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+        ],
+      ),),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -838,7 +920,8 @@ class _BookingScreenState extends State<BookingScreen> {
           buildStep2(),
           buildStep3(),
           buildStep4(),
-          buildStep5()
+          buildStep5(),
+          buildStep6()
         ],
       ),
     );
@@ -846,48 +929,258 @@ class _BookingScreenState extends State<BookingScreen> {
 }
 
 
-class DropDown extends StatefulWidget {
-  const DropDown({super.key});
-
+class PaymentList extends StatefulWidget {
   @override
-  State<DropDown> createState() => _DropDownState();
+  _PaymentListState createState() => _PaymentListState();
 }
 
-class _DropDownState extends State<DropDown> {
+class _PaymentListState extends State<PaymentList> {
+  int _selectedIndex = -1; // 선택된 인덱스를 저장
 
-  final _cities = ['서울', '대전', '대구', '부산', '인천', '울산', '광주'];
-  String? _selectedCity;
+  final List<String> paymentMethods = [
+    '토스페이', 
+    '카카오페이', 
+    '무통장 입금', 
+    '일반결제'
+  ];
 
   @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
+    return Column(
+      children: List.generate(paymentMethods.length, (index) {
+        return GestureDetector(
+          onTap: () {
+            setState(() {
+              _selectedIndex = index; // 선택된 인덱스를 업데이트
+            });
+          },
+          child: Container(
+            margin: EdgeInsets.only(bottom: 15),
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            height: 50,
+            decoration: BoxDecoration(
+              color: Color(0xFFF7F7F7),
+              border: Border.all(
+                color: Color(0xFFF7F7F7),
+                width: 2.0,
+              ),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              children: [
+                // 동그란 체크박스
+                Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: _selectedIndex == index ? Colors.blue : Colors.white,
+                    border: Border.all(
+                      color: Color(0x30A4A4A4),
+                      width: 2,
+                    ),
+                  ),
+                  child: _selectedIndex == index
+                      ? Icon(
+                          Icons.check,
+                          size: 18,
+                          color: Colors.white,
+                        )
+                      : null,
+                ),
+                SizedBox(width: 15), // 체크박스와 텍스트 사이의 간격
+                Expanded(
+                  child: Text(
+                    paymentMethods[index], // 결제 방법 리스트에 맞는 텍스트
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }),
+    );
+  }
+}
+
+class CustomCheckbox extends StatefulWidget {
+  @override
+  _CustomCheckboxState createState() => _CustomCheckboxState();
+}
+
+class _CustomCheckboxState extends State<CustomCheckbox> {
+  bool _isAuto = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isAuto = !_isAuto;
+        });
+      },
+      child: ClipOval(
+        child: Container(
+          width: 50,  // 동그라미의 너비
+          height: 50, // 동그라미의 높이
+          color: _isAuto ? Colors.green : Colors.grey, // 선택 여부에 따라 색상 변경
+          child: Center(
+            child: Icon(
+              _isAuto ? Icons.check : Icons.check_box_outline_blank,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AgreementForm extends StatefulWidget {
+  @override
+  _AgreementFormState createState() => _AgreementFormState();
+}
+
+class _AgreementFormState extends State<AgreementForm> {
+
+  bool _isTermsChecked = false;
+  bool _isLocationChecked = false;
+  bool _isPrivacyChecked = false;
+  bool _isPrivacySharingChecked = false;
+  bool _isPaymentChecked = false;
+  bool _isBookingChecked = false;
+
+  // 체크박스를 눌렀을 때 나머지 체크박스들도 모두 자동으로 눌리게끔 설정하는 함수
+  void _onBookingCheckedChanged(bool? value) {
     setState(() {
-      _selectedCity = _cities[0];
+      _isBookingChecked = value!;
+      // 예약 내용 확인 및 결제 동의가 체크되면 모든 체크박스를 체크함
+      if (_isBookingChecked) {
+        _isTermsChecked = true;
+        _isLocationChecked = true;
+        _isPrivacyChecked = true;
+        _isPrivacySharingChecked = true;
+        _isPaymentChecked = true;
+      } else {
+        _isTermsChecked = false;
+        _isLocationChecked = false;
+        _isPrivacyChecked = false;
+        _isPrivacySharingChecked = false;
+        _isPaymentChecked = false;
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    
-    return Container(
-      width: 370,
-        child: DropdownButton(
-          
-          dropdownColor: Color(0xFFF9F9F9),
-          icon: Align(alignment: Alignment.bottomRight,),
-          value: _selectedCity,
-          items: _cities
-              .map((e) => DropdownMenuItem(
-                    value: e,
-                    child: Text(e),
-                  ))
-              .toList(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            children: [
+              Checkbox(
+                value: _isBookingChecked,
+                onChanged: _onBookingCheckedChanged,
+                activeColor: Colors.blue,
+                checkColor: Colors.white,
+              ),
+              SizedBox(width: 5),
+              Expanded(
+                child: Text(
+                  '예약 내용 확인 및 결제 동의',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                ),
+              ),
+            ],
+          ),
+        ),
+        _buildCheckboxItem(
+          value: _isTermsChecked,
           onChanged: (value) {
             setState(() {
-              _selectedCity = value!;
+              _isTermsChecked = value!;
             });
           },
+          label: "필수) 알림 서비스 이용약관 동의",
         ),
-      );
+        _buildCheckboxItem(
+          value: _isLocationChecked,
+          onChanged: (value) {
+            setState(() {
+              _isLocationChecked = value!;
+            });
+          },
+          label: "필수) 위치기반 서비스 이용약관 동의",
+        ),
+        _buildCheckboxItem(
+          value: _isPrivacyChecked,
+          onChanged: (value) {
+            setState(() {
+              _isPrivacyChecked = value!;
+            });
+          },
+          label: "필수) 개인정보 수집 / 이용 동의",
+        ),
+        _buildCheckboxItem(
+          value: _isPrivacySharingChecked,
+          onChanged: (value) {
+            setState(() {
+              _isPrivacySharingChecked = value!;
+            });
+          },
+          label: "필수) 개인정보 제3자 정보 제공 동의",
+        ),
+        _buildCheckboxItem(
+          value: _isPaymentChecked,
+          onChanged: (value) {
+            setState(() {
+              _isPaymentChecked = value!;
+            });
+          },
+          label: "필수) 결제대행 서비스 이용약관 동의",
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCheckboxItem({
+    required bool value,
+    required ValueChanged<bool?> onChanged,
+    required String label,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          Checkbox(
+            value: value,
+            onChanged: onChanged,
+            activeColor: Colors.blue,
+            checkColor: Colors.white,
+          ),
+          Expanded(
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
+
+

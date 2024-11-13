@@ -751,7 +751,73 @@ class _BookingScreenState extends State<BookingScreen> {
                 SizedBox(height: 50),
                 Text('할인', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                 SizedBox(height: 20,),
-                DropDown()
+                DropDown(),
+                SizedBox(height: 20,),
+                Text('결제 수단', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                SizedBox(height: 15,),
+                Container(
+                  width: 370,
+                  height: 50,
+                  decoration: BoxDecoration(
+                  color: Color(
+                    0xFFF7F7F7,
+                  ),
+                  border: Border.all(
+                    color: Color(0xFFF7F7F7), // 테두리 색
+                    width: 2.0, // 테두리 두께
+                  
+                    ),
+                    borderRadius: BorderRadius.circular(10)
+                  )
+                ),
+                SizedBox(height: 15,),
+                Container(
+                  width: 370,
+                  height: 50,
+                  decoration: BoxDecoration(
+                  color: Color(
+                    0xFFF7F7F7,
+                  ),
+                  border: Border.all(
+                    color: Color(0xFFF7F7F7), // 테두리 색
+                    width: 2.0, // 테두리 두께
+                  
+                    ),
+                    borderRadius: BorderRadius.circular(10)
+                  )
+                ),
+                SizedBox(height: 15,),
+                Container(
+                  width: 370,
+                  height: 50,
+                  decoration: BoxDecoration(
+                  color: Color(
+                    0xFFF7F7F7,
+                  ),
+                  border: Border.all(
+                    color: Color(0xFFF7F7F7), // 테두리 색
+                    width: 2.0, // 테두리 두께
+                  
+                    ),
+                    borderRadius: BorderRadius.circular(10)
+                  )
+                ),
+                SizedBox(height: 15,),
+                Container(
+                  width: 370,
+                  height: 50,
+                  decoration: BoxDecoration(
+                  color: Color(
+                    0xFFF7F7F7,
+                  ),
+                  border: Border.all(
+                    color: Color(0xFFF7F7F7), // 테두리 색
+                    width: 2.0, // 테두리 두께
+                  
+                    ),
+                    borderRadius: BorderRadius.circular(10)
+                  )
+                )
                 
           ],
         ),
@@ -806,6 +872,7 @@ class _DropDownState extends State<DropDown> {
     return Container(
       width: 370,
         child: DropdownButton(
+          
           dropdownColor: Color(0xFFF9F9F9),
           icon: Align(alignment: Alignment.bottomRight,),
           value: _selectedCity,

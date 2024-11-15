@@ -23,30 +23,20 @@ class _LoginScreenState extends State<LoginScreen> {
         width: screenSize.width,
         height: screenSize.height,
         color: Colors.white,
-        child: Stack(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LogoWidget(
-                top: screenSize.height * 0.25,
-                left: screenSize.width * 0.27,
-                width: screenSize.width * 0.2,
-                height: screenSize.height * 0.05),
-            Positioned(
-              left: screenSize.width * 0.045,
-              top: screenSize.height * 0.37, // 조정된 위치
-              child: _buildInputField(_idController, 'ID를 입력하세요.',
+            SizedBox(height: 50,),
+            LogoWidget(width: screenSize.width * 0.2, height: screenSize.height * 0.05),
+            SizedBox(height: 50,),
+            _buildInputField(_idController, 'ID를 입력하세요.',
                   icon: Icons.person),
-            ),
-            Positioned(
-              left: screenSize.width * 0.045,
-              top: screenSize.height * 0.44, // 조정된 위치
-              child: _buildInputField(_passwordController, '비밀번호를 입력하세요.',
+                  SizedBox(height: 20,),
+            _buildInputField(_passwordController, '비밀번호를 입력하세요.',
                   icon: Icons.lock),
-            ),
-            Positioned(
-              left: screenSize.width * 0.03,
-              top: screenSize.height * 0.49, // 조정된 위치
-              child: Row(
+              Row(
                 children: [
+                  SizedBox(width: 10,),
                   Checkbox(
                     value: _isAutoLogin,
                     onChanged: (value) {
@@ -58,77 +48,48 @@ class _LoginScreenState extends State<LoginScreen> {
                   _buildText('자동로그인', Color(0xFF50555C)),
                 ],
               ),
-            ),
-            Positioned(
-              left: screenSize.width * 0.045,
-              top: screenSize.height * 0.56, // 조정된 위치
-              child: _buildLoginButton(),
-            ),
-            Positioned(
-              left: screenSize.width * 0.1,
-              top: screenSize.height * 0.65, // 조정된 위치
-              child: _buildText('아이디 찾기', Color(0xFF50555C)),
-            ),
-            Positioned(
-                left: screenSize.width * 0.333,
-                top: screenSize.height * 0.65,
-                child: Container(
+            SizedBox(height: 20,),
+            _buildLoginButton(),
+            SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(width: 20,),
+              _buildText('아이디 찾기', Color(0xFF50555C)),
+              Container(
                   width: 1,
                   height: 19,
                   color: Colors.grey,
-                )),
-            Positioned(
-              left: screenSize.width * 0.37,
-              top: screenSize.height * 0.65, // 조정된 위치
-              child: _buildText('비밀번호 재설정', Color(0xFF50555C)),
-            ),
-            Positioned(
-                left: screenSize.width * 0.6685,
-                top: screenSize.height * 0.65,
-                child: Container(
+                ),
+              _buildText('비밀번호 재설정', Color(0xFF50555C)),
+              Container(
                   width: 1,
                   height: 19,
                   color: Colors.grey,
-                )),
-            Positioned(
-              left: screenSize.width * 0.7,
-              top: screenSize.height * 0.65, // 조정된 위치
-              child: _buildText('회원가입', Color(0xFF50555C)),
-            ),
-            Positioned(
-              left: 0,
-              top: 0,
-              child: _buildHeader(),
-            ),
-            Positioned(
-              left: screenSize.width * 0.04,
-              top: screenSize.height * 0.75,
-              child: Container(height: 1.0, width: 100.0, color: Colors.grey),
-            ),
-            Positioned(
-              left: screenSize.width * 0.335,
-              top: screenSize.height * 0.74,
-              child: Container(
-                  height: 20.0,
-                  width: 130.0,
-                  child: Center(
-                    child: Text(
+                ),
+              _buildText('회원가입', Color(0xFF50555C)),
+              SizedBox(width: 20,)
+            ],),
+            SizedBox(height: 60,),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              SizedBox(width: 20,),
+              Container(height: 1.0, width: 100.0, color: Colors.grey),
+              SizedBox(width: 10,),
+              Text(
                       "SNS 계정으로 로그인",
                       style: TextStyle(fontSize: 13),
                     ),
-                  ),
-                  color: Colors.white),
-            ),
-            Positioned(
-                left: screenSize.width * 0.7,
-                top: screenSize.height * 0.75,
-                child:
-                    Container(height: 1.0, width: 100.0, color: Colors.grey)),
-            Positioned(
-                top: screenSize.height * 0.78,
-                left: screenSize.width * 0.19,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    SizedBox(width: 10,),
+              Container(height: 1.0, width: 100.0, color: Colors.grey),
+              SizedBox(width: 20,)
+            ],),
+            SizedBox(height: 20,),
+
+            Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
                       child: SvgPicture.asset('assets/naverIcon.svg'),
@@ -150,9 +111,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       onTap: () {},
                     )
                   ],
-                ))
+                )
           ],
-        ),
+        )
       ),
     );
   }
@@ -168,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
         child: TextField(
           controller: controller,
           decoration: InputDecoration(
@@ -252,25 +213,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildHeader() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 54,
-      color: Colors.transparent,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            '9:41',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 17,
-              fontFamily: 'SF Pro',
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

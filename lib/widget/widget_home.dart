@@ -47,14 +47,14 @@ class _TravelTicketState extends State<TravelTicket>
     );
 
     // 왼쪽 하단 버튼 크기 애니메이션 (QR 크기)
-    _qrSizeAnimation = Tween<double>(begin: 50.0, end: 150.0).animate(
+    _qrSizeAnimation = Tween<double>(begin: 40, end: 120.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
 
     // 왼쪽 하단 버튼 위치 애니메이션 (QR 위치)
     _qrPositionAnimation = Tween<Offset>(
-      begin: Offset(10, 10), // 시작 위치: 왼쪽 하단
-      end: Offset(140, 35), // 끝 위치: 화면 중앙
+      begin: Offset(15, 15), // 시작 위치: 왼쪽 하단
+      end: Offset(170, 50), // 끝 위치: 화면 중앙
     ).animate(
         CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
 
@@ -167,9 +167,8 @@ class _TravelTicketState extends State<TravelTicket>
                             return Container(
                               width: _qrSizeAnimation.value,
                               height: _qrSizeAnimation.value,
-                              color: Colors.white,
                               child: Center(
-                                  child: Image.asset('assets/qrcode2.png')),
+                                  child: Image.asset('assets/qrcode.png')),
                             );
                           },
                         ),
@@ -208,13 +207,13 @@ class _TravelTicketState extends State<TravelTicket>
                 child: Stack(children: [
                   // 첫 번째 텍스트
                   Positioned(
-                    left: 14.0, // 왼쪽 패딩과 일치
+                    left: 17.0, // 왼쪽 패딩과 일치
                     top: 16.0, // 첫 번째 텍스트의 위쪽 위치
                     child: Text(
                       "2024. 01. 01(화) - 2024. 01. 08(화)",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 14.0,
+                        fontSize: 13.0,
                       ),
                     ),
                   ),
@@ -276,7 +275,7 @@ class _TravelTicketState extends State<TravelTicket>
                       "대여 : 인천국제공항 2024. 10. 11 9AM",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 13.0,
+                        fontSize: 12.0,
                       ),
                     ),
                   ),
@@ -290,6 +289,12 @@ class _TravelTicketState extends State<TravelTicket>
   }
 }
 // 2번째 홈메뉴위젯
+
+
+
+
+
+
 class HomeMenu extends StatefulWidget {
   const HomeMenu({super.key});
 

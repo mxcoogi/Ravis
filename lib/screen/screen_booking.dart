@@ -930,7 +930,7 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BookingAppBar(),
+      appBar: CustomAppBar(title: 'RAVIS 대여 예약',),
       body: PageView(
         controller: _controller,
         children: [

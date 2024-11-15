@@ -68,8 +68,9 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 
-class BookingAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BookingAppBar({super.key});
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  const CustomAppBar({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +113,7 @@ class BookingAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       flexibleSpace: Center(
         child: Text(
-          'RAVIS 대여 예약', // 중간에 표시할 텍스트
+          title, // 중간에 표시할 텍스트
           style: TextStyle(
             color: Color(0xFF222222), // 텍스트 색상
             fontSize: 18, // 텍스트 크기

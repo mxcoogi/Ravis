@@ -14,20 +14,21 @@ class _CopingScreenState extends State<CopingScreen> {
 
     return Scaffold(
         body: Container(
+          width: screenWidth,
+          height: screenHeight,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Color.fromARGB(214, 231, 237, 255),
-                    Color.fromARGB(255, 255, 255, 255)
+                    Color.fromARGB(213, 194, 207, 246),
+                    Color.fromARGB(211, 229, 232, 241)
                   ]),
             ),
             child: Stack(
               children: [
                 Positioned(left: -25 ,top: -55, width: 170, child: SvgPicture.asset('assets/backIcon.svg')),
                 Positioned(right: -70 ,top: 80, width: 170, child: SvgPicture.asset('assets/backIcon.svg')),
-                //Positioned(left: 10 , top: 10, child: SvgPicture.asset('assets/backIcon.svg')),
                 Padding(
                 padding: EdgeInsets.only(top: 80, left: 15, right: 15),
                 child: SingleChildScrollView(

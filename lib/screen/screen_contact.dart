@@ -14,13 +14,15 @@ class _ContactScreenState extends State<ContactScreen> {
 
     return Scaffold(
         body: Container(
+          width: screenWidth,
+          height: screenHeight,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Color.fromARGB(214, 231, 237, 255),
-                    Color.fromARGB(255, 255, 255, 255)
+                    Color.fromARGB(213, 194, 207, 246),
+                    Color.fromARGB(211, 229, 232, 241)
                   ]),
             ),
             child: Stack(
@@ -35,7 +37,11 @@ class _ContactScreenState extends State<ContactScreen> {
                     top: 80,
                     width: 170,
                     child: SvgPicture.asset('assets/backIcon.svg')),
-                //Positioned(left: 10 , top: 10, child: SvgPicture.asset('assets/backIcon.svg')),
+                    Positioned(
+                    right: 35,
+                    top: 600,
+                    width: 170,
+                    child: SvgPicture.asset('assets/backIcon.svg')),
                 Padding(
                     padding: EdgeInsets.only(top: 80, left: 21, right: 15),
                     child: SingleChildScrollView(
@@ -61,7 +67,7 @@ class _ContactScreenState extends State<ContactScreen> {
                             children: [
                               Container(
                                 width: screenWidth * 0.45,
-                                height: screenHeight * 0.52,
+                                height: screenHeight * 0.5,
                                 child: Padding(
                                   padding: EdgeInsets.all(15),
                                   child: Column(
@@ -117,7 +123,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                 children: [
                                   Container(
                                     width: screenWidth * 0.4,
-                                    height: screenHeight * 0.25,
+                                    height: screenHeight * 0.23,
                                     decoration: BoxDecoration(
                                   color: Colors.white
                                       .withOpacity(0.8), // 배경 색과 투명도 조절

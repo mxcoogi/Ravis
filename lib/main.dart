@@ -6,9 +6,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await initialization();
   await initializeDateFormatting();
   runApp(MyApp());
-  FlutterNativeSplash.remove();
 }
 
 
@@ -24,3 +24,7 @@ class MyApp extends StatelessWidget {
 }
 
 
+Future initialization() async {
+  await Future.delayed(const Duration(seconds: 3));
+  FlutterNativeSplash.remove();
+}

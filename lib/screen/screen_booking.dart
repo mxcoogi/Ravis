@@ -60,9 +60,9 @@ class _BookingScreenState extends State<BookingScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('이 름\t\t\t\t\t\t',
+                Text('이름\t\t\t\t\t\t\t',
                     style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF555555))),
                 SizedBox(width: 20), // 라벨과 입력 필드 사이의 공간
                 Expanded(
                   child: Container(
@@ -76,9 +76,11 @@ class _BookingScreenState extends State<BookingScreen> {
                       },
                       decoration: InputDecoration(
                         hintText: '이름을 입력하세요',
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15)
+                        ),
                         contentPadding: EdgeInsets.symmetric(
-                            vertical: 14.0, horizontal: 10.0), // 높이와 여백 조정
+                            vertical: 14.0, horizontal: 18.0), // 높이와 여백 조정
                       ),
                     ),
                   ),
@@ -92,7 +94,7 @@ class _BookingScreenState extends State<BookingScreen> {
               children: [
                 Text('전화번호',
                     style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF555555))),
                 SizedBox(width: 20),
                 Expanded(
                   child: Container(
@@ -107,9 +109,9 @@ class _BookingScreenState extends State<BookingScreen> {
                       },
                       decoration: InputDecoration(
                         hintText: '전화번호를 입력하세요',
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
                         contentPadding: EdgeInsets.symmetric(
-                            vertical: 14.0, horizontal: 10.0), // 높이와 여백 조정
+                            vertical: 14.0, horizontal: 18.0), // 높이와 여백 조정
                       ),
                     ),
                   ),
@@ -123,12 +125,12 @@ class _BookingScreenState extends State<BookingScreen> {
               children: [
                 Text('생년월일',
                     style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF555555))),
                 SizedBox(width: 20),
                 Expanded(
                   child: Container(
                     height: 50, // 높이 지정
-                    color: Color(0xFFF9F9F9),
+                    color: Color(0xAFF9F9F9),
                     child: TextField(
                       keyboardType: TextInputType.datetime,
                       onChanged: (value) {
@@ -138,9 +140,13 @@ class _BookingScreenState extends State<BookingScreen> {
                       },
                       decoration: InputDecoration(
                         hintText: 'YYYY-MM-DD 형식으로 입력',
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide(
+                          color: Color(0xAfA4A4A4),
+                          width: 2
+                        )),
                         contentPadding: EdgeInsets.symmetric(
-                            vertical: 14.0, horizontal: 10.0), // 높이와 여백 조정
+                            vertical: 14.0, horizontal: 18.0), // 높이와 여백 조정
                       ),
                     ),
                   ),
@@ -155,7 +161,7 @@ class _BookingScreenState extends State<BookingScreen> {
             SizedBox(height: 30),
             Text(
               '여행명',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF555555)),
             ),
             SizedBox(height: 15),
             Container(
@@ -170,7 +176,11 @@ class _BookingScreenState extends State<BookingScreen> {
                     });
                   },
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide(
+                          color: Color(0xFFA4A4A4),
+                          width: 2
+                        )),
                     contentPadding: EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 10.0), // 높이와 여백 조정
                   ),
@@ -183,7 +193,7 @@ class _BookingScreenState extends State<BookingScreen> {
               children: [
                 Text('여행 국가',
                     style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF555555))),
                 SizedBox(width: 20),
                 Expanded(
                   child: Container(
@@ -197,7 +207,8 @@ class _BookingScreenState extends State<BookingScreen> {
                         });
                       },
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
+),
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 10.0), // 높이와 여백 조정
                       ),
@@ -568,7 +579,9 @@ class _BookingScreenState extends State<BookingScreen> {
                               });
                             },
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)
+                              ),
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 10.0,
                                   horizontal: 10.0), // 높이와 여백 조정
@@ -579,7 +592,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 28,
                   ),
                   Row(
                     children: [
@@ -601,7 +614,9 @@ class _BookingScreenState extends State<BookingScreen> {
                               });
                             },
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)
+                              ),
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 10.0,
                                   horizontal: 10.0), // 높이와 여백 조정
@@ -612,7 +627,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 50,
+                    height:28,
                   ),
                   Row(
                     children: [
@@ -634,7 +649,9 @@ class _BookingScreenState extends State<BookingScreen> {
                               });
                             },
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)
+                              ),
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 10.0,
                                   horizontal: 10.0), // 높이와 여백 조정
@@ -645,7 +662,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 310,
+                    height: 353,
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
@@ -849,16 +866,17 @@ class _BookingScreenState extends State<BookingScreen> {
       body: Padding(padding: EdgeInsets.all(25),
       child: Column(
         children: [
+          SizedBox(height: 20,),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
             Text(' RAVIS 예약이\n 완료되었습니다.', style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold, color: Color(0xFF1F64C3)),)
           ],),
-          SizedBox(height: 20,),
+          SizedBox(height: 40,),
           Container(
             child: SvgPicture.asset('assets/character.svg')
           ),
-          SizedBox(height: 50,),
+          SizedBox(height: 70,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -879,7 +897,7 @@ class _BookingScreenState extends State<BookingScreen> {
             Text('처리상태', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
             Text('결제완료', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFF555555)),)
           ],),
-          SizedBox(height: 130,),
+          SizedBox(height: 60,),
           Container(
                     padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
                     width: double.infinity, // 너비를 화면 전체로 설정

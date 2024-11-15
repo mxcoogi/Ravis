@@ -53,8 +53,9 @@ class _DropDownState extends State<DropDown> {
               child: Text(
                 _selectedCity!,
                 style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                  color: Color(0xFF444444),
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ),

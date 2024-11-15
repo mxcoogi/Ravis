@@ -208,7 +208,7 @@ class _TravelTicketState extends State<TravelTicket>
                 child: Stack(children: [
                   // 첫 번째 텍스트
                   Positioned(
-                    left: 12.0, // 왼쪽 패딩과 일치
+                    left: 14.0, // 왼쪽 패딩과 일치
                     top: 16.0, // 첫 번째 텍스트의 위쪽 위치
                     child: Text(
                       "2024. 01. 01(화) - 2024. 01. 08(화)",
@@ -220,58 +220,58 @@ class _TravelTicketState extends State<TravelTicket>
                   ),
 
                   Positioned(
-                    left: 15.0, // 왼쪽 패딩
-                    top: 80.0, // 두 번째 텍스트의 위쪽 위치 (첫 번째 텍스트 아래)
+                    left: 17.0, // 왼쪽 패딩
+                    top: 90.0, // 두 번째 텍스트의 위쪽 위치 (첫 번째 텍스트 아래)
                     child: Text(
                       "ICN",
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 35.0,
+                        fontSize: 30.0,
                       ),
                     ),
                   ),
 
                   // 세 번째 텍스트
                   Positioned(
-                    left: 140.0, // 왼쪽 패딩
-                    top: 80.0, // 세 번째 텍스트의 위쪽 위치 (두 번째 텍스트 아래)
+                    left: 142.0, // 왼쪽 패딩
+                    top: 90.0, // 세 번째 텍스트의 위쪽 위치 (두 번째 텍스트 아래)
                     child: Text(
                       "HKG",
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 35.0,
+                        fontSize: 30.0,
                       ),
                     ),
                   ),
 
                   // 네 번째 텍스트
                   Positioned(
-                    left: 15.0, // 왼쪽 패딩
+                    left: 17.0, // 왼쪽 패딩
                     top: 130.0, // 네 번째 텍스트의 위쪽 위치 (세 번째 텍스트 아래)
                     child: Text(
                       "인천국제공항",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 16.0,
+                        fontSize: 14.0,
                       ),
                     ),
                   ),
                   Positioned(
-                    left: 140.0, // 왼쪽 패딩
+                    left: 142.0, // 왼쪽 패딩
                     top: 130.0, // 네 번째 텍스트의 위쪽 위치 (세 번째 텍스트 아래)
                     child: Text(
                       "홍콩국제공항",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 16.0,
+                        fontSize: 14.0,
                       ),
                     ),
                   ),
                   Positioned(
-                    left: 15.0, // 왼쪽 패딩
-                    top: 180.0, // 네 번째 텍스트의 위쪽 위치 (세 번째 텍스트 아래)
+                    left: 17.0, // 왼쪽 패딩
+                    top: 190.0, // 네 번째 텍스트의 위쪽 위치 (세 번째 텍스트 아래)
                     child: Text(
                       "대여 : 인천국제공항 2024. 10. 11 9AM",
                       style: TextStyle(

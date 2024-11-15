@@ -50,7 +50,7 @@ class _MyinfoCardState extends State<MyinfoCard> {
           // 아이콘들 배치
           Positioned(
             left: 50,
-            bottom: 35,
+            bottom: 27,
             child: Row(
               children: [
                 GestureDetector(

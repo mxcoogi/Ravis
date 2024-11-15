@@ -3,7 +3,6 @@ import 'package:ravis/widget/widget_logo.dart';
 import 'package:ravis/screen/screen_main.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -26,17 +25,22 @@ class _LoginScreenState extends State<LoginScreen> {
         color: Colors.white,
         child: Stack(
           children: [
-            LogoWidget(top: screenSize.height * 0.25, left: screenSize.width*0.27,
-            width : screenSize.width * 0.2, height: screenSize.height * 0.05),
+            LogoWidget(
+                top: screenSize.height * 0.25,
+                left: screenSize.width * 0.27,
+                width: screenSize.width * 0.2,
+                height: screenSize.height * 0.05),
             Positioned(
               left: screenSize.width * 0.045,
               top: screenSize.height * 0.37, // 조정된 위치
-              child: _buildInputField(_idController, 'ID를 입력하세요.', icon: Icons.person),
+              child: _buildInputField(_idController, 'ID를 입력하세요.',
+                  icon: Icons.person),
             ),
             Positioned(
               left: screenSize.width * 0.045,
               top: screenSize.height * 0.44, // 조정된 위치
-              child: _buildInputField(_passwordController, '비밀번호를 입력하세요.', icon: Icons.lock),
+              child: _buildInputField(_passwordController, '비밀번호를 입력하세요.',
+                  icon: Icons.lock),
             ),
             Positioned(
               left: screenSize.width * 0.03,
@@ -66,28 +70,26 @@ class _LoginScreenState extends State<LoginScreen> {
               child: _buildText('아이디 찾기', Color(0xFF50555C)),
             ),
             Positioned(
-              left : screenSize.width * 0.333,
-              top : screenSize.height * 0.65,
-              child: Container(
+                left: screenSize.width * 0.333,
+                top: screenSize.height * 0.65,
+                child: Container(
                   width: 1,
                   height: 19,
                   color: Colors.grey,
-                )
-            ),
+                )),
             Positioned(
               left: screenSize.width * 0.37,
               top: screenSize.height * 0.65, // 조정된 위치
               child: _buildText('비밀번호 재설정', Color(0xFF50555C)),
             ),
             Positioned(
-              left : screenSize.width * 0.6685,
-              top : screenSize.height * 0.65,
-              child: Container(
+                left: screenSize.width * 0.6685,
+                top: screenSize.height * 0.65,
+                child: Container(
                   width: 1,
                   height: 19,
                   color: Colors.grey,
-                )
-            ),
+                )),
             Positioned(
               left: screenSize.width * 0.7,
               top: screenSize.height * 0.65, // 조정된 위치
@@ -101,88 +103,62 @@ class _LoginScreenState extends State<LoginScreen> {
             Positioned(
               left: screenSize.width * 0.04,
               top: screenSize.height * 0.75,
-              child: Container( 
-              height:1.0,
-              width:100.0,
-              color:Colors.grey
-              ),
-           ),
-           Positioned(
+              child: Container(height: 1.0, width: 100.0, color: Colors.grey),
+            ),
+            Positioned(
               left: screenSize.width * 0.335,
               top: screenSize.height * 0.74,
-              child: Container( 
-              height:20.0,
-              width:130.0,
-              child: Center(
-            child: Text(
-              "SNS 계정으로 로그인",
-              style: TextStyle(fontSize: 13),
-            ),
-          ),
-              color:Colors.white
-              ),
-           ),
-           
-           Positioned(
-              left: screenSize.width * 0.7,
-              top: screenSize.height * 0.75,
-              child: Container( 
-              height:1.0,
-              width:100.0,
-              color:Colors.grey
-              )
-           ),
-            Positioned(
-              left: screenSize.width * 0.17,
-              top: screenSize.height * 0.78,
               child: Container(
-                height: 50.0, // 아이콘에 맞게 크기 조정
-                width: 50.0,  // 아이콘에 맞게 크기 조정
-                child: SvgPicture.asset(
-                  'assets/naverIcon.svg'
-                ),
-              ),
+                  height: 20.0,
+                  width: 130.0,
+                  child: Center(
+                    child: Text(
+                      "SNS 계정으로 로그인",
+                      style: TextStyle(fontSize: 13),
+                    ),
+                  ),
+                  color: Colors.white),
             ),
             Positioned(
-              left: screenSize.width * 0.35,
-              top: screenSize.height * 0.78,
-              child: Container(
-                height: 50.0, // 아이콘에 맞게 크기 조정
-                width: 50.0,  // 아이콘에 맞게 크기 조정
-                child: SvgPicture.asset(
-                  'assets/kakaoIcon.svg'
-                ),
-              ),
-            ),
+                left: screenSize.width * 0.7,
+                top: screenSize.height * 0.75,
+                child:
+                    Container(height: 1.0, width: 100.0, color: Colors.grey)),
             Positioned(
-              left: screenSize.width * 0.55,
-              top: screenSize.height * 0.78,
-              child: Container(
-                height: 50.0, // 아이콘에 맞게 크기 조정
-                width: 50.0,  // 아이콘에 맞게 크기 조정
-                child: SvgPicture.asset(
-                  'assets/googleIcon.svg'
-                ),
-              ),
-            ),
-            Positioned(
-              left: screenSize.width * 0.73,
-              top: screenSize.height * 0.78,
-              child: Container(
-                height: 50.0, // 아이콘에 맞게 크기 조정
-                width: 50.0,  // 아이콘에 맞게 크기 조정
-                child: SvgPicture.asset(
-                  'assets/appleIcon.svg'
-                ),
-              ),
-            )
+                top: screenSize.height * 0.78,
+                left: screenSize.width * 0.19,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      child: SvgPicture.asset('assets/naverIcon.svg'),
+                      onTap: () {},
+                    ),
+                    SizedBox(width: 15,),
+                    GestureDetector(
+                      child: SvgPicture.asset('assets/kakaoIcon.svg'),
+                      onTap: () {},
+                    ),
+                    SizedBox(width: 15,),
+                    GestureDetector(
+                      child: SvgPicture.asset('assets/googleIcon.svg'),
+                      onTap: () {},
+                    ),
+                    SizedBox(width: 15,),
+                    GestureDetector(
+                      child: SvgPicture.asset('assets/appleIcon.svg'),
+                      onTap: () {},
+                    )
+                  ],
+                ))
           ],
         ),
       ),
     );
   }
 
-  Widget _buildInputField(TextEditingController controller, String hintText, {IconData? icon}) {
+  Widget _buildInputField(TextEditingController controller, String hintText,
+      {IconData? icon}) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
       height: 44,
@@ -192,19 +168,20 @@ class _LoginScreenState extends State<LoginScreen> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
         child: TextField(
           controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
             border: InputBorder.none,
-            icon: icon != null ? Icon(icon, color: Color(0xFFA1A1A1)) : null, // 아이콘 추가
+            icon: icon != null
+                ? Icon(icon, color: Color(0xFFA1A1A1))
+                : null, // 아이콘 추가
           ),
         ),
       ),
     );
   }
-
 
   Widget _buildLoginButton() {
     return GestureDetector(
@@ -296,7 +273,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-
-
 }

@@ -14,7 +14,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
-      locale: 'ko_KR',
       focusedDay: DateTime.now(), 
       firstDay: DateTime.utc(2021, 3, 12), 
       lastDay: DateTime.utc(2030, 3, 12),
@@ -27,7 +26,8 @@ class _CalendarWidgetState extends State<CalendarWidget> {
             color: Colors.black,
             fontWeight: FontWeight.bold
       ),
-      
-      ));
+      )
+
+      );
   }
 }

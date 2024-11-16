@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ravis/widget/widget_pageroute.dart';
 import 'package:ravis/widget/widget_appbar.dart';
-import 'package:ravis/widget/widget_pageroute.dart';
 
 class CopingScreen extends StatefulWidget {
   @override

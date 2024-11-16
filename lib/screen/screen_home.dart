@@ -14,7 +14,10 @@ class _HomeScreenState extends State<HomeScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Padding(
+      backgroundColor: Colors.white,
+      body: 
+      Padding(
+        
         padding: EdgeInsets.only(top: 30.0, left: 16.0, right: 12.0), // 위쪽, 좌측, 우측에 패딩을 추가
         child: SingleChildScrollView( // 전체 화면을 스크롤 가능하게 만듬
           child: Column(

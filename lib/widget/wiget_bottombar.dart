@@ -15,13 +15,15 @@ class CustomBottomNavBar extends StatelessWidget {
         currentIndex: selectedIndex,
         onTap: onItemTapped,
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: Color(0xFF1F64C3), // 선택된 아이템 색상 (예: 파란색)
+        unselectedItemColor: Color(0xFF666E79), // 선택되지 않은 아이템 색상 (예: 회색)
         items: [
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               'assets/homeIcon.svg',
               width: 30,
               height: 30,
-              color: selectedIndex == 0 ? Color(0xFF1F64C3) : Color(0xFFB0B0B0), // 선택된 경우 색상 변경
+              color: selectedIndex == 0 ? Color(0xFF1F64C3) : Color(0xFF666E79), // 선택된 경우 파란색, 아니면 회색
             ),
             label: '홈',
           ),
@@ -30,7 +32,7 @@ class CustomBottomNavBar extends StatelessWidget {
               'assets/dangerIcon.svg',
               width: 30,
               height: 30,
-              color: selectedIndex == 1 ? Color(0xFF1F64C3) : Color(0xFFB0B0B0), // 선택된 경우 색상 변경
+              color: selectedIndex == 1 ? Color(0xFF1F64C3) : Color(0xFF666E79), // 선택된 경우 파란색, 아니면 회색
             ),
             label: '위험지역',
           ),
@@ -39,7 +41,7 @@ class CustomBottomNavBar extends StatelessWidget {
               'assets/copeIcon.svg',
               width: 30,
               height: 30,
-              color: selectedIndex == 2 ? Color(0xFF1F64C3) : Color(0xFFB0B0B0), // 선택된 경우 색상 변경
+              color: selectedIndex == 2 ? Color(0xFF1F64C3) : Color(0xFF666E79), // 선택된 경우 파란색, 아니면 회색
             ),
             label: '대처방법',
           ),
@@ -48,7 +50,7 @@ class CustomBottomNavBar extends StatelessWidget {
               'assets/contactIcon.svg',
               width: 30,
               height: 30,
-              color: selectedIndex == 3 ? Color(0xFF1F64C3) : Color(0xFFB0B0B0), // 선택된 경우 색상 변경
+              color: selectedIndex == 3 ? Color(0xFF1F64C3) : Color(0xFF666E79), // 선택된 경우 파란색, 아니면 회색
             ),
             label: '비상 연락',
           ),
@@ -57,13 +59,11 @@ class CustomBottomNavBar extends StatelessWidget {
               'assets/myinfoIcon.svg',
               width: 30,
               height: 30,
-              color: selectedIndex == 4 ? Color(0xFF1F64C3) : Color(0xFFB0B0B0), // 선택된 경우 색상 변경
+              color: selectedIndex == 4 ? Colors.blue : Color(0xFF666E79), // 선택된 경우 파란색, 아니면 회색
             ),
             label: '마이페이지',
           ),
         ],
-        selectedItemColor: Color(0xFF1F64C3),
-        unselectedItemColor: Color(0xFF666E79),
       ),
     );
   }

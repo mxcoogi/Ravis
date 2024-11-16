@@ -18,6 +18,7 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
     double sidePadding = screenWidth * 0.05;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: sidePadding),

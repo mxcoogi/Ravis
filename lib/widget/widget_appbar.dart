@@ -46,11 +46,10 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
               alignment: Alignment.centerRight, // 오른쪽 정렬
               child: Padding(
                 padding:
-                    EdgeInsets.only(right: 10, top: 26), // 오른쪽 여백을 추가하여 위치 조정
-                child: IconButton(
-                  icon: Icon(Icons.notifications,
-                      color: Color(0xFF444444)), // 알림 아이콘
-                  onPressed: () {
+                    EdgeInsets.only(right: 25, top: 30), // 오른쪽 여백을 추가하여 위치 조정
+                child: InkWell(
+                  child: SvgPicture.asset('assets/alramIcon.svg', ), // 알림 아이콘
+                  onTap: () {
                     // 알림 아이콘 클릭 시 동작 (여기서는 아무것도 하지 않음)
                     print('알림 아이콘 클릭');
                   },

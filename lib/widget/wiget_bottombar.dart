@@ -59,7 +59,7 @@ class CustomBottomNavBar extends StatelessWidget {
               'assets/myinfoIcon.svg',
               width: 30,
               height: 30,
-              color: selectedIndex == 4 ? Colors.blue : Color(0xFF666E79), // 선택된 경우 파란색, 아니면 회색
+              color: selectedIndex == 4 ? Color(0xFF1F64C3) : Color(0xFF666E79), // 선택된 경우 파란색, 아니면 회색
             ),
             label: '마이페이지',
           ),

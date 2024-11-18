@@ -30,7 +30,7 @@ class _MyinfoCardState extends State<MyinfoCard> {
                 Text(
                   "김태용님 안전한 여행되세요!", // 카드 제목
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 19,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -74,7 +74,7 @@ class _MyinfoCardState extends State<MyinfoCard> {
                     ],
                   ),
                 ),
-                SizedBox(width: 70), // 아이콘 사이 간격 조정
+                SizedBox(width: 65), // 아이콘 사이 간격 조정
                 GestureDetector(
                   onTap: () {
                     print('아이콘 2 클릭됨');
@@ -96,7 +96,7 @@ class _MyinfoCardState extends State<MyinfoCard> {
                     ],
                   ),
                 ),
-                SizedBox(width: 70), // 아이콘 사이 간격 조정
+                SizedBox(width: 65), // 아이콘 사이 간격 조정
                 GestureDetector(
                   onTap: () {
                     print('아이콘 3 클릭됨');
@@ -150,7 +150,7 @@ class _MyInfoState extends State<MyInfo> {
   Widget build(BuildContext context) {
     return Container(
         width: 370,
-        height: 250,
+        height: 240,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -164,19 +164,19 @@ class _MyInfoState extends State<MyInfo> {
                   children: [
                     Text('내 정보',
                         style: TextStyle(
-                            fontSize: 23, fontWeight: FontWeight.w600)),
+                            fontSize: 23, fontWeight: FontWeight.w600, color:Color(0xFF444444))),
                     SizedBox(height: 30),
                     Text('이름',
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w500)),
-                    SizedBox(height: 30),
+                            fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFF555555))),
+                    SizedBox(height:23),
                     Text('생년월일',
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w500)),
-                    SizedBox(height: 30),
+                            fontSize: 18, fontWeight: FontWeight.w500,  color:Color(0xFF555555))),
+                    SizedBox(height: 23),
                     Text('핸드폰 번호',
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w500)),
+                            fontSize: 18, fontWeight: FontWeight.w500, color:Color(0xFF555555))),
                   ],
                 ),
               ),
@@ -201,19 +201,19 @@ class _MyInfoState extends State<MyInfo> {
                     SizedBox(height: 45),
                     Text('김태용',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.black45)),
-                    SizedBox(height: 30),
+                    SizedBox(height: 23),
                     Text('2001. 12. 26',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.black45)),
-                    SizedBox(height: 30),
+                    SizedBox(height: 23),
                     Text('010-0000-0000',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.black45)),
                   ],
@@ -241,11 +241,11 @@ class Details extends StatelessWidget {
       },
       child: Container(
         width: width ,
-        height: height * 0.08,
+        height: height * 0.07,
         alignment: Alignment.centerLeft,
         child: Text(
           detail_name,  // 전달된 detail_name 값 표시
-          style: TextStyle(fontSize: 20, color: Colors.black),
+          style: TextStyle(fontSize: 19, color:Color(0xFF444444), fontWeight: FontWeight.w600),
         ),
       ),
     );

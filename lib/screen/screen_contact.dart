@@ -22,10 +22,7 @@ class _ContactScreenState extends State<ContactScreen> {
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    Color.fromARGB(213, 194, 207, 246),
-                    Color.fromARGB(211, 229, 232, 241)
-                  ]),
+                  colors: [Color.fromARGB(255, 244, 248, 253), Color.fromARGB(255, 249, 250, 250)]),
             ),
             child: Stack(
               children: [
@@ -36,7 +33,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     child: SvgPicture.asset('assets/backIcon.svg')),
                 Positioned(
                     right: -70,
-                    top: 80,
+                    top: 50,
                     width: 170,
                     child: SvgPicture.asset('assets/backIcon.svg')),
                 Positioned(
@@ -53,8 +50,9 @@ class _ContactScreenState extends State<ContactScreen> {
                           Text(
                             '비상연락망',
                             style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.w600),
+                                fontSize: 22.5, fontWeight: FontWeight.bold, color: Color(0xFF020418)),
                           ),
+                          SizedBox(height: 9,),
                           Text(
                             '해외 여행 중 발생한 긴급 상황, 도움을 요청하세요!',
                             style: TextStyle(
@@ -63,7 +61,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                 color: Color(0xFF444444)),
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 35,
                           ),
                           Row(
                             children: [
@@ -164,7 +162,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                 },
                                 child: Container(
                                   width: screenWidth * 0.45,
-                                  height: screenHeight * 0.5,
+                                  height: screenHeight * 0.45,
                                   child: Padding(
                                     padding: EdgeInsets.all(15),
                                     child: Column(
@@ -181,14 +179,14 @@ class _ContactScreenState extends State<ContactScreen> {
                                               '영사콜센터',
                                               style: TextStyle(
                                                   color: Color(0xFF1F64C3),
-                                                  fontSize: 20,
+                                                  fontSize: 18,
                                                   fontWeight: FontWeight.w600),
                                             ),
-                                            SizedBox(height: 20),
+                                            SizedBox(height: 7),
                                             Text(
                                               '연중무휴 24시간\n상담서비스 제공',
                                               style: TextStyle(
-                                                  fontSize: 16,
+                                                  fontSize: 13,
                                                   fontWeight: FontWeight.w400,
                                                   color: Color(0xFF666E79)),
                                             ),
@@ -227,7 +225,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                     },
                                     child: Container(
                                       width: screenWidth * 0.4,
-                                      height: screenHeight * 0.23,
+                                      height: screenHeight * 0.215,
                                       decoration: BoxDecoration(
                                         color: Colors.white
                                             .withOpacity(0.8), // 배경 색과 투명도 조절
@@ -256,15 +254,15 @@ class _ContactScreenState extends State<ContactScreen> {
                                                   '채팅 상담',
                                                   style: TextStyle(
                                                       color: Color(0xFF1F64C3),
-                                                      fontSize: 20,
+                                                      fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
-                                                SizedBox(height: 20),
+                                                SizedBox(height: 5),
                                                 Text(
                                                   '카카오톡, 위챗, 라인',
                                                   style: TextStyle(
-                                                      fontSize: 14,
+                                                      fontSize: 13,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       color: Color(0xFF666E79)),
@@ -291,7 +289,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                     },
                                     child: Container(
                                       width: screenWidth * 0.4,
-                                      height: screenHeight * 0.25,
+                                      height: screenHeight * 0.213,
                                       decoration: BoxDecoration(
                                         color: Colors.white
                                             .withOpacity(0.8), // 배경 색과 투명도 조절
@@ -320,15 +318,15 @@ class _ContactScreenState extends State<ContactScreen> {
                                                   '현지 경찰',
                                                   style: TextStyle(
                                                       color: Color(0xFF1F64C3),
-                                                      fontSize: 20,
+                                                      fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
-                                                SizedBox(height: 20),
+                                                SizedBox(height: 5),
                                                 Text(
                                                   'GPS 기반 경찰 연락망',
                                                   style: TextStyle(
-                                                      fontSize: 14,
+                                                      fontSize: 13,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       color: Color(0xFF666E79)),
@@ -414,40 +412,55 @@ class _CustomCheckboxListState extends State<CustomCheckboxList> {
                 height: 20,
               ),
               _buildCustomCheckbox(0, '일반 전화 상담', 0),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               _buildCustomCheckbox(1, '사건/사고', 1),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               _buildCustomCheckbox(2, '외국어 통역서비스', 2),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               _buildCustomCheckbox(3, '여권업무 안내', 3),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               _buildCustomCheckbox(4, '해외입국 허가요건, 사증 등 기타 안내', 4),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               _buildCustomCheckbox(5, '코로나 19 관련 해외입국제한 문의', 5),
-              SizedBox(height: 40,),
+              SizedBox(
+                height: 40,
+              ),
               Container(
-                    padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
-                    width: double.infinity, // 너비를 화면 전체로 설정
-                    decoration: BoxDecoration(
-                      color: Colors.black, // 배경색을 검정색으로 설정
-                      borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
-                    ),
-                    child: InkWell(
-                      onTap: () async { await Call.makePhoneCall('02-3210-0404');},
-                      
-                      child: Center(
-                        child: Text(
-                          '완료',
-                          style: TextStyle(
-                            color: Colors.white, // 텍스트 색을 흰색으로 설정
-                            fontSize: 18, // 글자 크기
-                            fontWeight: FontWeight.bold, // 글자 두께
-                          ),
-                        ),
+                padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
+                width: double.infinity, // 너비를 화면 전체로 설정
+                decoration: BoxDecoration(
+                  color: Colors.black, // 배경색을 검정색으로 설정
+                  borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
+                ),
+                child: InkWell(
+                  onTap: () async {
+                    await Call.makePhoneCall('02-3210-0404');
+                  },
+                  child: Center(
+                    child: Text(
+                      '완료',
+                      style: TextStyle(
+                        color: Colors.white, // 텍스트 색을 흰색으로 설정
+                        fontSize: 18, // 글자 크기
+                        fontWeight: FontWeight.bold, // 글자 두께
                       ),
                     ),
                   ),
-                  SizedBox(height: 10,)
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              )
             ],
           ),
         ));
@@ -455,11 +468,10 @@ class _CustomCheckboxListState extends State<CustomCheckboxList> {
 
   // Custom 체크박스를 생성하는 함수
   Widget _buildCustomCheckbox(int number, String label, int index) {
-    return 
-    Row(
+    return Row(
       children: [
         InkWell(
-        onTap: () {
+          onTap: () {
             setState(() {
               // 클릭한 체크박스만 true로 설정하고, 나머지 체크박스는 모두 false로 설정
               for (int i = 0; i < _isChecked.length; i++) {
@@ -471,39 +483,34 @@ class _CustomCheckboxListState extends State<CustomCheckboxList> {
               }
             });
           },
-        child: Container(
-          width: 30,
-          height: 30,
-          decoration: BoxDecoration(
-            color: _isChecked[index]
-                ? Color(0xFF1F64C3)
-                : Colors.transparent, // 체크된 경우 파란색 배경
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.grey), // 파란색 테두리
-          ),
-          child: Center(
-            child: Text(
-              '$number',
-              style: TextStyle(
-                  color: _isChecked[index] ? Colors.white : Colors.blue,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14),
+          child: Container(
+            width: 30,
+            height: 30,
+            decoration: BoxDecoration(
+              color: _isChecked[index]
+                  ? Color(0xFF1F64C3)
+                  : Colors.transparent, // 체크된 경우 파란색 배경
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.grey), // 파란색 테두리
+            ),
+            child: Center(
+              child: Text(
+                '$number',
+                style: TextStyle(
+                    color: _isChecked[index] ? Colors.white : Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14),
+              ),
             ),
           ),
         ),
-      ),
-      SizedBox(width: 20,),
-      Text(label, style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16))
-
+        SizedBox(
+          width: 20,
+        ),
+        Text(label, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16))
       ],
     );
-      
-
   }
-
- 
 }
 
 class Call {

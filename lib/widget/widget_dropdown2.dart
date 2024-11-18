@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class DropDown extends StatefulWidget {
-  const DropDown({super.key});
+class DropDown2 extends StatefulWidget {
+  const DropDown2({super.key});
 
   @override
-  State<DropDown> createState() => _DropDownState();
+  State<DropDown2> createState() => _DropDown2State();
 }
 
-class _DropDownState extends State<DropDown> {
-  final _coupons = ['첫 기념 할인쿠폰', '그냥 할인쿠폰', '그냥있는 쿠폰'];
+class _DropDown2State extends State<DropDown2> {
+  final _coupons = ['미국', '일본', '중국' , '태국'];
   String? _selectedCity;
 
-  bool _isDropdownOpen = false;
+  bool _isDropDown2Open = false;
   OverlayEntry? _overlayEntry;
 
   @override
@@ -24,19 +24,19 @@ class _DropDownState extends State<DropDown> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (_isDropdownOpen) {
+        if (_isDropDown2Open) {
           _overlayEntry?.remove();
         } else {
           _overlayEntry = _createOverlayEntry(context);
           Overlay.of(context).insert(_overlayEntry!);
         }
         setState(() {
-          _isDropdownOpen = !_isDropdownOpen;
+          _isDropDown2Open = !_isDropDown2Open;
         });
       },
-      child: Container(
+      child: Expanded(child: Container(
         padding: EdgeInsets.all(5),
-        width: 370,
+        width: 295,
         height: 50,
         decoration: BoxDecoration(
           color: Color(0xFFF9F9F9), // 클릭되지 않았을 때 배경색
@@ -66,7 +66,7 @@ class _DropDownState extends State<DropDown> {
           ],
         ),
       ),
-    );
+    ));
   }
 
   OverlayEntry _createOverlayEntry(BuildContext context) {
@@ -98,7 +98,7 @@ class _DropDownState extends State<DropDown> {
                   onTap: () {
                     setState(() {
                       _selectedCity = city;
-                      _isDropdownOpen = false;
+                      _isDropDown2Open = false;
                     });
                     _overlayEntry?.remove();
                   },
@@ -107,8 +107,9 @@ class _DropDownState extends State<DropDown> {
                     child: Text(
                       city,
                       style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
+                  color: Color(0xFF444444),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16
                       ),
                     ),
                   ),

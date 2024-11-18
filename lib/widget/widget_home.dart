@@ -59,7 +59,7 @@ class _TravelTicketState extends State<TravelTicket>
         CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
 
     _ddayAnimation = Tween<Offset>(
-      begin: Offset(10, 10),
+      begin: Offset(12, 10),
       end: Offset(30, 80),
     ).animate(
         CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
@@ -212,7 +212,7 @@ class _TravelTicketState extends State<TravelTicket>
                     child: Text(
                       "2024. 01. 01(화) - 2024. 01. 08(화)",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color(0xFF555555),
                         fontSize: 13.0,
                       ),
                     ),
@@ -224,7 +224,7 @@ class _TravelTicketState extends State<TravelTicket>
                     child: Text(
                       "ICN",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color(0xFF444444),
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
                       ),
@@ -238,7 +238,7 @@ class _TravelTicketState extends State<TravelTicket>
                     child: Text(
                       "HKG",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color(0xFF444444),
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
                       ),
@@ -252,7 +252,7 @@ class _TravelTicketState extends State<TravelTicket>
                     child: Text(
                       "인천국제공항",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color(0xFF555555),
                         fontSize: 14.0,
                       ),
                     ),
@@ -263,7 +263,7 @@ class _TravelTicketState extends State<TravelTicket>
                     child: Text(
                       "홍콩국제공항",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color(0xFF555555),
                         fontSize: 14.0,
                       ),
                     ),
@@ -274,7 +274,7 @@ class _TravelTicketState extends State<TravelTicket>
                     child: Text(
                       "대여 : 인천국제공항 2024. 10. 11 9AM",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Color(0xFF444444),
                         fontSize: 12.0,
                       ),
                     ),
@@ -289,9 +289,6 @@ class _TravelTicketState extends State<TravelTicket>
   }
 }
 // 2번째 홈메뉴위젯
-
-
-
 
 
 
@@ -330,7 +327,8 @@ class _HomeMenuState extends State<HomeMenu> {
                   "대여 예약",
                   style: TextStyle(
                     fontSize: 13.0,
-                    color: Colors.black,
+                    color: Color(0xFF666E79),
+                    fontWeight: FontWeight.bold
                   ),
                 ),
               ],
@@ -355,7 +353,8 @@ class _HomeMenuState extends State<HomeMenu> {
                   "상품 사용법",
                   style: TextStyle(
                     fontSize: 13.0,
-                    color: Colors.black,
+                    color: Color(0xFF666E79),
+                    fontWeight: FontWeight.bold
                   ),
                 ),
               ],
@@ -380,7 +379,8 @@ class _HomeMenuState extends State<HomeMenu> {
                   "일정 등록",
                   style: TextStyle(
                     fontSize: 13.0,
-                    color: Colors.black,
+                    color: Color(0xFF666E79),
+                    fontWeight: FontWeight.bold
                   ),
                 ),
               ],
@@ -405,7 +405,8 @@ class _HomeMenuState extends State<HomeMenu> {
                   "공관 찾기",
                   style: TextStyle(
                     fontSize: 13.0,
-                    color: Colors.black,
+                    color: Color(0xFF666E79),
+                    fontWeight: FontWeight.bold
                   ),
                 ),
               ],
@@ -424,7 +425,7 @@ class TextMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10), // 패딩 추가
+      padding: EdgeInsets.only(left: 0, top: 10), // 패딩 추가
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween, // 두 텍스트 사이에 간격을 추가
         children: [
@@ -436,7 +437,7 @@ class TextMenu extends StatelessWidget {
             },
             child: Text(
               '121개 이용후기',
-              style: TextStyle(fontSize: 18, color: Colors.black54),
+              style: TextStyle(fontSize: 18, color: Color(0xFF444444)),
             ),
           ),
 
@@ -592,7 +593,7 @@ class _ReviewState extends State<Review> {
                                 horizontal: 12), // 크기를 더 작게 만들기 위한 여백 조정
                             decoration: BoxDecoration(
                               color: Color(
-                                  0xFF1853A4), // 남색 배경 (color는 decoration 안에 넣음)
+                                  0xFF0567ED), // 남색 배경 (color는 decoration 안에 넣음)
                               borderRadius:
                                   BorderRadius.circular(8), // 모서리 둥글게 만들기
                             ),
@@ -613,7 +614,7 @@ class _ReviewState extends State<Review> {
                                 horizontal: 12), // 크기를 더 작게 만들기 위한 여백 조정
                             decoration: BoxDecoration(
                               color: Color(
-                                  0xFF1853A4), // 남색 배경 (color는 decoration 안에 넣음)
+                                  0xFF0567ED), // 남색 배경 (color는 decoration 안에 넣음)
                               borderRadius:
                                   BorderRadius.circular(8), // 모서리 둥글게 만들기
                             ),
@@ -634,7 +635,7 @@ class _ReviewState extends State<Review> {
                                 horizontal: 12), // 크기를 더 작게 만들기 위한 여백 조정
                             decoration: BoxDecoration(
                               color: Color(
-                                  0xFF1853A4), // 남색 배경 (color는 decoration 안에 넣음)
+                                  0xFF0567ED), // 남색 배경 (color는 decoration 안에 넣음)
                               borderRadius:
                                   BorderRadius.circular(8), // 모서리 둥글게 만들기
                             ),
@@ -667,7 +668,7 @@ class NewsMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10), // 패딩 추가
+      padding: EdgeInsets.only(top: 25), // 패딩 추가
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween, // 두 텍스트 사이에 간격을 추가
         children: [
@@ -720,6 +721,7 @@ class _NewsState extends State<News> {
     return Container(
       width: widget.width, // 너비
       height: widget.height, // 높이
+      padding: EdgeInsets.only(left: 1, right: 3),
       child: Row(
         children: [
           // 첫 번째 Container (비율 1)

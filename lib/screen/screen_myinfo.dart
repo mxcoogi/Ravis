@@ -39,7 +39,7 @@ class _MyInfoScreenState extends State<MyInfoScreen> {
               
               // Details 위젯
               Padding(
-                padding: const EdgeInsets.only(top: 30),
+                padding: const EdgeInsets.only(top: 0),
                 child: Details(detail_name: '구매내역', width: screenWidth , height: screenHeight)
               ),
               Padding(

@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ravis/widget/widget_appbar.dart';
 import 'package:ravis/widget/widget_calendar.dart';
 import 'package:ravis/widget/widget_dropdown.dart';
-
+import 'package:ravis/widget/widget_dropdown2.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
@@ -41,215 +41,222 @@ class _BookingScreenState extends State<BookingScreen> {
   final PageController _controller = PageController();
 
   Widget buildStep1() {
-    return SingleChildScrollView(
-        child: Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 회원 정보 타이틀
-            Text(
-              '회원정보',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 30),
-
-            // 이름 입력 (이름과 입력 필드를 가로로 배치)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+            child: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('이름\t\t\t\t\t\t\t',
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF555555))),
-                SizedBox(width: 20), // 라벨과 입력 필드 사이의 공간
-                Expanded(
+                // 회원 정보 타이틀
+                Text(
+                  '회원정보',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 30),
+
+                // 이름 입력 (이름과 입력 필드를 가로로 배치)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('이름\t\t\t\t\t\t\t',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF555555))),
+                    SizedBox(width: 20), // 라벨과 입력 필드 사이의 공간
+                    Expanded(
+                        child: Container(
+                            height: 50, // 높이 지정
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF9F9F9), // 배경 색
+                              borderRadius:
+                                  BorderRadius.circular(10), // 모서리 둥글게 처리
+                              border: Border.all(
+                                color: Color(0xFFEDEDED), // 비활성화 상태에서의 테두리 색
+                                width: 2.0, // 테두리 두께
+                              ),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 18.0), // 여백 적용
+                            child: Text(
+                              '김태용', // 표시할 텍스트
+                              style: TextStyle(
+                                color: Color(0xFFAAAAAA), // 텍스트 색
+                                fontSize: 16, // 폰트 크기
+                              ),
+                            ))),
+                  ],
+                ),
+                SizedBox(height: 20),
+
+                // 전화번호 입력
+                Row(
+                  children: [
+                    Text('전화번호',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF555555))),
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Container(
+                            height: 50, // 높이 지정
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF9F9F9), // 배경 색
+                              borderRadius:
+                                  BorderRadius.circular(10), // 모서리 둥글게 처리
+                              border: Border.all(
+                                color: Color(0xFFEDEDED), // 비활성화 상태에서의 테두리 색
+                                width: 2.0, // 테두리 두께
+                              ),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 18.0), // 여백 적용
+                            child: Text(
+                              '010-1234-5678', // 표시할 텍스트
+                              style: TextStyle(
+                                color: Color(0xFFAAAAAA), // 텍스트 색
+                                fontSize: 16, // 폰트 크기
+                              ),
+                            ))
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+
+                // 생년월일 입력
+                Row(
+                  children: [
+                    Text('생년월일',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF555555))),
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Container(
+                            height: 50, // 높이 지정
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF9F9F9), // 배경 색
+                              borderRadius:
+                                  BorderRadius.circular(10), // 모서리 둥글게 처리
+                              border: Border.all(
+                                color: Color(0xFFEDEDED), // 비활성화 상태에서의 테두리 색
+                                width: 2.0, // 테두리 두께
+                              ),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 18.0), // 여백 적용
+                            child: Text(
+                              '2001-02-01', // 표시할 텍스트
+                              style: TextStyle(
+                                color: Color(0xFFAAAAAA), // 텍스트 색
+                                fontSize: 16, // 폰트 크기
+                              ),
+                            ))
+                    ),
+                  ],
+                ),
+                SizedBox(height: 40),
+                Text(
+                  '여행 정보',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 30),
+                Text(
+                  '여행명',
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF555555)),
+                ),
+                SizedBox(height: 15),
+                Container(
                   child: Container(
                     height: 50, // 높이 지정
                     color: Color(0xFFF9F9F9),
                     child: TextField(
+                      keyboardType: TextInputType.text,
                       onChanged: (value) {
-                        setState(() {
-                          name = value;
-                        });
+                        setState(() {});
                       },
                       decoration: InputDecoration(
-                        hintText: '이름을 입력하세요',
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15)
+                          borderRadius: BorderRadius.circular(10),
                         ),
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 14.0, horizontal: 18.0), // 높이와 여백 조정
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
 
-            // 전화번호 입력
-            Row(
-              children: [
-                Text('전화번호',
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF555555))),
-                SizedBox(width: 20),
-                Expanded(
-                  child: Container(
-                    height: 50, // 높이 지정
-                    color: Color(0xFFF9F9F9),
-                    child: TextField(
-                      keyboardType: TextInputType.phone,
-                      onChanged: (value) {
-                        setState(() {
-                          phone = value;
-                        });
-                      },
-                      decoration: InputDecoration(
-                        hintText: '전화번호를 입력하세요',
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 14.0, horizontal: 18.0), // 높이와 여백 조정
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
+                        // 비활성화된 상태에서의 테두리 색
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFFEDEDED), // 기본 테두리 색 (비활성화 상태)
+                            width: 2.0, // 테두리 두께
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
 
-            // 생년월일 입력
-            Row(
-              children: [
-                Text('생년월일',
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF555555))),
-                SizedBox(width: 20),
-                Expanded(
-                  child: Container(
-                    height: 50, // 높이 지정
-                    color: Color(0xAFF9F9F9),
-                    child: TextField(
-                      keyboardType: TextInputType.datetime,
-                      onChanged: (value) {
-                        setState(() {
-                          birthDate = value;
-                        });
-                      },
-                      decoration: InputDecoration(
-                        hintText: 'YYYY-MM-DD 형식으로 입력',
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: Color(0xAfA4A4A4),
-                          width: 2
-                        )),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 14.0, horizontal: 18.0), // 높이와 여백 조정
+                        // 활성화된 상태에서의 테두리 색
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.blue, // 활성화 상태에서의 테두리 색
+                            width: 2.0, // 테두리 두께
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(height: 40),
-            Text(
-              '여행 정보',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 30),
-            Text(
-              '여행명',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF555555)),
-            ),
-            SizedBox(height: 15),
-            Container(
-              child: Container(
-                height: 50, // 높이 지정
-                color: Color(0xFFF9F9F9),
-                child: TextField(
-                  keyboardType: TextInputType.phone,
-                  onChanged: (value) {
-                    setState(() {
-                      phone = value;
-                    });
-                  },
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide(
-                          color: Color(0xFFA4A4A4),
-                          width: 2
-                        )),
-                    contentPadding: EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 10.0), // 높이와 여백 조정
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 15),
+                SizedBox(height: 15),
 
-            Row(
-              children: [
-                Text('여행 국가',
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF555555))),
-                SizedBox(width: 20),
-                Expanded(
-                  child: Container(
-                    height: 50, // 높이 지정
-                    color: Color(0xFFF9F9F9),
-                    child: TextField(
-                      keyboardType: TextInputType.datetime,
-                      onChanged: (value) {
-                        setState(() {
-                          birthDate = value;
-                        });
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
-),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 10.0), // 높이와 여백 조정
+                Row(
+                  children: [
+                    Text('여행 국가',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF555555))),
+                    SizedBox(width: 20),
+                    DropDown2()
+                  ],
+                ),
+                SizedBox(height: 145),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
+                  width: double.infinity, // 너비를 화면 전체로 설정
+                  decoration: BoxDecoration(
+                    color: Colors.black, // 배경색을 검정색으로 설정
+                    borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      // 버튼을 눌렀을 때의 동작을 여기에 구현
+                      _controller.nextPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                      print("다음 버튼이 눌렸습니다.");
+                    },
+                    child: Center(
+                      child: Text(
+                        '다음',
+                        style: TextStyle(
+                          color: Colors.white, // 텍스트 색을 흰색으로 설정
+                          fontSize: 18, // 글자 크기
+                          fontWeight: FontWeight.bold, // 글자 두께
+                        ),
                       ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
-            SizedBox(height: 145),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
-              width: double.infinity, // 너비를 화면 전체로 설정
-              decoration: BoxDecoration(
-                color: Colors.black, // 배경색을 검정색으로 설정
-                borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
-              ),
-              child: InkWell(
-                onTap: () {
-                  // 버튼을 눌렀을 때의 동작을 여기에 구현
-                  _controller.nextPage(
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                  print("다음 버튼이 눌렸습니다.");
-                },
-                child: Center(
-                  child: Text(
-                    '다음',
-                    style: TextStyle(
-                      color: Colors.white, // 텍스트 색을 흰색으로 설정
-                      fontSize: 18, // 글자 크기
-                      fontWeight: FontWeight.bold, // 글자 두께
-                    ),
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    ));
+          ),
+        )));
   }
 
   Widget buildStep2() {
@@ -580,11 +587,30 @@ class _BookingScreenState extends State<BookingScreen> {
                             },
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               contentPadding: EdgeInsets.symmetric(
-                                  vertical: 10.0,
-                                  horizontal: 10.0), // 높이와 여백 조정
+                                  vertical: 14.0,
+                                  horizontal: 18.0), // 높이와 여백 조정
+
+                              // 비활성화된 상태에서의 테두리 색
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      Color(0xFFEDEDED), // 기본 테두리 색 (비활성화 상태)
+                                  width: 2.0, // 테두리 두께
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+
+                              // 활성화된 상태에서의 테두리 색
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.blue, // 활성화 상태에서의 테두리 색
+                                  width: 2.0, // 테두리 두께
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
                           ),
                         ),
@@ -615,11 +641,30 @@ class _BookingScreenState extends State<BookingScreen> {
                             },
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               contentPadding: EdgeInsets.symmetric(
-                                  vertical: 10.0,
-                                  horizontal: 10.0), // 높이와 여백 조정
+                                  vertical: 14.0,
+                                  horizontal: 18.0), // 높이와 여백 조정
+
+                              // 비활성화된 상태에서의 테두리 색
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      Color(0xFFEDEDED), // 기본 테두리 색 (비활성화 상태)
+                                  width: 2.0, // 테두리 두께
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+
+                              // 활성화된 상태에서의 테두리 색
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.blue, // 활성화 상태에서의 테두리 색
+                                  width: 2.0, // 테두리 두께
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
                           ),
                         ),
@@ -627,7 +672,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     ],
                   ),
                   SizedBox(
-                    height:28,
+                    height: 28,
                   ),
                   Row(
                     children: [
@@ -650,11 +695,30 @@ class _BookingScreenState extends State<BookingScreen> {
                             },
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               contentPadding: EdgeInsets.symmetric(
-                                  vertical: 10.0,
-                                  horizontal: 10.0), // 높이와 여백 조정
+                                  vertical: 14.0,
+                                  horizontal: 18.0), // 높이와 여백 조정
+
+                              // 비활성화된 상태에서의 테두리 색
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      Color(0xFFEDEDED), // 기본 테두리 색 (비활성화 상태)
+                                  width: 2.0, // 테두리 두께
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+
+                              // 활성화된 상태에서의 테두리 색
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.blue, // 활성화 상태에서의 테두리 색
+                                  width: 2.0, // 테두리 두께
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
                           ),
                         ),
@@ -699,238 +763,386 @@ class _BookingScreenState extends State<BookingScreen> {
 
   Widget buildStep5() {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: EdgeInsets.all(25),
-        child: SingleChildScrollView(
-          child: 
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '예약 상품',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-                width: 370,
-                height: 130,
-                decoration: BoxDecoration(
-                  color: Color(
-                    0x201F64C3,
-                  ),
-                  border: Border.all(
-                    color: Color(0xAF1F64C3), // 테두리 색
-                    width: 2.0, // 테두리 두께
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12.0), // 테두리 모서리 둥글게
-                  ),
+        backgroundColor: Colors.white,
+        body: Padding(
+          padding: EdgeInsets.all(25),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '예약 상품',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                child: Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          width: 120,
-                          height: 25,
-                          decoration: BoxDecoration(
-                            color: Color(
-                              0xFF1F64C3,
-                            ),
-                            border: Border.all(
-                                color: Color(0xAF1F64C3), // 테두리 색
-                                width: 0 // 테두리 두께
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    width: 370,
+                    height: 130,
+                    decoration: BoxDecoration(
+                      color: Color(
+                        0x201F64C3,
+                      ),
+                      border: Border.all(
+                        color: Color(0xAF1F64C3), // 테두리 색
+                        width: 2.0, // 테두리 두께
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12.0), // 테두리 모서리 둥글게
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                              width: 120,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                color: Color(
+                                  0xFF1F64C3,
                                 ),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(5.0), // 테두리 모서리 둥글게
-                            ),
+                                border: Border.all(
+                                    color: Color(0xAF1F64C3), // 테두리 색
+                                    width: 0 // 테두리 두께
+                                    ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(5.0), // 테두리 모서리 둥글게
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '인천국제공항점',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 15),
+                                ),
+                              )),
+                          SizedBox(
+                            height: 10,
                           ),
-                          child: Center(
-                            child: Text(
-                              '인천국제공항점',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                          )),
-                      SizedBox(
-                        height: 10,
+                          Text(
+                            'RAVIS 응급구조키트 4일',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF222222)),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                '2024. 10. 04 금',
+                                style: TextStyle(color: Color(0xFF666E79)),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                width: 1,
+                                height: 20,
+                                color: Color(0xFF666E79),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                '오후 3:10 주문',
+                                style: TextStyle(color: Color(0xFF666E79)),
+                              )
+                            ],
+                          ),
+                        ],
                       ),
-                      Text('RAVIS 응급구조키트 4일', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(children: [
-                        Text('2024. 10. 04 금'),
-                        SizedBox(width: 10,),
-                        Container(width: 1, height: 20, color: Colors.grey,),
-                        SizedBox(width: 10,),
-                        Text('오후 3:10 주문')
-                      ],),
-                    ],
-                  ),
-                )),
+                    )),
                 SizedBox(height: 50),
-                Text('할인', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                SizedBox(height: 20,),
+                Text(
+                  '할인',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 DropDown(),
-                SizedBox(height: 20,),
-                Text('결제 수단', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  '결제 수단',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
                 PaymentList(),
                 Container(
                   child: Row(
                     children: [
                       Checkbox(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    value: _isAuto,
-                    
-                    onChanged: (value) {
-                      setState(() {
-                        _isAuto = value!;
-                      });
-                    },
-                  ),
-                  SizedBox(width: 5,),
-                  Text('선택한 결제 수단을 다음에도 사용', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),)
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        value: _isAuto,
+                        onChanged: (value) {
+                          setState(() {
+                            _isAuto = value!;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        '선택한 결제 수단을 다음에도 사용',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w400),
+                      )
                     ],
                   ),
-                )
-                ,SizedBox(height: 50,)
-                ,Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                  Text('결제 금액', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                  Text('00000원', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)
-                ],),
-                SizedBox(height: 20,),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                  Text('상품 금액', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
-                  Text('00000원', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),)
-                ],),
-                SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                  Text('할인 금액', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
-                  Text('00000원', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),)
-                ],),
-                SizedBox(height: 30,),
-                AgreementForm(),
-                SizedBox(height: 20,),
-                Container(
-                    padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
-                    width: double.infinity, // 너비를 화면 전체로 설정
-                    decoration: BoxDecoration(
-                      color: Colors.black, // 배경색을 검정색으로 설정
-                      borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
+                    Text(
+                      '결제 금액',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF222222)),
                     ),
-                    child: InkWell(
-                      onTap: () {
-                        // 버튼을 눌렀을 때의 동작을 여기에 구현
-                        _controller.nextPage(
-                          duration: Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-                        print("다음 버튼이 눌렸습니다.");
-                      },
-                      child: Center(
-                        child: Text(
-                          '다음',
-                          style: TextStyle(
-                            color: Colors.white, // 텍스트 색을 흰색으로 설정
-                            fontSize: 18, // 글자 크기
-                            fontWeight: FontWeight.bold, // 글자 두께
-                          ),
+                    Text(
+                      '00000원',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF222222)),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '상품 금액',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF555555)),
+                    ),
+                    Text(
+                      '00000원',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF555555)),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '할인 금액',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF555555)),
+                    ),
+                    Text(
+                      '00000원',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF555555)),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                AgreementForm(),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
+                  width: double.infinity, // 너비를 화면 전체로 설정
+                  decoration: BoxDecoration(
+                    color: Colors.black, // 배경색을 검정색으로 설정
+                    borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      // 버튼을 눌렀을 때의 동작을 여기에 구현
+                      _controller.nextPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                      print("다음 버튼이 눌렸습니다.");
+                    },
+                    child: Center(
+                      child: Text(
+                        '다음',
+                        style: TextStyle(
+                          color: Colors.white, // 텍스트 색을 흰색으로 설정
+                          fontSize: 18, // 글자 크기
+                          fontWeight: FontWeight.bold, // 글자 두께
                         ),
                       ),
                     ),
                   ),
-                SizedBox(height: 15,),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
 
+  Widget buildStep6() {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: EdgeInsets.all(25),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  ' RAVIS 예약이\n 완료되었습니다.',
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1F64C3)),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Container(child: SvgPicture.asset('assets/character.svg')),
+            SizedBox(
+              height: 70,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '결제 금액',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF222222)),
+                ),
+                Text(
+                  '00000원',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF555555)),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '결제 수단',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF222222)),
+                ),
+                Text(
+                  '카카오페이',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF555555)),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '처리상태',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF222222)),
+                ),
+                Text(
+                  '결제완료',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF555555)),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
+              width: double.infinity, // 너비를 화면 전체로 설정
+              decoration: BoxDecoration(
+                color: Colors.black, // 배경색을 검정색으로 설정
+                borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
+              ),
+              child: InkWell(
+                onTap: () {
+                  // 페이지를 이전 페이지로 이동
+                  Navigator.pop(context);
+                },
+                child: Center(
+                  child: Text(
+                    '완료',
+                    style: TextStyle(
+                      color: Colors.white, // 텍스트 색을 흰색으로 설정
+                      fontSize: 18, // 글자 크기
+                      fontWeight: FontWeight.bold, // 글자 두께
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
-    ));
-  }
-
-  Widget buildStep6(){
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(padding: EdgeInsets.all(25),
-      child: Column(
-        children: [
-          SizedBox(height: 20,),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            Text(' RAVIS 예약이\n 완료되었습니다.', style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold, color: Color(0xFF1F64C3)),)
-          ],),
-          SizedBox(height: 40,),
-          Container(
-            child: SvgPicture.asset('assets/character.svg')
-          ),
-          SizedBox(height: 70,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-            Text('결제 금액', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
-            Text('00000원', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFF555555)),)
-          ],),
-          SizedBox(height: 20,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-            Text('결제 수단', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
-            Text('카카오페이', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFF555555)),)
-          ],),
-          SizedBox(height: 20,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-            Text('처리상태', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
-            Text('결제완료', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Color(0xFF555555)),)
-          ],),
-          SizedBox(height: 60,),
-          Container(
-                    padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
-                    width: double.infinity, // 너비를 화면 전체로 설정
-                    decoration: BoxDecoration(
-                      color: Colors.black, // 배경색을 검정색으로 설정
-                      borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
-                    ),
-                    child: InkWell(
-                      onTap: () {
-            // 페이지를 이전 페이지로 이동
-            Navigator.pop(context);
-          },
-                      child: Center(
-                        child: Text(
-                          '완료',
-                          style: TextStyle(
-                            color: Colors.white, // 텍스트 색을 흰색으로 설정
-                            fontSize: 18, // 글자 크기
-                            fontWeight: FontWeight.bold, // 글자 두께
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-        ],
-      ),),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'RAVIS 대여 예약',),
+      appBar: CustomAppBar(
+        title: 'RAVIS 대여 예약',
+      ),
       body: PageView(
         controller: _controller,
         children: [
@@ -946,7 +1158,6 @@ class _BookingScreenState extends State<BookingScreen> {
   }
 }
 
-
 class PaymentList extends StatefulWidget {
   @override
   _PaymentListState createState() => _PaymentListState();
@@ -955,12 +1166,7 @@ class PaymentList extends StatefulWidget {
 class _PaymentListState extends State<PaymentList> {
   int _selectedIndex = -1; // 선택된 인덱스를 저장
 
-  final List<String> paymentMethods = [
-    '토스페이', 
-    '카카오페이', 
-    '무통장 입금', 
-    '일반결제'
-  ];
+  final List<String> paymentMethods = ['토스페이', '카카오페이', '무통장 입금', '일반결제'];
 
   @override
   Widget build(BuildContext context) {
@@ -1040,7 +1246,7 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
       },
       child: ClipOval(
         child: Container(
-          width: 50,  // 동그라미의 너비
+          width: 50, // 동그라미의 너비
           height: 50, // 동그라미의 높이
           color: _isAuto ? Colors.green : Colors.grey, // 선택 여부에 따라 색상 변경
           child: Center(
@@ -1061,7 +1267,6 @@ class AgreementForm extends StatefulWidget {
 }
 
 class _AgreementFormState extends State<AgreementForm> {
-
   bool _isTermsChecked = false;
   bool _isLocationChecked = false;
   bool _isPrivacyChecked = false;
@@ -1112,7 +1317,10 @@ class _AgreementFormState extends State<AgreementForm> {
               Expanded(
                 child: Text(
                   '예약 내용 확인 및 결제 동의',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xFF444444)),
                 ),
               ),
             ],
@@ -1191,7 +1399,7 @@ class _AgreementFormState extends State<AgreementForm> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
-                color: Colors.black,
+                color: Color(0xFF555555),
               ),
             ),
           ),
@@ -1200,5 +1408,3 @@ class _AgreementFormState extends State<AgreementForm> {
     );
   }
 }
-
-

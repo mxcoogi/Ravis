@@ -101,7 +101,7 @@ class _TravelTicketState extends State<TravelTicket>
                 width: widget.width * _leftWidthAnimation.value, // 왼쪽 영역의 너비
                 height: widget.height,
                 decoration: BoxDecoration(
-                  color: Color(0xFF1F64C3), // 배경 색상
+                  color: Color(0xFF0567ED), // 배경 색상
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(15), // 왼쪽 위 모서리 둥글게
                     bottomLeft: Radius.circular(15), // 왼쪽 아래 모서리 둥글게

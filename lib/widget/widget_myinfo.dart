@@ -15,7 +15,7 @@ class _MyinfoCardState extends State<MyinfoCard> {
       width: 370, // 카드의 고정된 너비
       height: 220, // 카드의 고정된 높이
       decoration: BoxDecoration(
-        color: Color(0xFF1F64C3), // 배경 색상
+        color: Color(0xFF0567ED), // 배경 색상
         borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
       ),
       child: Stack(

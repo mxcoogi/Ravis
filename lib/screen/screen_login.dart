@@ -19,10 +19,10 @@ class _LoginScreenState extends State<LoginScreen> {
     final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         width: screenSize.width,
         height: screenSize.height,
-        color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

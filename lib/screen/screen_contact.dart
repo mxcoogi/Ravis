@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'dart:core';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactScreen extends StatefulWidget {
   @override
@@ -433,9 +433,8 @@ class _CustomCheckboxListState extends State<CustomCheckboxList> {
                       borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
                     ),
                     child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                       },
+                      onTap: () async { await Call.makePhoneCall('02-3210-0404');},
+                      
                       child: Center(
                         child: Text(
                           '완료',
@@ -504,8 +503,20 @@ class _CustomCheckboxListState extends State<CustomCheckboxList> {
 
   }
 
-
  
 }
 
+class Call {
+  static Future<bool> canMakeCall() async {
+    // 전화 걸 수 있는지 확인
+    return await canLaunchUrl(Uri(scheme: 'tel', path: '114'));
+  }
 
+  static Future<void> makePhoneCall(String phoneNumber) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    await launchUrl(launchUri);
+  }
+}

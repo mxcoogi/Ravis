@@ -41,191 +41,173 @@ class _BookingScreenState extends State<BookingScreen> {
   final PageController _controller = PageController();
 
   Widget buildStep1() {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-            child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // 회원 정보 타이틀
-                Text(
-                  '회원정보',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        body: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '회원정보',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-                SizedBox(height: 30),
-
-                // 이름 입력 (이름과 입력 필드를 가로로 배치)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('이름\t\t\t\t\t\t\t',
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('이름',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF555555))),
+                  Container(
+                      height: 50, // 높이 지정
+                      width: screenWidth * 0.6,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF9F9F9), // 배경 색
+                        borderRadius: BorderRadius.circular(10), // 모서리 둥글게 처리
+                        border: Border.all(
+                          color: Color(0xFFEDEDED), // 비활성화 상태에서의 테두리 색
+                          width: 2.0, // 테두리 두께
+                        ),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 18.0), // 여백 적용
+                      child: Text(
+                        '김태용', // 표시할 텍스트
                         style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF555555))),
-                    SizedBox(width: 20), // 라벨과 입력 필드 사이의 공간
-                    Expanded(
-                        child: Container(
-                            height: 50, // 높이 지정
-                            decoration: BoxDecoration(
-                              color: Color(0xFFF9F9F9), // 배경 색
-                              borderRadius:
-                                  BorderRadius.circular(10), // 모서리 둥글게 처리
-                              border: Border.all(
-                                color: Color(0xFFEDEDED), // 비활성화 상태에서의 테두리 색
-                                width: 2.0, // 테두리 두께
-                              ),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 18.0), // 여백 적용
-                            child: Text(
-                              '김태용', // 표시할 텍스트
-                              style: TextStyle(
-                                color: Color(0xFFAAAAAA), // 텍스트 색
-                                fontSize: 16, // 폰트 크기
-                              ),
-                            ))),
-                  ],
-                ),
-                SizedBox(height: 20),
-
-                // 전화번호 입력
-                Row(
-                  children: [
-                    Text('전화번호',
+                          color: Color(0xFFAAAAAA), // 텍스트 색
+                          fontSize: 16, // 폰트 크기
+                        ),
+                      ))
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('전화번호',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF555555))),
+                  Container(
+                      height: 50, // 높이 지정
+                      width: screenWidth * 0.6,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF9F9F9), // 배경 색
+                        borderRadius: BorderRadius.circular(10), // 모서리 둥글게 처리
+                        border: Border.all(
+                          color: Color(0xFFEDEDED), // 비활성화 상태에서의 테두리 색
+                          width: 2.0, // 테두리 두께
+                        ),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 18.0), // 여백 적용
+                      child: Text(
+                        '010-1234-5678', // 표시할 텍스트
                         style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF555555))),
-                    SizedBox(width: 20),
-                    Expanded(
-                      child: Container(
-                            height: 50, // 높이 지정
-                            decoration: BoxDecoration(
-                              color: Color(0xFFF9F9F9), // 배경 색
-                              borderRadius:
-                                  BorderRadius.circular(10), // 모서리 둥글게 처리
-                              border: Border.all(
-                                color: Color(0xFFEDEDED), // 비활성화 상태에서의 테두리 색
-                                width: 2.0, // 테두리 두께
-                              ),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 18.0), // 여백 적용
-                            child: Text(
-                              '010-1234-5678', // 표시할 텍스트
-                              style: TextStyle(
-                                color: Color(0xFFAAAAAA), // 텍스트 색
-                                fontSize: 16, // 폰트 크기
-                              ),
-                            ))
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-
-                // 생년월일 입력
-                Row(
-                  children: [
-                    Text('생년월일',
+                          color: Color(0xFFAAAAAA), // 텍스트 색
+                          fontSize: 16, // 폰트 크기
+                        ),
+                      ))
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('생년월일',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF555555))),
+                  Container(
+                      height: 50, // 높이 지정
+                      width: screenWidth * 0.6,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF9F9F9), // 배경 색
+                        borderRadius: BorderRadius.circular(10), // 모서리 둥글게 처리
+                        border: Border.all(
+                          color: Color(0xFFEDEDED), // 비활성화 상태에서의 테두리 색
+                          width: 2.0, // 테두리 두께
+                        ),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 18.0), // 여백 적용
+                      child: Text(
+                        '1999-03-12', // 표시할 텍스트
                         style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF555555))),
-                    SizedBox(width: 20),
-                    Expanded(
-                      child: Container(
-                            height: 50, // 높이 지정
-                            decoration: BoxDecoration(
-                              color: Color(0xFFF9F9F9), // 배경 색
-                              borderRadius:
-                                  BorderRadius.circular(10), // 모서리 둥글게 처리
-                              border: Border.all(
-                                color: Color(0xFFEDEDED), // 비활성화 상태에서의 테두리 색
-                                width: 2.0, // 테두리 두께
-                              ),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 18.0), // 여백 적용
-                            child: Text(
-                              '2001-02-01', // 표시할 텍스트
-                              style: TextStyle(
-                                color: Color(0xFFAAAAAA), // 텍스트 색
-                                fontSize: 16, // 폰트 크기
-                              ),
-                            ))
-                    ),
-                  ],
+                          color: Color(0xFFAAAAAA), // 텍스트 색
+                          fontSize: 16, // 폰트 크기
+                        ),
+                      ))
+                ],
+              ),
+              Text(
+                '여행정보',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-                SizedBox(height: 40),
-                Text(
-                  '여행 정보',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 30),
-                Text(
-                  '여행명',
+              ),
+              Text('여행명',
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF555555)),
-                ),
-                SizedBox(height: 15),
-                Container(
-                  child: Container(
-                    height: 50, // 높이 지정
-                    color: Color(0xFFF9F9F9),
-                    child: TextField(
-                      keyboardType: TextInputType.text,
-                      onChanged: (value) {
-                        setState(() {});
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 14.0, horizontal: 18.0), // 높이와 여백 조정
+                      color: Color(0xFF555555))),
+              TextField(
+                keyboardType: TextInputType.text,
+                onChanged: (value) {
+                  setState(() {
+                    travelName = value;
 
-                        // 비활성화된 상태에서의 테두리 색
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xFFEDEDED), // 기본 테두리 색 (비활성화 상태)
-                            width: 2.0, // 테두리 두께
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                  });
+                },
+                decoration: InputDecoration(
+                  filled: true, // 배경색을 채우기 위해 true로 설정
+                  fillColor: Color(0xFFF9F9F9), // 배경색 설정 (여기서는 연한 회색)
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                      vertical: 14.0, horizontal: 18.0), // 높이와 여백 조정
 
-                        // 활성화된 상태에서의 테두리 색
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.blue, // 활성화 상태에서의 테두리 색
-                            width: 2.0, // 테두리 두께
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
+                  // 비활성화된 상태에서의 테두리 색
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFFEDEDED), // 기본 테두리 색 (비활성화 상태)
+                      width: 2.0, // 테두리 두께
                     ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+
+                  // 활성화된 상태에서의 테두리 색
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue, // 활성화 상태에서의 테두리 색
+                      width: 2.0, // 테두리 두께
+                    ),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                SizedBox(height: 15),
-
-                Row(
+              ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('여행 국가',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF555555))),
-                    SizedBox(width: 20),
-                    DropDown2()
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF555555))),
+                      DropDown2(width : screenWidth * 0.7)
                   ],
                 ),
-                SizedBox(height: 145),
-                Container(
+              Container(
                   padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
                   width: double.infinity, // 너비를 화면 전체로 설정
                   decoration: BoxDecoration(
@@ -252,11 +234,11 @@ class _BookingScreenState extends State<BookingScreen> {
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
+                ),
+
+            ],
           ),
-        )));
+        ));
   }
 
   Widget buildStep2() {

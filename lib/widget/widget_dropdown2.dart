@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DropDown2 extends StatefulWidget {
-  const DropDown2({super.key});
+  final double width;
+  const DropDown2({super.key, required this.width});
 
   @override
   State<DropDown2> createState() => _DropDown2State();
@@ -17,7 +18,7 @@ class _DropDown2State extends State<DropDown2> {
   @override
   void initState() {
     super.initState();
-    _selectedCity = _coupons[0]; // 초기 값 설정
+    _selectedCity = ''; // 초기 값 설정
   }
 
   @override
@@ -36,8 +37,8 @@ class _DropDown2State extends State<DropDown2> {
       },
       child: Expanded(child: Container(
         padding: EdgeInsets.all(5),
-        width: 295,
         height: 50,
+        width: widget.width,
         decoration: BoxDecoration(
           color: Color(0xFFF9F9F9), // 클릭되지 않았을 때 배경색
           borderRadius: BorderRadius.circular(10),

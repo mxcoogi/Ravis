@@ -9,7 +9,7 @@ class DropDown2 extends StatefulWidget {
 }
 
 class _DropDown2State extends State<DropDown2> {
-  final _coupons = ['미국', '일본', '중국' , '태국'];
+  final _coupons = ['미국', '일본', '중국', '태국'];
   String? _selectedCity;
 
   bool _isDropDown2Open = false;
@@ -29,13 +29,13 @@ class _DropDown2State extends State<DropDown2> {
           _overlayEntry?.remove();
         } else {
           _overlayEntry = _createOverlayEntry(context);
-          Overlay.of(context).insert(_overlayEntry!);
+          Overlay.of(context)?.insert(_overlayEntry!);
         }
         setState(() {
           _isDropDown2Open = !_isDropDown2Open;
         });
       },
-      child: Expanded(child: Container(
+      child: Container(
         padding: EdgeInsets.all(5),
         height: 50,
         width: widget.width,
@@ -49,10 +49,10 @@ class _DropDown2State extends State<DropDown2> {
         ),
         child: Row(
           children: [
-            SizedBox(width: 20,),
+            SizedBox(width: 20),
             Expanded(
               child: Text(
-                _selectedCity!,
+                _selectedCity ?? '선택하세요', // 기본 텍스트 추가
                 style: TextStyle(
                   fontSize: 16,
                   color: Color(0xFF444444),
@@ -67,7 +67,7 @@ class _DropDown2State extends State<DropDown2> {
           ],
         ),
       ),
-    ));
+    );
   }
 
   OverlayEntry _createOverlayEntry(BuildContext context) {
@@ -82,7 +82,7 @@ class _DropDown2State extends State<DropDown2> {
           color: Colors.transparent,
           child: Container(
             padding: EdgeInsets.all(5),
-            width: 370,
+            width: widget.width, // 부모 위젯과 동일한 너비로 설정
             decoration: BoxDecoration(
               color: Color(0xFFF9F9F9),
               borderRadius: BorderRadius.circular(10),
@@ -108,10 +108,9 @@ class _DropDown2State extends State<DropDown2> {
                     child: Text(
                       city,
                       style: TextStyle(
-                  color: Color(0xFF444444),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16
-                      ),
+                          color: Color(0xFF444444),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16),
                     ),
                   ),
                 );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ravis/screen/screen_booking.dart';
 import 'package:ravis/widget/widget_pageroute.dart';
+import 'package:ravis/http/post.dart';
 
 //첫번째 티켓위젯
 class TravelTicket extends StatefulWidget {
@@ -289,7 +290,6 @@ class _TravelTicketState extends State<TravelTicket>
   }
 }
 // 2번째 홈메뉴위젯
-
 
 
 class HomeMenu extends StatefulWidget {

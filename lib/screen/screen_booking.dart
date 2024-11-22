@@ -29,11 +29,6 @@ class _BookingScreenState extends State<BookingScreen> {
   DateTime returnDate = DateTime.now();
   TimeOfDay returnTime = TimeOfDay.now();
 
-  //Step4 데이터
-  String number1 = '';
-  String number2 = '';
-  String number3 = '';
-
   //step5
   bool _isAuto = false;
 
@@ -51,6 +46,7 @@ class _BookingScreenState extends State<BookingScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              
               Text(
                 '회원정보',
                 style: TextStyle(
@@ -58,6 +54,7 @@ class _BookingScreenState extends State<BookingScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -88,6 +85,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       ))
                 ],
               ),
+              SizedBox(height: 15,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -118,6 +116,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       ))
                 ],
               ),
+              SizedBox(height: 15,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -148,6 +147,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       ))
                 ],
               ),
+              SizedBox(height: 60,),
               Text(
                 '여행정보',
                 style: TextStyle(
@@ -155,6 +155,7 @@ class _BookingScreenState extends State<BookingScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              SizedBox(height: 20,),
               Text('여행명',
                   style: TextStyle(
                       fontSize: 16,
@@ -196,6 +197,7 @@ class _BookingScreenState extends State<BookingScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 20,),
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -207,6 +209,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       DropDown2(width : screenWidth * 0.7)
                   ],
                 ),
+                SizedBox(height: 160,),
               Container(
                   padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
                   width: double.infinity, // 너비를 화면 전체로 설정
@@ -529,218 +532,6 @@ class _BookingScreenState extends State<BookingScreen> {
                 )
               ],
             ))));
-  }
-
-  Widget buildStep4() {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '연락처',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Row(
-                    children: [
-                      Text('대사관',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500)),
-                      SizedBox(
-                        width: 60,
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: 50, // 높이 지정
-                          color: Color(0xFFF9F9F9),
-                          child: TextField(
-                            keyboardType: TextInputType.datetime,
-                            onChanged: (value) {
-                              setState(() {
-                                birthDate = value;
-                              });
-                            },
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 14.0,
-                                  horizontal: 18.0), // 높이와 여백 조정
-
-                              // 비활성화된 상태에서의 테두리 색
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      Color(0xFFEDEDED), // 기본 테두리 색 (비활성화 상태)
-                                  width: 2.0, // 테두리 두께
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-
-                              // 활성화된 상태에서의 테두리 색
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.blue, // 활성화 상태에서의 테두리 색
-                                  width: 2.0, // 테두리 두께
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 28,
-                  ),
-                  Row(
-                    children: [
-                      Text('현지 경찰',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500)),
-                      SizedBox(
-                        width: 40,
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: 50, // 높이 지정
-                          color: Color(0xFFF9F9F9),
-                          child: TextField(
-                            keyboardType: TextInputType.datetime,
-                            onChanged: (value) {
-                              setState(() {
-                                birthDate = value;
-                              });
-                            },
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 14.0,
-                                  horizontal: 18.0), // 높이와 여백 조정
-
-                              // 비활성화된 상태에서의 테두리 색
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      Color(0xFFEDEDED), // 기본 테두리 색 (비활성화 상태)
-                                  width: 2.0, // 테두리 두께
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-
-                              // 활성화된 상태에서의 테두리 색
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.blue, // 활성화 상태에서의 테두리 색
-                                  width: 2.0, // 테두리 두께
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 28,
-                  ),
-                  Row(
-                    children: [
-                      Text('보호자',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500)),
-                      SizedBox(
-                        width: 60,
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: 50, // 높이 지정
-                          color: Color(0xFFF9F9F9),
-                          child: TextField(
-                            keyboardType: TextInputType.datetime,
-                            onChanged: (value) {
-                              setState(() {
-                                birthDate = value;
-                              });
-                            },
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 14.0,
-                                  horizontal: 18.0), // 높이와 여백 조정
-
-                              // 비활성화된 상태에서의 테두리 색
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      Color(0xFFEDEDED), // 기본 테두리 색 (비활성화 상태)
-                                  width: 2.0, // 테두리 두께
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-
-                              // 활성화된 상태에서의 테두리 색
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.blue, // 활성화 상태에서의 테두리 색
-                                  width: 2.0, // 테두리 두께
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 353,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
-                    width: double.infinity, // 너비를 화면 전체로 설정
-                    decoration: BoxDecoration(
-                      color: Colors.black, // 배경색을 검정색으로 설정
-                      borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        // 버튼을 눌렀을 때의 동작을 여기에 구현
-                        _controller.nextPage(
-                          duration: Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-                        print("다음 버튼이 눌렸습니다.");
-                      },
-                      child: Center(
-                        child: Text(
-                          '다음',
-                          style: TextStyle(
-                            color: Colors.white, // 텍스트 색을 흰색으로 설정
-                            fontSize: 18, // 글자 크기
-                            fontWeight: FontWeight.bold, // 글자 두께
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            )));
   }
 
   Widget buildStep5() {
@@ -1131,7 +922,6 @@ class _BookingScreenState extends State<BookingScreen> {
           buildStep1(),
           buildStep2(),
           buildStep3(),
-          buildStep4(),
           buildStep5(),
           buildStep6()
         ],

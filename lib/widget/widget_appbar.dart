@@ -31,7 +31,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           ],
         ),
         child: AppBar(
-          backgroundColor: Colors.transparent, // 앱바 배경을 투명하게 설정
+          backgroundColor: Colors.white, // 앱바 배경을 투명하게 설정
           elevation: 0, // 기본 그림자 효과 제거
           leadingWidth: 120, // leading 영역의 너비 조정
           leading: Align(

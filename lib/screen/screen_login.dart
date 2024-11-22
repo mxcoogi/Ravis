@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ravis/widget/widget_logo.dart';
 import 'package:ravis/screen/screen_main.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -13,6 +15,48 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
   bool _isAutoLogin = false; // 자동 로그인 상태 변수
+
+  Future<void> loginUser(String email, String password) async {
+  // 서버 URL
+  final String url = 'http://10.0.2.2:8000/login';
+  
+  try {
+    // POST 요청을 보낼 때 필요한 데이터
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'email': email,
+        'password': password,
+      }),
+    );
+
+    // 요청이 성공한 경우
+    if (response.statusCode == 200) {
+      // 서버 응답이 성공적일 때 처리
+      final responseData = json.decode(response.body);
+      print("로그인 성공: $responseData");
+
+      // 예를 들어, 토큰 저장 또는 화면 전환 등을 할 수 있습니다.
+      // 로그인 성공 시 MainScreen으로 이동
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MainScreen()),
+      );
+    } else {
+      // 로그인 실패 시 처리
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('아이디 또는 비밀번호가 잘못되었습니다.')),
+      );
+    }
+  } catch (error) {
+    // 네트워크 오류 처리
+    print("에러 발생: $error");
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('네트워크 오류가 발생했습니다. 다시 시도해주세요.')),
+    );
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -145,61 +189,58 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildLoginButton() {
-    return GestureDetector(
-      onTap: _isLoading
-          ? null
-          : () {
-              String username = _idController.text;
-              String password = _passwordController.text;
+  return GestureDetector(
+    onTap: _isLoading
+        ? null
+        : () {
+            String username = _idController.text;
+            String password = _passwordController.text;
 
-              // 로그인 로직 처리
-              if (username == "test" && password == "test") {
+            // 로그인 로직 처리
+            if (username.isNotEmpty && password.isNotEmpty) {
+              setState(() {
+                _isLoading = true; // 로그인 시작
+              });
+
+              // 로그인 요청을 서버에 보냄
+              loginUser(username, password).then((_) {
                 setState(() {
-                  _isLoading = true; // 로그인 시작
+                  _isLoading = false; // 로딩 종료
                 });
-
-                // 예시로 2초 지연 후 HomeScreen으로 이동
-                Future.delayed(Duration(seconds: 2), () {
-                  setState(() {
-                    _isLoading = false; // 로딩 종료
-                  });
-
-                  // 로그인 성공 시 HomeScreen으로 이동
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainScreen()),
-                  );
+              }).catchError((error) {
+                setState(() {
+                  _isLoading = false; // 로딩 종료
                 });
-              } else {
-                // 로그인 실패 처리 (예: 에러 메시지)
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('아이디 또는 비밀번호가 잘못되었습니다.')),
-                );
-              }
-            },
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.9,
-        height: 48,
-        decoration: BoxDecoration(
-          color: Color(0xFF001A51),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Center(
-          child: _isLoading
-              ? CircularProgressIndicator() // 로딩 중이면 스피너 표시
-              : Text(
-                  '로그인',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'Pretendard',
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-        ),
+              });
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('아이디와 비밀번호를 입력해주세요.')),
+              );
+            }
+          },
+    child: Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: 48,
+      decoration: BoxDecoration(
+        color: Color(0xFF001A51),
+        borderRadius: BorderRadius.circular(10),
       ),
-    );
-  }
+      child: Center(
+        child: _isLoading
+            ? CircularProgressIndicator() // 로딩 중이면 스피너 표시
+            : Text(
+                '로그인',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Pretendard',
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+      ),
+    ),
+  );
+}
 
   Widget _buildText(String text, Color color) {
     return Text(

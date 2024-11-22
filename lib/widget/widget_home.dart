@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ravis/screen/screen_booking.dart';
 import 'package:ravis/widget/widget_pageroute.dart';
-import 'package:ravis/http/post.dart';
 
 //첫번째 티켓위젯
 class TravelTicket extends StatefulWidget {
@@ -465,6 +464,8 @@ class Review extends StatefulWidget {
   final String name;
   final int star;
   final String date;
+  final String product;
+  final String review;
 
   const Review(
       {super.key,
@@ -473,7 +474,9 @@ class Review extends StatefulWidget {
       required this.path,
       required this.name,
       required this.star,
-      required this.date});
+      required this.date,
+      required this.product,
+      required this.review});
 
   @override
   State<Review> createState() => _ReviewState();
@@ -552,39 +555,39 @@ class _ReviewState extends State<Review> {
                 color: Color.fromARGB(255, 243, 238, 238), // 두 번째 컨테이너 색상
                 child: Padding(
                   padding: const EdgeInsets.all(
-                      16.0), // 패딩을 추가하여 텍스트가 컨테이너의 가장자리에 붙지 않도록 함
+                      14.0), // 패딩을 추가하여 텍스트가 컨테이너의 가장자리에 붙지 않도록 함
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start, // 텍스트를 왼쪽 정렬
                     mainAxisAlignment: MainAxisAlignment.start, // 세로 방향으로 위쪽 정렬
                     children: [
                       // 첫 번째 텍스트
                       Text(
-                        'First Text',
+                        widget.product,
                         style: TextStyle(
                             color: Color(0xFF666E79),
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                           height:
-                              8), // 첫 번째 텍스트와 두 번째 텍스트 사이에 간격을 주기 위해 SizedBox 사용
+                              6), // 첫 번째 텍스트와 두 번째 텍스트 사이에 간격을 주기 위해 SizedBox 사용
 
                       // 두 번째 텍스트
                       Text(
-                        'Second Text',
+                        widget.review,
                         style: TextStyle(
                           color: Color(0xFF666E79),
-                          fontSize: 15,
+                          fontSize: 14,
                         ),
                       ),
                       SizedBox(
                           height:
-                              16), // 두 번째 텍스트와 Row 사이에 간격을 주기 위해 SizedBox 사용
+                              12), // 두 번째 텍스트와 Row 사이에 간격을 주기 위해 SizedBox 사용
 
                       // Row (세 개의 텍스트를 나란히 배치)
                       Row(
                         mainAxisAlignment:
-                            MainAxisAlignment.center, // Row 내에서 텍스트를 가운데 정렬
+                            MainAxisAlignment.spaceEvenly, // Row 내에서 텍스트를 가운데 정렬
                         children: [
                           // 첫 번째 텍스트를 Container로 감싸고 배경색을 남색으로 설정
                           Container(
@@ -598,7 +601,7 @@ class _ReviewState extends State<Review> {
                                   BorderRadius.circular(8), // 모서리 둥글게 만들기
                             ),
                             child: Text(
-                              'Text 1',
+                              '안전해요',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 12, // 텍스트 크기도 조금 더 작게 설정
@@ -619,7 +622,7 @@ class _ReviewState extends State<Review> {
                                   BorderRadius.circular(8), // 모서리 둥글게 만들기
                             ),
                             child: Text(
-                              'Text 2',
+                              '안심돼요',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 12, // 텍스트 크기도 조금 더 작게 설정
@@ -640,7 +643,7 @@ class _ReviewState extends State<Review> {
                                   BorderRadius.circular(8), // 모서리 둥글게 만들기
                             ),
                             child: Text(
-                              'Text 3',
+                              '예뻐요',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 12, // 텍스트 크기도 조금 더 작게 설정
@@ -705,11 +708,15 @@ class News extends StatefulWidget {
   final double width; // 너비
   final double height; // 높이
   final String path;
+  final String title;
+  final String content;
   const News(
       {super.key,
       required this.width,
       required this.height,
-      required this.path});
+      required this.path,
+      required this.title,
+      required this.content});
 
   @override
   State<News> createState() => _NewsState();
@@ -757,19 +764,19 @@ class _NewsState extends State<News> {
                 ), // 모서리를 둥글게
               ),
               child: Padding(
-                padding: EdgeInsets.all(16), // 패딩 추가
+                padding: EdgeInsets.all(14), // 패딩 추가
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start, // 왼쪽 정렬
                   mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween, // 텍스트 간격을 유지
+                      MainAxisAlignment.spaceAround, // 텍스트 간격을 유지
                   children: [
                     // 첫 번째 텍스트: 왼쪽 정렬
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        "맨 위 텍스트", // 첫 번째 텍스트
+                        widget.title, // 첫 번째 텍스트
                         style: TextStyle(
-                          fontSize: 16, // 텍스트 크기
+                          fontSize: 15, // 텍스트 크기
                           fontWeight: FontWeight.bold, // 텍스트 두껍게
                           color: Color(0xFF555555), // 텍스트 색상
                         ),
@@ -780,9 +787,9 @@ class _NewsState extends State<News> {
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
-                        "아래쪽 텍스트", // 두 번째 텍스트
+                        widget.content, // 두 번째 텍스트
                         style: TextStyle(
-                          fontSize: 14, // 텍스트 크기
+                          fontSize: 10, // 텍스트 크기
                           color: Color(0xFF666E79), // 텍스트 색상
                         ),
                       ),

@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // SVG 패키지 임포트
 
 class MyinfoCard extends StatefulWidget {
-  const MyinfoCard({super.key});
+  final String name;
+  final String email;
+  const MyinfoCard({super.key, required this.name, required this.email});
 
   @override
   State<MyinfoCard> createState() => _MyinfoCardState();
 }
 
 class _MyinfoCardState extends State<MyinfoCard> {
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +32,7 @@ class _MyinfoCardState extends State<MyinfoCard> {
               crossAxisAlignment: CrossAxisAlignment.start, // 텍스트 왼쪽 정렬
               children: [
                 Text(
-                  "김태용님 안전한 여행되세요!", // 카드 제목
+                  "${widget.name}님 안전한 여행되세요!", // 카드 제목
                   style: TextStyle(
                     fontSize: 19,
                     fontWeight: FontWeight.bold,
@@ -37,7 +41,7 @@ class _MyinfoCardState extends State<MyinfoCard> {
                 ),
                 SizedBox(height: 8), // 제목과 설명 사이에 공간 추가
                 Text(
-                  "2312ty@gmail.com", // 카드 제목
+                  "${widget.email}", // 카드 제목
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -139,7 +143,10 @@ class _MyinfoCardState extends State<MyinfoCard> {
 }
 
 class MyInfo extends StatefulWidget {
-  const MyInfo({super.key});
+  final String name;
+  final String birth;
+  final String phonenum;
+  const MyInfo({super.key, required this.name, required this.birth, required this.phonenum});
 
   @override
   State<MyInfo> createState() => _MyInfoState();
@@ -199,19 +206,19 @@ class _MyInfoState extends State<MyInfo> {
                             color: Colors.black45)),
                     ),
                     SizedBox(height: 45),
-                    Text('김태용',
+                    Text('${widget.name}',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.black45)),
                     SizedBox(height: 23),
-                    Text('2001. 12. 26',
+                    Text('${widget.birth}',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.black45)),
                     SizedBox(height: 23),
-                    Text('010-0000-0000',
+                    Text('${widget.phonenum}',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
@@ -251,3 +258,5 @@ class Details extends StatelessWidget {
     );
   }
 }
+
+

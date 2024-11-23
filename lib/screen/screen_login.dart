@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ravis/widget/widget_logo.dart';
 import 'package:ravis/screen/screen_main.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:ravis/main.dart';
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -15,6 +16,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
   bool _isAutoLogin = false; // 자동 로그인 상태 변수
+  var dio = Dio();
+
+
 
   Future<void> loginUser(String email, String password) async {
   // 서버 URL
@@ -22,20 +26,20 @@ class _LoginScreenState extends State<LoginScreen> {
   
   try {
     // POST 요청을 보낼 때 필요한 데이터
-    final response = await http.post(
-      Uri.parse(url),
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode({
-        'email': email,
-        'password': password,
-      }),
-    );
+    final response = await dio.post(url, data: {'email':email, 'password' : password});
 
     // 요청이 성공한 경우
     if (response.statusCode == 200) {
       // 서버 응답이 성공적일 때 처리
-      final responseData = json.decode(response.body);
-      print("로그인 성공: $responseData");
+      print("로그인 성공");
+
+      // 응답 데이터에서 JSON 추출
+      Map<String, dynamic> jsonData = response.data;  // response.data는 이미 JSON 형식으로 파싱됨
+
+      // access_token 저장
+      await storage.write(key: "access_token", value: jsonData["access_token"]);
+
+      
 
       // 예를 들어, 토큰 저장 또는 화면 전환 등을 할 수 있습니다.
       // 로그인 성공 시 MainScreen으로 이동

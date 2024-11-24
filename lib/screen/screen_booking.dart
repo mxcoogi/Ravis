@@ -4,6 +4,8 @@ import 'package:ravis/widget/widget_appbar.dart';
 import 'package:ravis/widget/widget_calendar.dart';
 import 'package:ravis/widget/widget_dropdown.dart';
 import 'package:ravis/widget/widget_dropdown2.dart';
+import 'package:day_night_time_picker/day_night_time_picker.dart';
+import 'package:intl/intl.dart'; // intl 패키지 임포트
 
 class BookingScreen extends StatefulWidget {
   final Map<String, dynamic> info;
@@ -14,27 +16,37 @@ class BookingScreen extends StatefulWidget {
 }
 
 class _BookingScreenState extends State<BookingScreen> {
+
+  int _currentPage = 0; // 현재 페이지를 추적합니다.
   // Step 1 데이터
   String name = '';
   String phone = '';
   String birthDate = '';
+  String email = '';
   String travelName = '';
   String travelCountry = '';
 
   // Step 2 데이터
   DateTime rentalDate = DateTime.now();
-  DateTime selectedDate = DateTime.now();
-  TimeOfDay rentalTime = TimeOfDay.now();
-
-  // Step 3 데이터
   DateTime returnDate = DateTime.now();
-  TimeOfDay returnTime = TimeOfDay.now();
 
   //step5
   bool _isAuto = false;
+  Duration difference = Duration(days: 0); // 24일
+
+  String payment = '';
 
   // PageController to handle page transitions
   final PageController _controller = PageController();
+
+  void updateDates(
+      DateTime startDate, DateTime endDate, Duration newDifference) {
+    setState(() {
+      rentalDate = startDate;
+      returnDate = endDate;
+      difference = newDifference;
+    });
+  }
 
   Widget buildStep1() {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -50,7 +62,6 @@ class _BookingScreenState extends State<BookingScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               Text(
                 '회원정보',
                 style: TextStyle(
@@ -58,7 +69,9 @@ class _BookingScreenState extends State<BookingScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -89,7 +102,9 @@ class _BookingScreenState extends State<BookingScreen> {
                       ))
                 ],
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -120,7 +135,9 @@ class _BookingScreenState extends State<BookingScreen> {
                       ))
                 ],
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -151,7 +168,9 @@ class _BookingScreenState extends State<BookingScreen> {
                       ))
                 ],
               ),
-              SizedBox(height: 60,),
+              SizedBox(
+                height: 60,
+              ),
               Text(
                 '여행정보',
                 style: TextStyle(
@@ -159,18 +178,22 @@ class _BookingScreenState extends State<BookingScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Text('여행명',
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF555555))),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 keyboardType: TextInputType.text,
                 onChanged: (value) {
                   setState(() {
                     travelName = value;
-
                   });
                 },
                 decoration: InputDecoration(
@@ -201,55 +224,68 @@ class _BookingScreenState extends State<BookingScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('여행 국가',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF555555))),
-                      DropDown2(
-                width: screenWidth * 0.7,
-                onCountrySelected: (selectedCountry) {
-                  setState(() {
-                    travelCountry = selectedCountry; // 선택된 국가 값을 travelCountry에 저장
-                  });
-                },
-              )
-                  ],
-                ),
-                SizedBox(height: 160,),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('여행 국가',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF555555))),
+                  DropDown2(
+                    width: screenWidth * 0.7,
+                    onCountrySelected: (selectedCountry) {
+                      setState(() {
+                        travelCountry =
+                            selectedCountry; // 선택된 국가 값을 travelCountry에 저장
+                      });
+                    },
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 150,
+              ),
               Container(
-                  padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
-                  width: double.infinity, // 너비를 화면 전체로 설정
-                  decoration: BoxDecoration(
-                    color: Colors.black, // 배경색을 검정색으로 설정
-                    borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      // 버튼을 눌렀을 때의 동작을 여기에 구현
+                padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
+                width: double.infinity, // 너비를 화면 전체로 설정
+                decoration: BoxDecoration(
+                  color: Colors.black, // 배경색을 검정색으로 설정
+                  borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
+                ),
+                child: InkWell(
+                  onTap: () {
+                    // 버튼을 눌렀을 때의 동작을 여기에 구현
+                    if (travelCountry != '') {
                       _controller.nextPage(
                         duration: Duration(milliseconds: 300),
                         curve: Curves.easeInOut,
                       );
-                      print("다음 버튼이 눌렸습니다.");
-                    },
-                    child: Center(
-                      child: Text(
-                        '다음',
-                        style: TextStyle(
-                          color: Colors.white, // 텍스트 색을 흰색으로 설정
-                          fontSize: 18, // 글자 크기
-                          fontWeight: FontWeight.bold, // 글자 두께
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('여행 국가를 선택해주세요'),
+                          duration: Duration(seconds: 2), // 메시지가 2초간 표시됩니다
+                          backgroundColor: Colors.red, // 배경 색상 (원하는 색으로 변경 가능)
                         ),
+                      );
+                    }
+                  },
+                  child: Center(
+                    child: Text(
+                      '다음',
+                      style: TextStyle(
+                        color: Colors.white, // 텍스트 색을 흰색으로 설정
+                        fontSize: 18, // 글자 크기
+                        fontWeight: FontWeight.bold, // 글자 두께
                       ),
                     ),
                   ),
                 ),
-
+              ),
             ],
           ),
         ));
@@ -284,235 +320,48 @@ class _BookingScreenState extends State<BookingScreen> {
                       Radius.circular(12.0), // 테두리 모서리 둥글게
                     ),
                   ),
-                  child: CalendarWidget(),
+                  child: CalendarWidget(
+                    rentalDate: rentalDate,
+                    returnDate: returnDate,
+                    difference: difference,
+                    onDatesChanged: updateDates,
+                  ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                Text(
-                  '오전',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: List.generate(12, (index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              print('${index}선택됨');
-                            },
-                            child: Text('${index}시'),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromARGB(255, 244, 242, 242),
-                                foregroundColor: Colors.black,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(5), // 버튼 모서리 둥글게
-                                ),
-                                side: BorderSide(
-                                  color: Color(0xFFEEEEEE), // 테두리 색
-                                  width: 1.0, // 테두리 두께
-                                )),
-                          ),
-                        );
-                      }),
-                    )),
-                SizedBox(height: 15),
-                Text(
-                  '오후',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: List.generate(12, (index) {
-                        int hour =
-                            (index + 12) % 12; // 0 -> 12, 1 -> 1, ..., 11 -> 11
-                        String PmTime =
-                            (hour == 0) ? '12' : '$hour'; // 12시를 표시하도록 처리
-
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              print('${PmTime}선택됨');
-                            },
-                            child: Text('${PmTime}시'),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromARGB(255, 244, 242, 242),
-                                foregroundColor: Colors.black,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(5), // 버튼 모서리 둥글게
-                                ),
-                                side: BorderSide(
-                                  color: Color(0xFFEEEEEE), // 테두리 색
-                                  width: 1.0, // 테두리 두께
-                                )),
-                          ),
-                        );
-                      }),
-                    )),
-                SizedBox(height: 30),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
-                  width: double.infinity, // 너비를 화면 전체로 설정
-                  decoration: BoxDecoration(
-                    color: Colors.black, // 배경색을 검정색으로 설정
-                    borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      // 버튼을 눌렀을 때의 동작을 여기에 구현
-                      _controller.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                      print("다음 버튼이 눌렸습니다.");
-                    },
-                    child: Center(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '대여 시간',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                    TextButton(
                       child: Text(
-                        '다음',
-                        style: TextStyle(
-                          color: Colors.white, // 텍스트 색을 흰색으로 설정
-                          fontSize: 18, // 글자 크기
-                          fontWeight: FontWeight.bold, // 글자 두께
-                        ),
-                      ),
+                        '확인',
+                        style: TextStyle(color: Colors.black, fontSize: 15),
+                      ), // 버튼 텍스트
+                      onPressed: () {},
                     ),
-                  ),
-                )
-              ],
-            ))));
-  }
-
-  Widget buildStep3() {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: Padding(
-            padding: EdgeInsets.all(20),
-            child: Container(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '대여 일시',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color(0xFFEEEEEE), // 테두리 색
-                      width: 2.0, // 테두리 두께
+                Row(
+                  children: [
+                    Text(
+                      '반납시간',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12.0), // 테두리 모서리 둥글게
-                    ),
-                  ),
-                  child: CalendarWidget(),
+                  ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
-                Text(
-                  '오전',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: List.generate(12, (index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              print('${index}선택됨');
-                            },
-                            child: Text('${index}시'),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromARGB(255, 244, 242, 242),
-                                foregroundColor: Colors.black,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(5), // 버튼 모서리 둥글게
-                                ),
-                                side: BorderSide(
-                                  color: Color(0xFFEEEEEE), // 테두리 색
-                                  width: 1.0, // 테두리 두께
-                                )),
-                          ),
-                        );
-                      }),
-                    )),
-                SizedBox(height: 15),
-                Text(
-                  '오후',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: List.generate(12, (index) {
-                        int hour =
-                            (index + 12) % 12; // 0 -> 12, 1 -> 1, ..., 11 -> 11
-                        String PmTime =
-                            (hour == 0) ? '12' : '$hour'; // 12시를 표시하도록 처리
-
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              print('${PmTime}선택됨');
-                            },
-                            child: Text('${PmTime}시'),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Color.fromARGB(255, 244, 242, 242),
-                                foregroundColor: Colors.black,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(5), // 버튼 모서리 둥글게
-                                ),
-                                side: BorderSide(
-                                  color: Color(0xFFEEEEEE), // 테두리 색
-                                  width: 1.0, // 테두리 두께
-                                )),
-                          ),
-                        );
-                      }),
-                    )),
-                SizedBox(height: 30),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
                   width: double.infinity, // 너비를 화면 전체로 설정
@@ -598,7 +447,7 @@ class _BookingScreenState extends State<BookingScreen> {
                               ),
                               child: Center(
                                 child: Text(
-                                  '인천국제공항점',
+                                  '${travelCountry}국제공항점',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 15),
                                 ),
@@ -607,7 +456,7 @@ class _BookingScreenState extends State<BookingScreen> {
                             height: 10,
                           ),
                           Text(
-                            'RAVIS 응급구조키트 4일',
+                            'RAVIS 응급구조키트 ${difference.inDays + 1}일',
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -619,7 +468,8 @@ class _BookingScreenState extends State<BookingScreen> {
                           Row(
                             children: [
                               Text(
-                                '2024. 10. 04 금',
+                                DateFormat('yyyy. MM. dd EEEE', 'ko_KR')
+                                    .format(DateTime.now()), // 날짜와 요일 포맷
                                 style: TextStyle(color: Color(0xFF666E79)),
                               ),
                               SizedBox(
@@ -634,7 +484,9 @@ class _BookingScreenState extends State<BookingScreen> {
                                 width: 10,
                               ),
                               Text(
-                                '오후 3:10 주문',
+                                DateFormat('a hh:mm', 'ko_KR')
+                                        .format(DateTime.now()) +
+                                    ' 주문',
                                 style: TextStyle(color: Color(0xFF666E79)),
                               )
                             ],
@@ -661,7 +513,13 @@ class _BookingScreenState extends State<BookingScreen> {
                 SizedBox(
                   height: 15,
                 ),
-                PaymentList(),
+                PaymentList(
+                  onPaymentSelected: (selectedPayment) {
+                    setState(() {
+                      payment = selectedPayment; // 부모 위젯에서 결제 방법을 갱신
+                    });
+                  },
+                ),
                 Container(
                   child: Row(
                     children: [
@@ -858,7 +716,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       color: Color(0xFF222222)),
                 ),
                 Text(
-                  '카카오페이',
+                  '${payment}',
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -901,6 +759,12 @@ class _BookingScreenState extends State<BookingScreen> {
               child: InkWell(
                 onTap: () {
                   // 페이지를 이전 페이지로 이동
+                  print('${email} ${name} ${phone} ${travelCountry}');
+                  print(
+                      '${DateFormat('yyyy-MM-dd EEEE', 'ko_KR').format(rentalDate)}');
+                  print(
+                      '${DateFormat('yyyy-MM-dd EEEE', 'ko_KR').format(returnDate)}');
+
                   Navigator.pop(context);
                 },
                 child: Center(
@@ -922,19 +786,34 @@ class _BookingScreenState extends State<BookingScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    name = widget.info['username'];
+    phone = widget.info['phonenumber'];
+    birthDate = widget.info['birth'];
+    email = widget.info['email'];
+    // 텍스트 필드에 초기값 설정
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
         title: 'RAVIS 대여 예약',
       ),
-      body: PageView(
-        controller: _controller,
+      body:PageView(
+        controller: _controller, // PageController 설정
+        onPageChanged: (int page) {
+          setState(() {
+            _currentPage = page; // 페이지 변경 시 현재 페이지 업데이트
+          });
+        },
+        physics: NeverScrollableScrollPhysics(), // 슬라이드 방지
         children: [
           buildStep1(),
           buildStep2(),
-          buildStep3(),
           buildStep5(),
-          buildStep6()
+          buildStep6(),
         ],
       ),
     );
@@ -942,6 +821,9 @@ class _BookingScreenState extends State<BookingScreen> {
 }
 
 class PaymentList extends StatefulWidget {
+  final Function(String) onPaymentSelected; // 결제 방법을 부모 위젯으로 전달하는 콜백
+
+  const PaymentList({super.key, required this.onPaymentSelected});
   @override
   _PaymentListState createState() => _PaymentListState();
 }
@@ -959,6 +841,7 @@ class _PaymentListState extends State<PaymentList> {
           onTap: () {
             setState(() {
               _selectedIndex = index; // 선택된 인덱스를 업데이트
+              widget.onPaymentSelected(paymentMethods[index]);
             });
           },
           child: Container(

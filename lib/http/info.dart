@@ -30,3 +30,25 @@ class UserInfo {
     }
   }
 }
+
+
+/*
+Time rentaltime = Time(hour: 0, minute: 0);
+  Time returntime = Time(hour: 0, minute: 0);
+
+  // 시간 변경시 호출되는 콜백 함수
+  void onTimeChanged(Time newTime) {
+    setState(() {
+      rentaltime = newTime;  // 새로운 시간으로 업데이트
+    });
+  }
+  Navigator.of(context).push(
+            showPicker(
+                context: context,
+                value: Time(hour: 0, minute: 0),
+                sunrise: TimeOfDay(hour: 6, minute: 0), // optional
+                sunset: TimeOfDay(hour: 18, minute: 0), // optional
+                duskSpanInMinutes: 120, // optional
+                onChange: onTimeChanged,
+            ),
+        ); */

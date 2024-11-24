@@ -292,7 +292,8 @@ class _TravelTicketState extends State<TravelTicket>
 
 
 class HomeMenu extends StatefulWidget {
-  const HomeMenu({super.key});
+  final Map<String, dynamic> info;
+  const HomeMenu({super.key, required this.info});
 
   @override
   State<HomeMenu> createState() => _HomeMenuState();
@@ -311,7 +312,7 @@ class _HomeMenuState extends State<HomeMenu> {
             onTap: () {
               print("홈 아이콘 클릭");
               Navigator.push(context,
-              CustomPageRoute(page: BookingScreen()));
+              CustomPageRoute(page: BookingScreen(info : widget.info)));
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

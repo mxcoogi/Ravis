@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class DropDown2 extends StatefulWidget {
   final double width;
-  const DropDown2({super.key, required this.width});
+  final Function(String) onCountrySelected; // 콜백 함수 추가
+
+  const DropDown2({super.key, required this.width, required this.onCountrySelected});
 
   @override
   State<DropDown2> createState() => _DropDown2State();
@@ -101,6 +103,7 @@ class _DropDown2State extends State<DropDown2> {
                       _selectedCity = city;
                       _isDropDown2Open = false;
                     });
+                    widget.onCountrySelected(city); // 선택된 국가를 부모 위젯에 전달
                     _overlayEntry?.remove();
                   },
                   child: Padding(

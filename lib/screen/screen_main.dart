@@ -41,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
   // 페이지 리스트 (하단 바에 맞춰 페이지 전환)
   List<Widget> get _pages {
     return [
-      HomeScreen(), // 홈 화면
+      HomeScreen(info: info,), // 홈 화면
       DangerScreen(), // 위험지역 화면
       CopingScreen(), // 대처 방법 화면
       ContactScreen(), // 비상 연락 화면

@@ -6,7 +6,8 @@ import 'package:ravis/widget/widget_dropdown.dart';
 import 'package:ravis/widget/widget_dropdown2.dart';
 
 class BookingScreen extends StatefulWidget {
-  const BookingScreen({super.key});
+  final Map<String, dynamic> info;
+  const BookingScreen({super.key, required this.info});
 
   @override
   State<BookingScreen> createState() => _BookingScreenState();
@@ -38,6 +39,9 @@ class _BookingScreenState extends State<BookingScreen> {
   Widget buildStep1() {
     double screenWidth = MediaQuery.of(context).size.width;
     //double screenHeight = MediaQuery.of(context).size.height;
+    name = widget.info['username'];
+    phone = widget.info['phonenumber'];
+    birthDate = widget.info['birth'];
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -77,7 +81,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       padding: EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 18.0), // 여백 적용
                       child: Text(
-                        '김태용', // 표시할 텍스트
+                        name, // 표시할 텍스트
                         style: TextStyle(
                           color: Color(0xFFAAAAAA), // 텍스트 색
                           fontSize: 16, // 폰트 크기
@@ -108,7 +112,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       padding: EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 18.0), // 여백 적용
                       child: Text(
-                        '010-1234-5678', // 표시할 텍스트
+                        phone, // 표시할 텍스트
                         style: TextStyle(
                           color: Color(0xFFAAAAAA), // 텍스트 색
                           fontSize: 16, // 폰트 크기
@@ -139,7 +143,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       padding: EdgeInsets.symmetric(
                           vertical: 10.0, horizontal: 18.0), // 여백 적용
                       child: Text(
-                        '1999-03-12', // 표시할 텍스트
+                        birthDate, // 표시할 텍스트
                         style: TextStyle(
                           color: Color(0xFFAAAAAA), // 텍스트 색
                           fontSize: 16, // 폰트 크기
@@ -206,7 +210,14 @@ class _BookingScreenState extends State<BookingScreen> {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF555555))),
-                      DropDown2(width : screenWidth * 0.7)
+                      DropDown2(
+                width: screenWidth * 0.7,
+                onCountrySelected: (selectedCountry) {
+                  setState(() {
+                    travelCountry = selectedCountry; // 선택된 국가 값을 travelCountry에 저장
+                  });
+                },
+              )
                   ],
                 ),
                 SizedBox(height: 160,),

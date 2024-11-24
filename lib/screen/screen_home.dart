@@ -3,6 +3,10 @@ import 'package:ravis/widget/widget_home.dart';
 
 
 class HomeScreen extends StatefulWidget {
+
+  final Map<String, dynamic> info;
+  const HomeScreen({super.key, required this.info});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -45,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               // 추가적인 위젯들
               SizedBox(height: 33),
-              HomeMenu(),
+              HomeMenu(info: widget.info,),
               SizedBox(height: 23),
               TextMenu(),
               SizedBox(height: 5),

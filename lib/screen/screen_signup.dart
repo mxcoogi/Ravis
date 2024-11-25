@@ -130,7 +130,7 @@ class _SignupScreenState extends State<SignupScreen> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(
-              height: 40,
+              height: 45,
             ),
             Text(
               '회원정보',
@@ -155,7 +155,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
                     child: TextField(
                         controller: _nameController,
                         decoration: InputDecoration(
@@ -202,7 +202,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
                     child: TextField(
                         controller: _birthwordController,
                         decoration: InputDecoration(
@@ -240,7 +240,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 45),
             Text(
               '휴대폰 인증',
               style: TextStyle(
@@ -281,7 +281,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        const EdgeInsets.symmetric(horizontal: 13, vertical: 2.5),
                     child: TextField(
                         controller: _phonewordController,
                         decoration: InputDecoration(
@@ -300,7 +300,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 SizedBox(width: 15),
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10.0), // 버튼의 높이
+                    padding: EdgeInsets.symmetric(vertical: 11.5), // 버튼의 높이
                     decoration: BoxDecoration(
                       color: Colors.black, // 배경색을 검정색으로 설정
                       borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
@@ -338,7 +338,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 5.5),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: '인증번호',
@@ -425,7 +425,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
                   child: TextField(
                       controller: _idController,
                       decoration: InputDecoration(
@@ -444,7 +444,7 @@ class _SignupScreenState extends State<SignupScreen> {
               SizedBox(width: 20),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10.0), // 버튼의 높이
+                  padding: EdgeInsets.symmetric(vertical: 11.5), // 버튼의 높이
                   decoration: BoxDecoration(
                     color: Colors.black, // 배경색을 검정색으로 설정
                     borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
@@ -470,7 +470,7 @@ class _SignupScreenState extends State<SignupScreen> {
             ],
           ),
           SizedBox(
-            height: 20,
+            height: 16,
           ),
           Text(
             '영어 소문자와 숫자만 사용하여, 4-12자의 아이디를 입력해주세요.',
@@ -490,7 +490,7 @@ class _SignupScreenState extends State<SignupScreen> {
             height: 30,
           ),
           Container(
-            width: MediaQuery.of(context).size.width * 0.7,
+            width: MediaQuery.of(context).size.width * 0.9,
             height: 44,
             decoration: BoxDecoration(
               color: Color(0xFFF9F9F9),
@@ -499,7 +499,7 @@ class _SignupScreenState extends State<SignupScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 4.5),
               child: TextField(
                   controller: _passwdController,
                   decoration: InputDecoration(
@@ -519,7 +519,7 @@ class _SignupScreenState extends State<SignupScreen> {
             height: 20,
           ),
           Container(
-            width: MediaQuery.of(context).size.width * 0.7,
+            width: MediaQuery.of(context).size.width * 0.9,
             height: 44,
             decoration: BoxDecoration(
               color: Color(0xFFF9F9F9),
@@ -528,7 +528,7 @@ class _SignupScreenState extends State<SignupScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 2),
               child: TextField(
                   controller: _passwdcheckController,
                   decoration: InputDecoration(
@@ -545,7 +545,7 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 16,
           ),
           Text(
             '영어 소문자와 숫자만 사용하여, 4-12자의 비밀번호를 입력해주세요.',
@@ -577,7 +577,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
                   child: TextField(
                       controller: _emailController,
                       decoration: InputDecoration(
@@ -610,7 +610,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
                   child: TextField(
                       controller: _domainController,
                       decoration: InputDecoration(
@@ -645,10 +645,13 @@ class _SignupScreenState extends State<SignupScreen> {
                     isLoading = true; // 로딩 시작
                   });
 
+                  // 2초 동안 기다리기
+                  await Future.delayed(Duration(seconds: 2));
+
                   try {
                     Map<String, dynamic> data = {
                       "username": name,
-                      "id" : id,
+                      "id": id,
                       "email": '$email@$domain',
                       "birth": birth,
                       "phonenumber": phone,
@@ -688,14 +691,19 @@ class _SignupScreenState extends State<SignupScreen> {
                 }
               },
               child: Center(
-                child: Text(
-                  '가입하기',
-                  style: TextStyle(
-                    color: Colors.white, // 텍스트 색을 흰색으로 설정
-                    fontSize: 18, // 글자 크기
-                    fontWeight: FontWeight.bold, // 글자 두께
-                  ),
-                ),
+                child: isLoading
+                    ? CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.white), // 로딩 색상
+                      )
+                    : Text(
+                        '가입하기',
+                        style: TextStyle(
+                          color: Colors.white, // 텍스트 색을 흰색으로 설정
+                          fontSize: 18, // 글자 크기
+                          fontWeight: FontWeight.bold, // 글자 두께
+                        ),
+                      ),
               ),
             ),
           )
@@ -710,19 +718,22 @@ class _SignupScreenState extends State<SignupScreen> {
       child: Stack(
         children: [
           Positioned(
-            child: SvgPicture.asset('assets/signup1.svg'),
-            left: -20,
-            top: 40,
+            child: SvgPicture.asset('assets/signup1.svg',
+            width: 60,
+            height: 60,),
+            left: -15,
+            top: 105,
           ),
           Positioned(
             child: SvgPicture.asset('assets/signup1.svg'),
             right: -40,
-            top: 120,
+            top: 210,
           ),
           Positioned(
-            child: SvgPicture.asset('assets/signup2.svg'),
+            child: SvgPicture.asset('assets/signup2.svg',
+            width: 400, height: 400,),
             left: -80,
-            bottom: 120,
+            bottom: 150,
           ),
           Padding(
               padding: EdgeInsets.only(top: 180, left: 20, right: 20),
@@ -737,14 +748,14 @@ class _SignupScreenState extends State<SignupScreen> {
                         color: Color(0xFF020418)),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Text(
                     'RAVIS와 함께 안전한 여행되세요!',
                     style: TextStyle(fontSize: 15, color: Color(0xFF555555)),
                   ),
                   SizedBox(
-                    height: 495,
+                    height: 500,
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이
@@ -857,7 +868,7 @@ class _CarrierSelectionState extends State<CarrierSelection> {
                   SizedBox(width: 8), // 체크박스와 텍스트 사이의 간격
                   Text(
                     carriers[index], // 통신사 이름
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16, color: Color(0xFF555555)),
                   ),
                 ],
               ),

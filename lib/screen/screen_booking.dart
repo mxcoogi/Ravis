@@ -5,6 +5,8 @@ import 'package:ravis/widget/widget_calendar.dart';
 import 'package:ravis/widget/widget_dropdown.dart';
 import 'package:ravis/widget/widget_dropdown2.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
+import 'package:dio/dio.dart';
+
 import 'package:intl/intl.dart'; // intl 패키지 임포트
 
 class BookingScreen extends StatefulWidget {
@@ -16,7 +18,6 @@ class BookingScreen extends StatefulWidget {
 }
 
 class _BookingScreenState extends State<BookingScreen> {
-
   int _currentPage = 0; // 현재 페이지를 추적합니다.
   // Step 1 데이터
   String name = '';
@@ -757,15 +758,37 @@ class _BookingScreenState extends State<BookingScreen> {
                 borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
               ),
               child: InkWell(
-                onTap: () {
-                  // 페이지를 이전 페이지로 이동
-                  print('${email} ${name} ${phone} ${travelCountry}');
-                  print(
-                      '${DateFormat('yyyy-MM-dd EEEE', 'ko_KR').format(rentalDate)}');
-                  print(
-                      '${DateFormat('yyyy-MM-dd EEEE', 'ko_KR').format(returnDate)}');
+                onTap: () async {
+                  // POST 요청을 보낼 URL
+                  String url = 'http://10.0.2.2:8000/create-booking';
 
-                  Navigator.pop(context);
+                  // POST 요청을 위한 데이터 구성
+                  Map<String, dynamic> data = {
+                    "email": email,
+                    "username": name, // username에 name을 넣은 경우
+                    "startday": DateFormat('yyyy-MM-dd').format(rentalDate),
+                    "endday": DateFormat('yyyy-MM-dd').format(returnDate),
+                    "combination": 0, // 실제 값으로 교체
+                    'travelCountry' : travelCountry,
+                  };
+
+                  // Dio 인스턴스 생성
+                  Dio dio = Dio();
+
+                  try {
+                    // POST 요청 보내기
+                    Response response = await dio.post(url, data: data);
+
+                    // 서버 응답 출력
+                    print("Response status: ${response.statusCode}");
+                    print("Response data: ${response.data}");
+
+                    // 페이지를 이전 페이지로 이동
+                    Navigator.pop(context);
+                  } catch (e) {
+                    // 에러 처리
+                    print("Error occurred: $e");
+                  }
                 },
                 child: Center(
                   child: Text(
@@ -801,7 +824,7 @@ class _BookingScreenState extends State<BookingScreen> {
       appBar: CustomAppBar(
         title: 'RAVIS 대여 예약',
       ),
-      body:PageView(
+      body: PageView(
         controller: _controller, // PageController 설정
         onPageChanged: (int page) {
           setState(() {

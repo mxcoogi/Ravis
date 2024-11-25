@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ravis/screen/screen_booking.dart';
+import 'package:ravis/widget/widget_logo.dart';
 import 'package:ravis/widget/widget_pageroute.dart';
 
 //첫번째 티켓위젯
 class TravelTicket extends StatefulWidget {
   final double width; // 너비
   final double height; // 높이
+  final String travelName;
+  final String startday;
+  final String endday;
+  final String startweek;
+  final String endweek;
+  final String iata;
+  final int dday;
 
-  const TravelTicket({
-    super.key,
-    required this.width,
-    required this.height,
-  });
+  const TravelTicket(
+      {super.key,
+      required this.width,
+      required this.height,
+      required this.travelName,
+      required this.startday,
+      required this.endday,
+      required this.startweek,
+      required this.endweek,
+      required this.iata,
+      required this.dday});
 
   @override
   State<TravelTicket> createState() => _TravelTicketState();
@@ -27,10 +41,11 @@ class _TravelTicketState extends State<TravelTicket>
   late Animation<Offset> _qrPositionAnimation; // QR 위치 애니메이션
   late Animation<Offset> _ddayAnimation; //디데이 위치 애니메이션
   late Animation<double> _opacityAnimation; // 텍스트의 투명도 애니메이션
-
+  
   @override
   void initState() {
     super.initState();
+
 
     // 애니메이션 컨트롤러 초기화
     _animationController = AnimationController(
@@ -64,11 +79,8 @@ class _TravelTicketState extends State<TravelTicket>
     ).animate(
         CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
 
-    _opacityAnimation = Tween<double>(
-      begin: 0.0, 
-      end: 1.0
-    ).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
+    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
   }
 
   @override
@@ -118,7 +130,7 @@ class _TravelTicketState extends State<TravelTicket>
                               builder: (context, child) {
                                 return Container(
                                   child: Center(
-                                    child: Text('D-4',
+                                    child: Text('D${widget.dday-1}',
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 16)),
                                   ),
@@ -133,7 +145,8 @@ class _TravelTicketState extends State<TravelTicket>
                               animation: _animationController,
                               builder: (context, child) {
                                 return Opacity(
-                                  opacity: _opacityAnimation.value, // 애니메이션 값으로 투명도 설정
+                                  opacity: _opacityAnimation
+                                      .value, // 애니메이션 값으로 투명도 설정
                                   child: Container(
                                     child: Center(
                                       child: Text(
@@ -210,7 +223,7 @@ class _TravelTicketState extends State<TravelTicket>
                     left: 17.0, // 왼쪽 패딩과 일치
                     top: 16.0, // 첫 번째 텍스트의 위쪽 위치
                     child: Text(
-                      "2024. 01. 01(화) - 2024. 01. 08(화)",
+                      "${widget.startday.trim()}(${widget.startweek}) - ${widget.endday.trim()}(${widget.endweek})",
                       style: TextStyle(
                         color: Color(0xFF555555),
                         fontSize: 13.0,
@@ -236,7 +249,7 @@ class _TravelTicketState extends State<TravelTicket>
                     left: 142.0, // 왼쪽 패딩
                     top: 90.0, // 세 번째 텍스트의 위쪽 위치 (두 번째 텍스트 아래)
                     child: Text(
-                      "HKG",
+                      "${widget.iata}",
                       style: TextStyle(
                         color: Color(0xFF444444),
                         fontWeight: FontWeight.bold,
@@ -261,7 +274,7 @@ class _TravelTicketState extends State<TravelTicket>
                     left: 142.0, // 왼쪽 패딩
                     top: 130.0, // 네 번째 텍스트의 위쪽 위치 (세 번째 텍스트 아래)
                     child: Text(
-                      "홍콩국제공항",
+                      "${widget.travelName}국제공항",
                       style: TextStyle(
                         color: Color(0xFF555555),
                         fontSize: 14.0,
@@ -272,7 +285,7 @@ class _TravelTicketState extends State<TravelTicket>
                     left: 17.0, // 왼쪽 패딩
                     top: 190.0, // 네 번째 텍스트의 위쪽 위치 (세 번째 텍스트 아래)
                     child: Text(
-                      "대여 : 인천국제공항 2024. 10. 11 9AM",
+                      "대여 : 인천국제공항 ${widget.startday} (${widget.startweek})",
                       style: TextStyle(
                         color: Color(0xFF444444),
                         fontSize: 12.0,
@@ -290,6 +303,32 @@ class _TravelTicketState extends State<TravelTicket>
 }
 // 2번째 홈메뉴위젯
 
+class DefaultTicket extends StatefulWidget {
+  final double width; // 너비
+  final double height; // 높이
+
+  const DefaultTicket({
+    super.key,
+    required this.width,
+    required this.height,
+  });
+
+  @override
+  State<DefaultTicket> createState() => _DefaultTicketState();
+}
+
+class _DefaultTicketState extends State<DefaultTicket> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: widget.width, // 화면 비율에 맞는 너비
+      height: widget.height,
+      decoration: BoxDecoration(
+          color: Color(0xFF0567ED), borderRadius: BorderRadius.circular(10)),
+      child: LogoWidget(width: widget.width, height: widget.height),
+    );
+  }
+}
 
 class HomeMenu extends StatefulWidget {
   final Map<String, dynamic> info;
@@ -312,7 +351,7 @@ class _HomeMenuState extends State<HomeMenu> {
             onTap: () {
               print("홈 아이콘 클릭");
               Navigator.push(context,
-              CustomPageRoute(page: BookingScreen(info : widget.info)));
+                  CustomPageRoute(page: BookingScreen(info: widget.info)));
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -326,10 +365,9 @@ class _HomeMenuState extends State<HomeMenu> {
                 Text(
                   "대여 예약",
                   style: TextStyle(
-                    fontSize: 13.0,
-                    color: Color(0xFF666E79),
-                    fontWeight: FontWeight.bold
-                  ),
+                      fontSize: 13.0,
+                      color: Color(0xFF666E79),
+                      fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -352,10 +390,9 @@ class _HomeMenuState extends State<HomeMenu> {
                 Text(
                   "상품 사용법",
                   style: TextStyle(
-                    fontSize: 13.0,
-                    color: Color(0xFF666E79),
-                    fontWeight: FontWeight.bold
-                  ),
+                      fontSize: 13.0,
+                      color: Color(0xFF666E79),
+                      fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -378,10 +415,9 @@ class _HomeMenuState extends State<HomeMenu> {
                 Text(
                   "일정 등록",
                   style: TextStyle(
-                    fontSize: 13.0,
-                    color: Color(0xFF666E79),
-                    fontWeight: FontWeight.bold
-                  ),
+                      fontSize: 13.0,
+                      color: Color(0xFF666E79),
+                      fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -404,10 +440,9 @@ class _HomeMenuState extends State<HomeMenu> {
                 Text(
                   "공관 찾기",
                   style: TextStyle(
-                    fontSize: 13.0,
-                    color: Color(0xFF666E79),
-                    fontWeight: FontWeight.bold
-                  ),
+                      fontSize: 13.0,
+                      color: Color(0xFF666E79),
+                      fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -587,8 +622,8 @@ class _ReviewState extends State<Review> {
 
                       // Row (세 개의 텍스트를 나란히 배치)
                       Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.spaceEvenly, // Row 내에서 텍스트를 가운데 정렬
+                        mainAxisAlignment: MainAxisAlignment
+                            .spaceEvenly, // Row 내에서 텍스트를 가운데 정렬
                         children: [
                           // 첫 번째 텍스트를 Container로 감싸고 배경색을 남색으로 설정
                           Container(

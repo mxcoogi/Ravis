@@ -4,7 +4,7 @@ import 'package:ravis/screen/screen_main.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dio/dio.dart';
 import 'package:ravis/main.dart';
-
+import 'package:ravis/screen/screen_signup.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,13 +20,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
 
-  Future<void> loginUser(String email, String password) async {
+  Future<void> loginUser(String id, String password) async {
   // 서버 URL
   final String url = 'http://10.0.2.2:8000/login';
   
   try {
     // POST 요청을 보낼 때 필요한 데이터
-    final response = await dio.post(url, data: {'email':email, 'password' : password});
+    final response = await dio.post(url, data: {'id': id, 'password' : password});
 
     // 요청이 성공한 경우
     if (response.statusCode == 200) {
@@ -247,14 +247,24 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
   Widget _buildText(String text, Color color) {
-    return Text(
+    return GestureDetector(
+      child: Text(
       text,
       style: TextStyle(
         color: color,
         fontSize: 16,
         fontFamily: 'Pretendard',
         fontWeight: FontWeight.w500,
-      ),
+      )
+    ),
+    onTap: (){
+      if (text == '회원가입'){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen()));
+      }
+      else{
+        print('다른거에요');
+      }
+    },
     );
   }
 

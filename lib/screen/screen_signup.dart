@@ -122,7 +122,9 @@ class _SignupScreenState extends State<SignupScreen> {
       void Function(String) updatebirth, void Function(String) updatephone) {
     return Padding(
         padding: EdgeInsets.only(top: 40, left: 20, right: 20),
-        child: Column(
+        child: SingleChildScrollView(
+          child: 
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -174,11 +176,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 SizedBox(
                   width: 17,
                 ),
-                Expanded(
-                    child: Text(
+                Text(
                   '내국인',
-                  style: TextStyle(fontSize: 15, color: Color(0xFF555555)),
-                )),
+                  style: TextStyle(fontSize: 14, color: Color(0xFF555555)),
+                ),
                 Icon(
                   Icons.expand_more, // 아래 방향 화살표 아이콘
                   size: 24, // 아이콘 크기
@@ -387,7 +388,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             )
           ],
-        ));
+    )));
   }
 
   Widget page2(
@@ -399,7 +400,9 @@ class _SignupScreenState extends State<SignupScreen> {
       void Function(String) updatedomain) {
     return Padding(
       padding: EdgeInsets.only(top: 40, left: 20, right: 20),
-      child: Column(
+      child: SingleChildScrollView(
+        child: 
+      Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -709,7 +712,7 @@ class _SignupScreenState extends State<SignupScreen> {
           )
         ],
       ),
-    );
+    ));
   }
 
   Widget page3(name, birth, phone, id, password, email, domain) {

@@ -68,7 +68,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: 
+      Container(
         width: screenSize.width,
         height: screenSize.height,
         child: Column(
@@ -163,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         )
       ),
-    );
+    ));
   }
 
   Widget _buildInputField(TextEditingController controller, String hintText,

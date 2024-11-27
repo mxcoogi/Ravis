@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ravis/screen/screen_booking.dart';
 import 'package:ravis/widget/widget_logo.dart';
 import 'package:ravis/widget/widget_pageroute.dart';
+import 'dart:io';
+
 
 //첫번째 티켓위젯
 class TravelTicket extends StatefulWidget {
@@ -15,6 +17,7 @@ class TravelTicket extends StatefulWidget {
   final String endweek;
   final String iata;
   final int dday;
+  final String path;
 
   const TravelTicket(
       {super.key,
@@ -26,7 +29,8 @@ class TravelTicket extends StatefulWidget {
       required this.startweek,
       required this.endweek,
       required this.iata,
-      required this.dday});
+      required this.dday,
+      required this.path,});
 
   @override
   State<TravelTicket> createState() => _TravelTicketState();
@@ -41,7 +45,7 @@ class _TravelTicketState extends State<TravelTicket>
   late Animation<Offset> _qrPositionAnimation; // QR 위치 애니메이션
   late Animation<Offset> _ddayAnimation; //디데이 위치 애니메이션
   late Animation<double> _opacityAnimation; // 텍스트의 투명도 애니메이션
-  
+
   @override
   void initState() {
     super.initState();
@@ -181,7 +185,9 @@ class _TravelTicketState extends State<TravelTicket>
                               width: _qrSizeAnimation.value,
                               height: _qrSizeAnimation.value,
                               child: Center(
-                                  child: Image.asset('assets/qrcode.png')),
+                                  child: Image.file(
+                                    File(widget.path)
+                                  )),
                             );
                           },
                         ),

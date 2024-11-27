@@ -4,10 +4,11 @@ import 'package:ravis/widget/widget_appbar.dart';
 import 'package:ravis/widget/widget_calendar.dart';
 import 'package:ravis/widget/widget_dropdown.dart';
 import 'package:ravis/widget/widget_dropdown2.dart';
-import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:dio/dio.dart';
-
 import 'package:intl/intl.dart'; // intl 패키지 임포트
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:path_provider/path_provider.dart';
 
 class BookingScreen extends StatefulWidget {
   final Map<String, dynamic> info;
@@ -47,6 +48,17 @@ class _BookingScreenState extends State<BookingScreen> {
       returnDate = endDate;
       difference = newDifference;
     });
+  }
+
+  Future<void> _saveImage(Uint8List bytes, path) async {
+    //final directory = await Directory.systemTemp.createTemp();
+    final file = File(path);
+    // response.data is List<int> type
+
+    // 바이트 데이터를 이미지 파일로 저장
+    await file.writeAsBytes(bytes);
+
+    print('이미지 저장 위치: ${file.path}');
   }
 
   Widget buildStep1() {
@@ -626,13 +638,50 @@ class _BookingScreenState extends State<BookingScreen> {
                     borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
                   ),
                   child: InkWell(
-                    onTap: () {
-                      // 버튼을 눌렀을 때의 동작을 여기에 구현
-                      _controller.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                      print("다음 버튼이 눌렸습니다.");
+                    onTap: () async {
+                      // POST 요청을 보낼 URL
+                      String url = 'http://10.0.2.2:8000/create-booking';
+
+                      // POST 요청을 위한 데이터 구성
+                      Map<String, dynamic> data = {
+                        "email": email,
+                        "username": name, // username에 name을 넣은 경우
+                        "startday": DateFormat('yyyy-MM-dd').format(rentalDate),
+                        "endday": DateFormat('yyyy-MM-dd').format(returnDate),
+                        "combination": 0, // 실제 값으로 교체
+                        'travelCountry': travelCountry,
+                      };
+
+                      // Dio 인스턴스 생성
+                      Dio dio = Dio();
+                      var tempDir = await getApplicationDocumentsDirectory();
+                      String path = tempDir.path;
+                      String finalPath =
+                          "${path}/${email}_${DateFormat('yyyy-MM-dd').format(rentalDate)}_${DateFormat('yyyy-MM-dd').format(returnDate)}.png";
+                      try {
+                        // POST 요청 보내기
+                        Response response = await dio.post(url,
+                            data: data,
+                            options: Options(
+                              responseType:
+                                  ResponseType.bytes, // 바이트 형식으로 응답 받기
+                            ));
+                        if (response.statusCode == 200) {
+                          File file = File(finalPath);
+                          var raf = file.openSync(mode: FileMode.write);
+                          // response.data is List<int> type
+                          raf.writeFromSync(response.data);
+                          await raf.close();
+
+                          _controller.nextPage(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          );
+                        }
+                      } catch (e) {
+                        // 에러 처리
+                        print("Error occurred: $e");
+                      }
                     },
                     child: Center(
                       child: Text(
@@ -758,37 +807,9 @@ class _BookingScreenState extends State<BookingScreen> {
                 borderRadius: BorderRadius.circular(10.0), // 둥근 테두리
               ),
               child: InkWell(
-                onTap: () async {
-                  // POST 요청을 보낼 URL
-                  String url = 'http://10.0.2.2:8000/create-booking';
-
-                  // POST 요청을 위한 데이터 구성
-                  Map<String, dynamic> data = {
-                    "email": email,
-                    "username": name, // username에 name을 넣은 경우
-                    "startday": DateFormat('yyyy-MM-dd').format(rentalDate),
-                    "endday": DateFormat('yyyy-MM-dd').format(returnDate),
-                    "combination": 0, // 실제 값으로 교체
-                    'travelCountry' : travelCountry,
-                  };
-
-                  // Dio 인스턴스 생성
-                  Dio dio = Dio();
-
-                  try {
-                    // POST 요청 보내기
-                    Response response = await dio.post(url, data: data);
-
-                    // 서버 응답 출력
-                    print("Response status: ${response.statusCode}");
-                    print("Response data: ${response.data}");
-
-                    // 페이지를 이전 페이지로 이동
-                    Navigator.pop(context);
-                  } catch (e) {
-                    // 에러 처리
-                    print("Error occurred: $e");
-                  }
+                //Navigator.pop(context);
+                onTap: () {
+                  Navigator.pop(context);
                 },
                 child: Center(
                   child: Text(

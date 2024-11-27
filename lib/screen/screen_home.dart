@@ -118,6 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           endweek: getDayOfWeek(DateTime.parse(data['endday'])),
                           iata : getairport(data['travelCountry']),
                           dday: dday,
+                          path: '/data/user/0/com.example.ravis/app_flutter/${data['email']}_${data['startday']}_${data['endday']}.png',
                         ),
                       );
                     }).toList(),

@@ -80,10 +80,10 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: 50,),
             LogoWidget(width: screenSize.width * 0.2, height: screenSize.height * 0.05),
             SizedBox(height: 50,),
-            _buildInputField(_idController, 'ID를 입력하세요.',
+            _buildInputField(_idController, 'ID를 입력하세요.', false,
                   icon: Icons.person),
                   SizedBox(height: 20,),
-            _buildInputField(_passwordController, '비밀번호를 입력하세요.',
+            _buildInputField(_passwordController, '비밀번호를 입력하세요.', true,
                   icon: Icons.lock),
               Row(
                 children: [
@@ -169,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
     ));
   }
 
-  Widget _buildInputField(TextEditingController controller, String hintText,
+  Widget _buildInputField(TextEditingController controller, String hintText, bool flag,
       {IconData? icon}) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
@@ -183,6 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
         child: TextField(
           controller: controller,
+          obscureText: flag,
           decoration: InputDecoration(
             hintText: hintText,
             border: InputBorder.none,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ravis/screen/screen_booking.dart';
-import 'package:ravis/widget/widget_logo.dart';
 import 'package:ravis/widget/widget_pageroute.dart';
 import 'dart:io';
 

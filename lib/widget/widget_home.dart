@@ -312,11 +312,13 @@ class _TravelTicketState extends State<TravelTicket>
 class DefaultTicket extends StatefulWidget {
   final double width; // 너비
   final double height; // 높이
+  final Map<String, dynamic> info;
 
   const DefaultTicket({
     super.key,
     required this.width,
     required this.height,
+    required this.info
   });
 
   @override
@@ -331,7 +333,23 @@ class _DefaultTicketState extends State<DefaultTicket> {
       height: widget.height,
       decoration: BoxDecoration(
           color: Color(0xFF0567ED), borderRadius: BorderRadius.circular(10)),
-      child: LogoWidget(width: widget.width, height: widget.height),
+      child: Stack(children: [
+        Positioned(child: SvgPicture.asset('assets/defaultlogo.svg', width: 312,), left: 27,top: 102,),
+        Positioned(child: SvgPicture.asset('assets/defaultlogo2.svg', width: 350,), left: 20,bottom: 0,)
+        ,Positioned(left: 28, top: 18,
+          child: Text('RAVIS와 함께하는\n안전한 여행!', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),))
+        ,Positioned(
+          left: 27, top: 183,
+          child: Row(children: [
+          GestureDetector(
+            onTap: (){Navigator.push(context,
+                  CustomPageRoute(page: BookingScreen(info: widget.info)));},
+            child: Text('대여하기', style: TextStyle(fontSize: 16, color: Color(0xFFd9d9d9), fontWeight: FontWeight.w600),),),
+          GestureDetector(
+            onTap: (){},
+            child: SvgPicture.asset('assets/right.svg'),)
+        ],))
+      ],),
     );
   }
 }
@@ -355,7 +373,6 @@ class _HomeMenuState extends State<HomeMenu> {
           // 첫 번째 아이콘과 라벨
           InkWell(
             onTap: () {
-              print("홈 아이콘 클릭");
               Navigator.push(context,
                   CustomPageRoute(page: BookingScreen(info: widget.info)));
             },

@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     // 첫 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: DefaultTicket(width: screenWidth * 0.9, height: screenHeight * 0.25),
+                      child: DefaultTicket(width: screenWidth * 0.9, height: screenHeight * 0.25, info: widget.info,),
                     ),
                     ...responseData.map((data) {
                       DateTime startDate = DateTime.parse(data['startday']);

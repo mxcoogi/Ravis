@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ravis/screen/screen_login.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
+import 'package:ravis/screen/screen_onboarding.dart';
 final storage = new FlutterSecureStorage();
 
 void main() async {
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ravis',
-      home: LoginScreen(),
+      home: OnBoardingPage(),
     );
   }
 }

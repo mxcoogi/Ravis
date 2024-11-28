@@ -413,8 +413,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 color: Color(0xFF555555)),
           ),
           SizedBox(
-            height: 40,
-          ),
+              height: 25,
+            ),
           Row(
             children: [
               Container(
@@ -490,8 +490,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 color: Color(0xFF555555)),
           ),
           SizedBox(
-            height: 30,
-          ),
+              height: 25,
+            ),
           Container(
             width: MediaQuery.of(context).size.width * 0.9,
             height: 44,
@@ -565,8 +565,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 color: Color(0xFF555555)),
           ),
           SizedBox(
-            height: 30,
-          ),
+              height: 25,
+            ),
           Row(
             children: [
               Container(
@@ -632,7 +632,7 @@ class _SignupScreenState extends State<SignupScreen> {
             ],
           ),
           SizedBox(
-            height: 79,
+            height: 110,
           ),
           Container(
             padding: EdgeInsets.symmetric(vertical: 16.0), // 버튼의 높이

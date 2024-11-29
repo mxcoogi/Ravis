@@ -18,7 +18,7 @@ class MapState extends State<Map> {
   BitmapDescriptor? markerIcon;  // markerIcon을 nullable로 변경하여 초기화 전에는 null 상태로 처리
   CameraPosition? _initialPosition;  // 초기 카메라 위치
   Position? _currentPosition;  // 현재 위치 저장 변수
-  final List<City> cities = [
+  /*final List<City> cities = [
     City(id: 'Seoul', name: '서울', latitude: 37.5665, longitude: 126.9780),
     City(id: 'Busan', name: '부산', latitude: 35.1796, longitude: 129.0756),
     City(id: 'Incheon', name: '인천', latitude: 37.4563, longitude: 126.7052),
@@ -52,7 +52,7 @@ class MapState extends State<Map> {
   City(id: 'Phuket', name: '푸켓', latitude: 7.8804, longitude: 98.3923),
   City(id: 'Pattaya', name: '파타야', latitude: 12.9270, longitude: 100.8770),
   City(id: 'Ayutthaya', name: '아유타야', latitude: 14.3560, longitude: 100.5685),
-  ];
+  ];*/
   
 
 
@@ -71,11 +71,6 @@ class MapState extends State<Map> {
     });
   }
   
-  // 서울의 좌표
-  static const CameraPosition _kHannam = CameraPosition(
-    target: LatLng(36.3547, 127.4210),  // 서울의 위도와 경도
-    zoom: 14.4746, // 기본 줌 레벨
-  );
 
   @override
   void initState() {
@@ -106,23 +101,7 @@ class MapState extends State<Map> {
 
   @override
   Widget build(BuildContext context) {
-    // markerIcon이 초기화되지 않은 경우, 로딩 화면을 보여줍니다.
-    if (markerIcon == null || _initialPosition == null) {
-      return Scaffold(
-        body: const Center(child: CircularProgressIndicator()),
-      );
-    }
-
-    // 마커 리스트 생성
-    Set<Marker> markers = cities.map((city) {
-      return Marker(
-        markerId: MarkerId(city.id),
-        position: LatLng(city.latitude, city.longitude),
-        infoWindow: InfoWindow(title: city.name),  // 마커에 정보창 추가
-        icon: markerIcon!,  // 커스텀 아이콘 (null 체크 후 사용)
-      );
-    }).toSet();
-
+  
     return Scaffold(
       body: _initialPosition == null
           ? Center(child: CircularProgressIndicator())
@@ -134,7 +113,7 @@ class MapState extends State<Map> {
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
-        markers: markers
+
       ),
       
       floatingActionButton: FloatingActionButton.extended(
@@ -161,16 +140,3 @@ class MapState extends State<Map> {
 }
 
 
-class City {
-  final String id;          // 마커 ID
-  final String name;        // 도시 이름
-  final double latitude;    // 위도
-  final double longitude;   // 경도
-
-  City({
-    required this.id,
-    required this.name,
-    required this.latitude,
-    required this.longitude,
-  });
-}

@@ -312,12 +312,14 @@ class DefaultTicket extends StatefulWidget {
   final double width; // 너비
   final double height; // 높이
   final Map<String, dynamic> info;
+  final VoidCallback onFetchData;
 
   const DefaultTicket({
     super.key,
     required this.width,
     required this.height,
-    required this.info
+    required this.info,
+    required this.onFetchData
   });
 
   @override
@@ -342,7 +344,7 @@ class _DefaultTicketState extends State<DefaultTicket> {
           child: Row(children: [
           GestureDetector(
             onTap: (){Navigator.push(context,
-                  CustomPageRoute(page: BookingScreen(info: widget.info)));},
+                  CustomPageRoute(page: BookingScreen(info: widget.info, onFetchData: widget.onFetchData)));},
             child: Text('대여하기', style: TextStyle(fontSize: 16, color: Color(0xFFd9d9d9), fontWeight: FontWeight.w600),),),
           GestureDetector(
             onTap: (){},
@@ -355,13 +357,17 @@ class _DefaultTicketState extends State<DefaultTicket> {
 
 class HomeMenu extends StatefulWidget {
   final Map<String, dynamic> info;
-  const HomeMenu({super.key, required this.info});
+  final VoidCallback onFetchData;
+  const HomeMenu({super.key, required this.info, required this.onFetchData});
 
   @override
   State<HomeMenu> createState() => _HomeMenuState();
 }
 
+
 class _HomeMenuState extends State<HomeMenu> {
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -373,7 +379,7 @@ class _HomeMenuState extends State<HomeMenu> {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  CustomPageRoute(page: BookingScreen(info: widget.info)));
+                  CustomPageRoute(page: BookingScreen(info: widget.info , onFetchData: widget.onFetchData)));
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

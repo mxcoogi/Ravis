@@ -12,7 +12,9 @@ import 'package:path_provider/path_provider.dart';
 
 class BookingScreen extends StatefulWidget {
   final Map<String, dynamic> info;
-  const BookingScreen({super.key, required this.info});
+  final VoidCallback onFetchData;
+  const BookingScreen({super.key, required this.info, required this.onFetchData});
+  
 
   @override
   State<BookingScreen> createState() => _BookingScreenState();
@@ -72,7 +74,8 @@ class _BookingScreenState extends State<BookingScreen> {
         backgroundColor: Colors.white,
         body: Padding(
           padding: EdgeInsets.all(20),
-          child: Column(
+          child: SingleChildScrollView(
+            child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -301,7 +304,7 @@ class _BookingScreenState extends State<BookingScreen> {
               ),
             ],
           ),
-        ));
+        )));
   }
 
   Widget buildStep2() {
@@ -809,6 +812,7 @@ class _BookingScreenState extends State<BookingScreen> {
               child: InkWell(
                 //Navigator.pop(context);
                 onTap: () {
+                  widget.onFetchData();
                   Navigator.pop(context);
                 },
                 child: Center(

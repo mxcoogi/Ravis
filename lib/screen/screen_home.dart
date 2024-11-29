@@ -55,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
     fetchData();
   }
 
+
   @override
   Widget build(BuildContext context) {
     // 미디어 쿼리를 사용해 화면 크기 가져오기
@@ -99,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     // 첫 번째 Review 위젯
                     Padding(
                       padding: const EdgeInsets.only(right: 10.0), // 오른쪽에 간격을 추가
-                      child: DefaultTicket(width: screenWidth * 0.9, height: screenHeight * 0.25, info: widget.info,),
+                      child: DefaultTicket(width: screenWidth * 0.9, height: screenHeight * 0.25, info: widget.info, onFetchData: fetchData,),
                     ),
                     ...responseData.map((data) {
                       DateTime startDate = DateTime.parse(data['startday']);
@@ -127,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               // 추가적인 위젯들
               SizedBox(height: 33),
-              HomeMenu(info: widget.info,),
+              HomeMenu(info: widget.info, onFetchData: fetchData),
               SizedBox(height: 23),
               TextMenu(),
               SizedBox(height: 5),

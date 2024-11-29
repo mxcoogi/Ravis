@@ -18,8 +18,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   DateTime? _selectedStartDay;
   DateTime? _selectedEndDay;
   Duration? _difference;
-
-  
+  DateTime _focusedDay = DateTime.now();
   
 
   @override
@@ -28,12 +27,13 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     _selectedStartDay = widget.rentalDate;
     _selectedEndDay = widget.returnDate;
     _difference = _selectedEndDay?.difference(_selectedStartDay!);
+     _focusedDay = DateTime.now();
   }
 
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
-      focusedDay: DateTime.now(),
+      focusedDay: _focusedDay,
       firstDay: DateTime.utc(2021, 3, 12),
       lastDay: DateTime.utc(2030, 3, 12),
       headerStyle: HeaderStyle(
@@ -68,10 +68,13 @@ class _CalendarWidgetState extends State<CalendarWidget> {
               _selectedEndDay = selectedDay;
             }
             if (_selectedStartDay != null && _selectedEndDay != null) {
-                _difference = _selectedEndDay!.difference(_selectedStartDay!);
-                 widget.onDatesChanged(_selectedStartDay!, _selectedEndDay!, _difference!); // 콜백 호출
-              }
+              _difference = _selectedEndDay!.difference(_selectedStartDay!);
+              widget.onDatesChanged(
+                  _selectedStartDay!, _selectedEndDay!, _difference!);
+            }
           }
+          // Focus on the first day of the selected range month
+          _focusedDay = DateTime(selectedDay.year, selectedDay.month, 1);
         });
       },
       rangeStartDay: _selectedStartDay,

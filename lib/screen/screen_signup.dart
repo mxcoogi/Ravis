@@ -21,7 +21,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _domainController = TextEditingController();
   final PageController _pageController = PageController(); // 페이지 컨트롤러
   var dio = Dio();
-  final String url = 'http://10.0.2.2:8000/signup';
+  final String url = 'http://43.203.22.130:8000/signup';
   bool isLoading = false;
 
   String name = '';
@@ -157,7 +157,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
+                        const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
                     child: TextField(
                         controller: _nameController,
                         decoration: InputDecoration(
@@ -203,7 +203,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
+                        const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
                     child: TextField(
                         controller: _birthwordController,
                         decoration: InputDecoration(
@@ -282,7 +282,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 13, vertical: 2.5),
+                        const EdgeInsets.symmetric(horizontal: 13, vertical: 2),
                     child: TextField(
                         controller: _phonewordController,
                         decoration: InputDecoration(
@@ -339,7 +339,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 5.5),
+                padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: '인증번호',
@@ -428,7 +428,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
                   child: TextField(
                       controller: _idController,
                       decoration: InputDecoration(
@@ -502,7 +502,7 @@ class _SignupScreenState extends State<SignupScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 4.5),
+              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
               child: TextField(
                   controller: _passwdController,
                   decoration: InputDecoration(
@@ -580,7 +580,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
                   child: TextField(
                       controller: _emailController,
                       decoration: InputDecoration(
@@ -613,7 +613,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
                   child: TextField(
                       controller: _domainController,
                       decoration: InputDecoration(

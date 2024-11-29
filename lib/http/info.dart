@@ -5,7 +5,7 @@ import 'package:ravis/main.dart';
 
 class UserInfo {
   final Dio dio = Dio();
-  final String url = 'http://10.0.2.2:8000/userinfo';  // API URL
+  final String url = 'http://43.203.22.130:8000/userinfo';  // API URL
 
   // 사용자 정보를 백엔드 API로부터 받아오는 함수
   Future<Map<String, dynamic>> fetchUserInfo() async {

@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> fetchData() async {
     try {
       // 요청을 보낼 URL
-      String url = 'http://10.0.2.2:8000/get-bookings'; // 실제 API URL로 교체
+      String url = 'http://43.203.22.130:8000/get-bookings'; // 실제 API URL로 교체
       String? value = await storage.read(key: 'access_token');
 
       // GET 요청 보내기

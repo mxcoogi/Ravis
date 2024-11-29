@@ -61,7 +61,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           image: _buildImage('on1.svg', 0.35),
           decoration: pageDecoration.copyWith(
               fullScreen: true,
-              bodyFlex: 20,
+              bodyFlex: 23,
               imageFlex: 5,
               titleTextStyle: TextStyle(
                 fontSize: 24,
@@ -82,7 +82,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           image: _buildImage('on2.svg', 0.35),
           decoration: pageDecoration.copyWith(
               fullScreen: true,
-              bodyFlex: 20,
+              bodyFlex: 23,
               imageFlex: 5,
               titleTextStyle: TextStyle(
                 fontSize: 24,
@@ -100,10 +100,10 @@ class OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "여행 중 발생한 문제 상황에\n빠르게 대처해요!",
           body: "대처 매뉴얼 제공 서비스",
-          image: _buildImage('on3.svg', 0.35),
+          image: _buildImage('on3.svg', 0.4),
           decoration: pageDecoration.copyWith(
               fullScreen: true,
-              bodyFlex: 20,
+              bodyFlex: 23,
               imageFlex: 5,
               titleTextStyle: TextStyle(
                 fontSize: 24,
@@ -124,7 +124,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           image: _buildImage('on4.svg',0.35),
           decoration: pageDecoration.copyWith(
               fullScreen: true,
-              bodyFlex: 20,
+              bodyFlex: 23,
               imageFlex: 5,
               titleTextStyle: TextStyle(
                 fontSize: 24,

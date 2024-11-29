@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> loginUser(String id, String password) async {
   // 서버 URL
-  final String url = 'http://10.0.2.2:8000/login';
+  final String url = 'http://43.203.22.130:8000/login';
   
   try {
     // POST 요청을 보낼 때 필요한 데이터

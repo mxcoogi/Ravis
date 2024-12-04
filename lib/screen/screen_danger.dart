@@ -11,6 +11,6 @@ class DangerScreen extends StatefulWidget {
 class _DangerScreenState extends State<DangerScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Map();
+    return const MapGoogle();
   }
 }

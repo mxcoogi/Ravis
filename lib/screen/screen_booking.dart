@@ -9,6 +9,7 @@ import 'package:intl/intl.dart'; // intl 패키지 임포트
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:path_provider/path_provider.dart';
+import 'package:ravis/widget/widget_time.dart';
 
 class BookingScreen extends StatefulWidget {
   final Map<String, dynamic> info;
@@ -346,35 +347,27 @@ class _BookingScreenState extends State<BookingScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
+                Text(
                       '대여 시간',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
-                    TextButton(
-                      child: Text(
-                        '확인',
-                        style: TextStyle(color: Colors.black, fontSize: 15),
-                      ), // 버튼 텍스트
-                      onPressed: () {},
-                    ),
-                  ],
+                    SizedBox(
+                  height: 20,
                 ),
+                TimeWidget(),
                 SizedBox(
-                  height: 30,
+                  height: 25,
                 ),
-                Row(
-                  children: [
-                    Text(
+                Text(
                       '반납시간',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
-                  ],
+                    SizedBox(
+                  height: 20,
                 ),
+                TimeWidget(),
                 SizedBox(
                   height: 30,
                 ),
@@ -1122,3 +1115,4 @@ class _AgreementFormState extends State<AgreementForm> {
     );
   }
 }
+
